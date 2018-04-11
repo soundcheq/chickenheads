@@ -23,7 +23,7 @@ export default class RegisterForm extends Component {
   }
 
   getVTypes() {
-    axios.get('/api/VTypes').then()
+    axios.get('/api/vTypes').then()
   }
 
   getUserInfo() {
@@ -55,6 +55,7 @@ export default class RegisterForm extends Component {
       .then(res => {})
   }
   //End of Posts
+
   inputTracker(e) {
     let { name, value } = e.target
     this.setState(
@@ -196,11 +197,6 @@ export default class RegisterForm extends Component {
           >
             {sTypeButtons}
           </TypeContainer>
-          {/* <AddTypeButton
-            onClick={_ => this.openOptions(this.state.stypeOptionsMenu)}
-          >
-            + add
-          </AddTypeButton> */}
         </OptionInputContainer>
         <FormOption>
           What Venues do you prefer? <Max>( Max 3 )</Max>
@@ -263,6 +259,7 @@ const TypeContainer = styled.section`
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5px;
   width: 64px;
+  margin-top: 17px;
 `
 const Input = styled.input`
   height: 40px;
@@ -355,28 +352,28 @@ const Message = styled.input`
   position: absolute;
   color: orange;
   outline: none;
-  left: 19px;
-  top: 11px;
+  left: 24px;
+  top: 21px;
   height: 0;
   width: 0;
   transition: 0.4s all;
   background: none;
-  border: 2px solid orange;
+  border: 2px solid red;
   transition: 0.4s width 0.2s, 0.1s height;
-  font-size: 30px;
-  padding-left: 10px;
+  font-size: 19px;
   &::placeholder {
     color: orange;
   }
 `
 
 const Cbox = styled.input`
+  position: absolute;
+  left: 0px;
+  top: 1px;
   display: flex;
   justify-content: center;
   align-items: center;
   outline: none;
-  top: -10px;
-  right: -10px;
   width: 30px;
   height: 30px;
   background: orange;
@@ -397,8 +394,8 @@ const Cbox = styled.input`
   }
   &:checked {
     ~ .message {
-      width: 300px;
-      height: 50px;
+      width: 241px;
+      height: 30px;
       transition: 0.3s width, 0.3s height 0.2s;
     }
     &:before,
