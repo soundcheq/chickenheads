@@ -1,5 +1,32 @@
+@font-face {
+  font-family: "ProximaNova";
+  font-style: normal;
+  src: url("./fonts/ProximaNova-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "ProximaNova";
+  font-style: italic;
+  font-weight: 400;
+  src: url("./fonts/ProximaNova-RegularItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "ProximaNova";
+  font-style: bold;
+  font-weight: 800;
+  src: url("./fonts/ProximaNova-Semibold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "ProximaNova";
+  font-style: italic;
+  font-weight: 800;
+  src: url("./fonts/ProximaNova-SemiboldItalic.woff") format("woff");
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "ProximaNova";
 }

@@ -51,7 +51,7 @@ export default class Auth extends Component {
           </LoginBoxContainer>
           <Footer>
             <P>About</P>
-            <P>Terms</P>
+            <P>Terms.</P>
             <P>Privacy</P>
             <P style={{ marginRight: 0 }}>2018 Soundcheq LLC</P>
           </Footer>
@@ -152,6 +152,7 @@ const Apply = styled.div`
   align-items: center;
   display: flex;
   height: 2rem;
+  cursor: pointer;
 `
 const Venue = styled.div`
   color: gray;
@@ -164,6 +165,7 @@ const Forgot = styled.div`
   align-items: center;
   display: flex;
   height: 2rem;
+  cursor: pointer;
 `
 
 //footer
@@ -171,11 +173,12 @@ const Forgot = styled.div`
 const Footer = styled.section`
   display: flex;
   justify-content: center;
-
+  letter-spacing: 0.5px;
   position: absolute;
   bottom: 0;
 `
 const P = styled.p`
   margin-right: 1.25rem;
   font-size: 11px;
+  cursor: pointer;
 `
