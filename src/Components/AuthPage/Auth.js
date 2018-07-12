@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import styled from "styled-components"
+import Logo from "../../images/Soundcheq-Logo-Animated.gif"
 
 export default class Auth extends Component {
   state = {
@@ -17,7 +18,7 @@ export default class Auth extends Component {
     return (
       <Container>
         <CheqContainer>
-          <Title>SOUNDCHEQ ICON</Title>
+          <GifLogo src={Logo} alt="logogif" />
           <LoginBoxContainer>
             <LoginTitle>Venue Login</LoginTitle>
             <InputWrapper>
@@ -68,8 +69,9 @@ const Container = styled.section`
   letter-spacing: 2px;
   border-radius: 4px;
 `
-const Title = styled.div`
-  font-size: 2rem;
+
+const GifLogo = styled.img`
+  width: 33%;
 `
 const LoginBoxContainer = styled.div`
   height: 300px;
