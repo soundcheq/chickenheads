@@ -42,12 +42,18 @@ export default class Auth extends Component {
               <SignInButton>Sign In</SignInButton>
             </InputWrapper>
             <VenueContainer>
-              <div>Are you a venue?</div>
+              <Venue>Are you a venue?</Venue>
               <Apply>Apply Here</Apply>
-              <br />
-              <div>Forgot Password?</div>
+
+              <Forgot>Forgot Password?</Forgot>
             </VenueContainer>
           </LoginBoxContainer>
+          <Footer>
+            <P>About</P>
+            <P>Terms</P>
+            <P>Privacy</P>
+            <P>2018 Soundcheq LLC</P>
+          </Footer>
         </CheqContainer>
       </Container>
     )
@@ -134,9 +140,41 @@ const VenueContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3rem;
+  padding: 10px 4px;
 `
 
 const Apply = styled.div`
-  margin: 0 8px 0 8px;
+  margin: 0 0 0 8px;
+  color: blue;
+  border-right: 1px solid lightgray;
+  padding-right: 4px;
+  align-items: center;
+  display: flex;
+  height: 2rem;
+`
+const Venue = styled.div`
+  color: gray;
+  align-items: center;
+  display: flex;
+  height: 2rem;
+`
+const Forgot = styled.div`
+  padding-left: 6px;
+  align-items: center;
+  display: flex;
+  height: 2rem;
+`
+
+//footer
+
+const Footer = styled.section`
+  display: flex;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 0;
+`
+const P = styled.p`
+  margin-right: 1rem;
+  font-size: 11px;
 `
