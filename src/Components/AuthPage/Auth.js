@@ -53,7 +53,7 @@ export default class Auth extends Component {
             <P>About</P>
             <P>Terms</P>
             <P>Privacy</P>
-            <P>2018 Soundcheq LLC</P>
+            <P style={{ marginRight: 0 }}>2018 Soundcheq LLC</P>
           </Footer>
         </CheqContainer>
       </Container>
@@ -77,7 +77,6 @@ const LoginBoxContainer = styled.div`
   height: 300px;
   width: 300px;
   margin-top: 3rem;
-
   border-radius: 5px;
   background: white;
 `
@@ -123,7 +122,7 @@ const CheqContainer = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100%;
+  height: 90%;
 `
 const SignInButton = styled.button`
   background: #4fa961;
@@ -177,6 +176,6 @@ const Footer = styled.section`
   bottom: 0;
 `
 const P = styled.p`
-  margin-right: 1rem;
+  margin-right: 1.25rem;
   font-size: 11px;
 `
