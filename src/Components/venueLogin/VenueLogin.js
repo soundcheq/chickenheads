@@ -51,7 +51,7 @@ export default class Auth extends Component {
           </LoginBoxContainer>
           <Footer>
             <P>About</P>
-            <P>Terms.</P>
+            <P>Terms</P>
             <P>Privacy</P>
             <P style={{ marginRight: 0 }}>2018 Soundcheq LLC</P>
           </Footer>
@@ -61,13 +61,15 @@ export default class Auth extends Component {
   }
 }
 
+const f = "display: flex"
+const faic = "display: flex; align-items: center;"
+
 const Container = styled.section`
   background: #534569;
   height: 100vh;
   width: 100%;
   color: #ffffff;
   letter-spacing: 2px;
-  border-radius: 4px;
 `
 
 const GifLogo = styled.img`
@@ -79,6 +81,7 @@ const LoginBoxContainer = styled.div`
   margin-top: 3rem;
   border-radius: 5px;
   background: white;
+  box-shadow: 0px 13px 16px -8px black;
 `
 const LoginTitle = styled.div`
   background: #a48ad4;
@@ -93,22 +96,30 @@ const InputContainer = styled.div`
 const InputWrapper = styled.section`
   background: #ececec;
   padding: 2rem;
-  display: flex;
+  ${f};
   flex-direction: column;
   align-items: center;
   letter-spacing: 0.5;
 `
 
 const Input = styled.input`
+  -webkit-appearance: none;
   height: 1.89rem;
   color: black;
   font-size: 1rem;
+  font-weight: bold;
   outline: none;
   width: 11.5rem;
   border: 0;
   margin-bottom: 1rem;
   &::-webkit-input-placeholder {
     color: lightgray;
+    text-indent: 0;
+    font-weight: 300;
+  }
+  &:focus {
+    color: #a48ad4;
+    border-bottom: 2px solid #a48ad4;
   }
 `
 const Icon = styled.div`
@@ -142,6 +153,7 @@ const VenueContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px 4px;
+  letter-spacing: 1.5px;
 `
 
 const Apply = styled.div`
@@ -149,8 +161,7 @@ const Apply = styled.div`
   color: blue;
   border-right: 1px solid lightgray;
   padding-right: 4px;
-  align-items: center;
-  display: flex;
+  ${faic};
   height: 2rem;
   cursor: pointer;
 `
@@ -173,7 +184,8 @@ const Forgot = styled.div`
 const Footer = styled.section`
   display: flex;
   justify-content: center;
-  letter-spacing: 0.5px;
+  letter-spacing: 1.5px;
+
   position: absolute;
   bottom: 0;
 `
