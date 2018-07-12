@@ -1,7 +1,7 @@
 import React from "react"
 import { Switch, Route } from "react-router-dom"
 import HomePage from "./Components/HomePage"
-import Auth from "./Components/AuthPage/Auth"
+import Auth from "./Components/venueLogin/VenueLogin"
 
 export default (
   <Switch>

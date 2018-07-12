@@ -24,12 +24,14 @@ export default class Auth extends Component {
             <InputWrapper>
               <InputContainer>
                 <Icon>I</Icon>
-                <Input
-                  placeholder="Username"
-                  type="text"
-                  onChange={e => this.inputTracker(e)}
-                  name="username"
-                />
+                <form autocomplete="off">
+                  <Input
+                    placeholder="Username"
+                    type="text"
+                    onChange={e => this.inputTracker(e)}
+                    name="username"
+                  />
+                </form>
               </InputContainer>
               <InputContainer>
                 <Icon>I</Icon>
@@ -38,6 +40,7 @@ export default class Auth extends Component {
                   type="password"
                   onChange={e => this.inputTracker(e)}
                   name="password"
+                  autocomplete="off"
                 />
               </InputContainer>
               <SignInButton>Sign In</SignInButton>
@@ -61,13 +64,15 @@ export default class Auth extends Component {
   }
 }
 
+const f = "display: flex"
+const faic = "display: flex; align-items: center;"
+
 const Container = styled.section`
   background: #534569;
   height: 100vh;
   width: 100%;
   color: #ffffff;
   letter-spacing: 2px;
-  border-radius: 4px;
 `
 
 const GifLogo = styled.img`
@@ -79,6 +84,7 @@ const LoginBoxContainer = styled.div`
   margin-top: 3rem;
   border-radius: 5px;
   background: white;
+  box-shadow: 0px 13px 16px -8px black;
 `
 const LoginTitle = styled.div`
   background: #a48ad4;
@@ -93,22 +99,31 @@ const InputContainer = styled.div`
 const InputWrapper = styled.section`
   background: #ececec;
   padding: 2rem;
-  display: flex;
+  ${f};
   flex-direction: column;
   align-items: center;
   letter-spacing: 0.5;
 `
 
 const Input = styled.input`
+  -webkit-appearance: none;
   height: 1.89rem;
   color: black;
   font-size: 1rem;
+  font-weight: bold;
   outline: none;
   width: 11.5rem;
   border: 0;
   margin-bottom: 1rem;
   &::-webkit-input-placeholder {
     color: lightgray;
+    text-indent: 0;
+    font-weight: 300;
+  }
+  &:focus {
+    color: #a48ad4;
+    border-bottom: 2px solid #a48ad4;
+    -webkit-appearance: none;
   }
 `
 const Icon = styled.div`
@@ -142,6 +157,7 @@ const VenueContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px 4px;
+  letter-spacing: 1.5px;
 `
 
 const Apply = styled.div`
@@ -149,9 +165,9 @@ const Apply = styled.div`
   color: blue;
   border-right: 1px solid lightgray;
   padding-right: 4px;
-  align-items: center;
-  display: flex;
+  ${faic};
   height: 2rem;
+  cursor: pointer;
 `
 const Venue = styled.div`
   color: gray;
@@ -164,6 +180,8 @@ const Forgot = styled.div`
   align-items: center;
   display: flex;
   height: 2rem;
+  cursor: pointer;
+  color: blue;
 `
 
 //footer
@@ -171,6 +189,7 @@ const Forgot = styled.div`
 const Footer = styled.section`
   display: flex;
   justify-content: center;
+  letter-spacing: 1.5px;
 
   position: absolute;
   bottom: 0;
@@ -178,4 +197,5 @@ const Footer = styled.section`
 const P = styled.p`
   margin-right: 1.25rem;
   font-size: 11px;
+  cursor: pointer;
 `
