@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import styled from "styled-components"
+import Logo from "../../images/Soundcheq-Logo-Animated.gif"
 
 export default class Auth extends Component {
   state = {
@@ -17,7 +18,7 @@ export default class Auth extends Component {
     return (
       <Container>
         <CheqContainer>
-          <Title>SOUNDCHEQ ICON</Title>
+          <GifLogo src={Logo} alt="logogif" />
           <LoginBoxContainer>
             <LoginTitle>Venue Login</LoginTitle>
             <InputWrapper>
@@ -42,12 +43,18 @@ export default class Auth extends Component {
               <SignInButton>Sign In</SignInButton>
             </InputWrapper>
             <VenueContainer>
-              <div>Are you a venue?</div>
+              <Venue>Are you a venue?</Venue>
               <Apply>Apply Here</Apply>
-              <br />
-              <div>Forgot Password?</div>
+
+              <Forgot>Forgot Password?</Forgot>
             </VenueContainer>
           </LoginBoxContainer>
+          <Footer>
+            <P>About</P>
+            <P>Terms</P>
+            <P>Privacy</P>
+            <P style={{ marginRight: 0 }}>2018 Soundcheq LLC</P>
+          </Footer>
         </CheqContainer>
       </Container>
     )
@@ -62,14 +69,14 @@ const Container = styled.section`
   letter-spacing: 2px;
   border-radius: 4px;
 `
-const Title = styled.div`
-  font-size: 2rem;
+
+const GifLogo = styled.img`
+  width: 33%;
 `
 const LoginBoxContainer = styled.div`
   height: 300px;
   width: 300px;
   margin-top: 3rem;
-
   border-radius: 5px;
   background: white;
 `
@@ -115,7 +122,7 @@ const CheqContainer = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100%;
+  height: 90%;
 `
 const SignInButton = styled.button`
   background: #4fa961;
@@ -134,9 +141,41 @@ const VenueContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3rem;
+  padding: 10px 4px;
 `
 
 const Apply = styled.div`
-  margin: 0 8px 0 8px;
+  margin: 0 0 0 8px;
+  color: blue;
+  border-right: 1px solid lightgray;
+  padding-right: 4px;
+  align-items: center;
+  display: flex;
+  height: 2rem;
+`
+const Venue = styled.div`
+  color: gray;
+  align-items: center;
+  display: flex;
+  height: 2rem;
+`
+const Forgot = styled.div`
+  padding-left: 6px;
+  align-items: center;
+  display: flex;
+  height: 2rem;
+`
+
+//footer
+
+const Footer = styled.section`
+  display: flex;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 0;
+`
+const P = styled.p`
+  margin-right: 1.25rem;
+  font-size: 11px;
 `
