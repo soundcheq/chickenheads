@@ -24,12 +24,14 @@ export default class Auth extends Component {
             <InputWrapper>
               <InputContainer>
                 <Icon>I</Icon>
-                <Input
-                  placeholder="Username"
-                  type="text"
-                  onChange={e => this.inputTracker(e)}
-                  name="username"
-                />
+                <form autocomplete="off">
+                  <Input
+                    placeholder="Username"
+                    type="text"
+                    onChange={e => this.inputTracker(e)}
+                    name="username"
+                  />
+                </form>
               </InputContainer>
               <InputContainer>
                 <Icon>I</Icon>
@@ -38,6 +40,7 @@ export default class Auth extends Component {
                   type="password"
                   onChange={e => this.inputTracker(e)}
                   name="password"
+                  autocomplete="off"
                 />
               </InputContainer>
               <SignInButton>Sign In</SignInButton>
@@ -120,6 +123,7 @@ const Input = styled.input`
   &:focus {
     color: #a48ad4;
     border-bottom: 2px solid #a48ad4;
+    -webkit-appearance: none;
   }
 `
 const Icon = styled.div`
@@ -177,6 +181,7 @@ const Forgot = styled.div`
   display: flex;
   height: 2rem;
   cursor: pointer;
+  color: blue;
 `
 
 //footer
