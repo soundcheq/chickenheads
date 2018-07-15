@@ -1,12 +1,20 @@
 import React, { Component } from "react"
+import styled from "styled-components"
 import RightPanel from "../RightPanel/RightPanel"
+import LeftPanel from "../LeftPanel/LeftPanel"
 
 export default class Dashboard extends Component {
   render() {
     return (
-      <div>
+      <Container>
+        <LeftPanel />
         <RightPanel />
-      </div>
+      </Container>
     )
   }
 }
+const f = "display: flex"
+
+const Container = styled.section`
+  ${f};
+`
