@@ -1,10 +1,13 @@
 import React, { Component } from "react"
 import styled from "styled-components"
+import SpotLight from "../Spotlight/Spotlight"
 
 export default class componentName extends Component {
   state = {
     user: "Skallywag",
-    points: 420
+    points: 420,
+    rsvps: 50,
+    eventTime: "10pm"
   }
   render() {
     return (
@@ -25,7 +28,7 @@ export default class componentName extends Component {
           </InfoContainer>
         </UserContainer>
         {/* TEMPORARY UNTIL DATA ADDED */}
-        <EventsContainer style={{ height: "83.4vh" }}>
+        <EventsContainer style={{ height: "62.6vh" }}>
           <Events>Events</Events>
           <CardContainer>
             <IconContainer>
@@ -33,8 +36,8 @@ export default class componentName extends Component {
               <EventIcon />
             </IconContainer>
             <EventDetailsContainer>
-              <EventName>EVENT NAME</EventName>
-              <SmallP>RSVPS</SmallP>
+              <EventName>EVENT NAME: {this.state.eventTime}</EventName>
+              <SmallP>{this.state.rsvps} RSVPs</SmallP>
               <SmallP>6 Specials</SmallP>
             </EventDetailsContainer>
             <CreateIcon />
@@ -45,7 +48,7 @@ export default class componentName extends Component {
               <EventIcon />
             </IconContainer>
             <EventDetailsContainer>
-              <EventName>Krunks New Groove</EventName>
+              <EventName>Krunks New Groove: {this.state.eventTime}</EventName>
               <SmallP>RSVPS</SmallP>
               <SmallP>6 Specials</SmallP>
             </EventDetailsContainer>
@@ -53,6 +56,7 @@ export default class componentName extends Component {
           </CardContainer>
         </EventsContainer>
         {/* TEMPORARY UNTIL DATA ADDED */}
+        <SpotLight />
       </RightPanelContainer>
     )
   }
@@ -72,7 +76,7 @@ const UserContainer = styled.div`
   ${f};
   color: white;
   justify-content: space-around;
-  padding: 1.5rem 0.5rem;
+  padding: 1.65rem 0.5rem;
   letter-spacing: 1px;
 `
 const UserIcon = styled.div`
@@ -136,33 +140,37 @@ const LINE = styled.div`
 // *events CSS Below¿
 
 const EventsContainer = styled.section`
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 0.75rem;
 `
 const Events = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 1.75rem;
   font-size: 13px;
-  opacity: 0.6;
+  opacity: 0.4;
+  font-weight: bold;
 `
 const SmallP = styled.div`
   font-size: 11px;
   display: inline-block;
-  opacity: 0.6;
+  opacity: 0.4;
   font-style: italic;
+  font-weight: bold;
+  letter-spacing: 0.5px;
   margin-bottom: 5px;
 `
 
 const EventName = styled.div`
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
   margin-bottom: 5px;
   padding-top: 5px;
+  opacity: 0.75;
 `
 
 const EventIcon = styled.div`
   width: 48px;
   height: 48px;
   border-radius: 70%;
-  background: red;
+  background: lightblue;
   border: 2px solid #70cc81;
   margin-top: 0.25rem;
 `
@@ -171,7 +179,7 @@ const CardContainer = styled.section`
   justify-content: space-between;
   align-items: center;
 
-  padding: 0.25rem;
+  padding: 0.15rem 0.25rem;
   position: relative;
   transition: background;
   transition-duration: 0.25s;
@@ -179,6 +187,8 @@ const CardContainer = styled.section`
   margin-bottom: 0.25rem;
   &:hover {
     background: #f4f4f4;
+    box-shadow: 0 0px 3px rgba(0, 0, 0, 0.19), 0 0px 0px rgba(0, 0, 0, 0.23);
+    border-radius: 4px;
   }
 `
 const CreateIcon = styled.button`
