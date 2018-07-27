@@ -1,0 +1,17 @@
+FROM mhart/alpine-node:10.7
+
+LABEL maintainer="DevMountain"
+
+WORKDIR /var/server
+
+COPY package.json /var/server
+
+COPY scripts/wait.sh /var/server
+
+RUN apk --update add postgresql && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm /var/cache/apk/*
+
+RUN yarn
+
+CMD ["./scripts/wait.sh", "psql_server", "yarn", "dev"]

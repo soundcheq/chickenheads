@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+  - 10.7
+addons:
+  ssh_known_hosts:
+    - 0.0.0.0
+before_install:
+  - tar xvf secrets.tar
+  - chmod 600 id_rsa_staging
+  - chmod 600 id_rsa_production
+  - mv id_rsa_staging ~/.ssh/id_rsa_staging
+  - mv id_rsa_production ~/.ssh/id_rsa_production
+install:
+  - yarn
+  - cd public && yarn
+before_script:
+  - yarn build
+script:
+  - echo this is where a test suite would be ran
+deploy:
+  - provider: script
+    script: ssh -i ~/.ssh/id_rsa_staging USER@HOST 'bash -s' < "$TRAVIS_BUILD_DIR/scripts/deploy.sh" staging
+    skip_cleanup: true
+    on:
+      branch: staging
+  - provider: script
+    script: ssh -i ~/.ssh/id_rsa_production USER@HOST 'bash -s' < "$TRAVIS_BUILD_DIR/scripts/deploy.sh" master
+    skip_cleanup: true
+    on:
+      branch: master
+notifications:
+  email: false
