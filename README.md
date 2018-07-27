@@ -11,7 +11,7 @@
 - `touch .env`
 - Copy the contents of `.env_sample` into `.env`
 - Run `docker-compose up` when in the root of the project
-  - Ports 5433 (PSQL), 3000 (React), and 3001 (Node) must be free on your machine
+  - Ports `5433` (PSQL), `3000` (React), and `3001` (Node) must be free on your machine
 
 ## Test your development server
 
