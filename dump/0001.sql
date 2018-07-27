@@ -19,4 +19,4 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (first, last, username, password) VALUES
-("James", "Lemire", "jlemire", "ilikelongislands")
+('James', 'Lemire', 'jlemire', 'ilikelongislands');
