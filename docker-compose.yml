@@ -1,0 +1,43 @@
+version: '3'
+services:
+  react_server:
+    container_name: soundcheq-react-container
+    build:
+      context: .
+      dockerfile: Dockerfile-react
+    image: soundcheq-react-image
+    ports:
+      - 3000:3000
+    volumes:
+      - ./public:/var/public
+      - /var/public/node_modules
+  node_server:
+    container_name: soundcheq-node-container
+    build:
+      context: .
+      dockerfile: Dockerfile-node-dev
+    image: soundcheq-node-image
+    ports:
+      - 3001:3001
+    volumes:
+      - .:/var/server
+      - /var/server/node_modules
+    depends_on:
+      - psql_server
+      - redis_server
+  psql_server:
+    container_name: soundcheq-psql-container
+    image: postgres:10.4
+    restart: always
+    volumes:
+      - ./dump/:/docker-entrypoint-initdb.d/
+    environment:
+      POSTGRES_DB: soundcheq
+      POSTGRES_USER: soundcheq
+      POSTGRES_PASS: soundcheq
+    ports:
+      - 5433:5432
+  redis_server:
+    container_name: soundcheq-redis-container
+    image: redis:4.0.10
+    restart: always
