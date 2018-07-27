@@ -17,3 +17,6 @@ CREATE TABLE users (
   auth0 text,
   email text
 );
+
+INSERT INTO users (first, last, username, password) VALUES
+("James", "Lemire", "jlemire", "ilikelongislands")
