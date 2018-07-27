@@ -1,13 +1,13 @@
-const { users } = require('../models')
+const { Users } = require('../models')
 
 module.exports = {
   test: async (req, res) => {
-    const users_data = await users.findAll()
+    const users = await Users.findAll()
 
     if (!req.session.test) {
       req.session.test = true
     }
 
-    res.send({ test: true, users: users_data, session: req.session })
+    res.send({ test: true, users, session: req.session })
   }
 }

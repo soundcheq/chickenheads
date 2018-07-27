@@ -25,7 +25,7 @@ const sequelize = new Sequelize(DB_DB, DB_USER, DB_PASS, {
   operatorsAliases: false
 })
 
-let preModels = [{ label: 'users', setup: users_model }]
+let preModels = [{ label: 'Users', setup: users_model }]
 let postModels = {}
 
 preModels.map(model => {
