@@ -1,8 +1,8 @@
-const { Users } = require('../models')
-
 module.exports = {
   test: async (req, res) => {
-    const users = await Users.findAll()
+    const UsersModel = app.get('models').Users
+
+    const users = await UsersModel.findAll()
 
     if (!req.session.test) {
       req.session.test = true

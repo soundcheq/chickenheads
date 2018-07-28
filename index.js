@@ -54,9 +54,11 @@ async function startServer(opts = {}) {
     }
 
     // Initialize the sequelize instance
-    const { sequelize } = require('./models')
+    const { sequelize, models } = require('./models')
     // Async await sequelizes sync process
     await sequelize.authenticate()
+
+    app.set('models', models)
 
     console.log(`Sequelize successfully sync'd to ${DB_DB}@${DB_HOST}`)
     console.log(`Server NODE_ENV: ${opts.NODE_ENV || NODE_ENV}`)

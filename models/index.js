@@ -26,11 +26,11 @@ const sequelize = new Sequelize(DB_DB, DB_USER, DB_PASS, {
 })
 
 let preModels = [{ label: 'Users', setup: users_model }]
-let postModels = {}
+let postModels = { models: {}, sequelize }
 
 preModels.map(model => {
   const setupModel = model.setup(sequelize, Sequelize)
-  postModels[model.label] = setupModel
+  postModels.models[model.label] = setupModel
 })
 
-module.exports = Object.assign({}, postModels, { sequelize })
+module.exports = postModels
