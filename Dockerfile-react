@@ -1,6 +1,6 @@
 FROM mhart/alpine-node:10.7
 
-LABEL maintainer="DevMountain"
+LABEL maintainer="Soundcheq"
 
 WORKDIR /var/public
 
