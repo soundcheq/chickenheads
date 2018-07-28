@@ -1,6 +1,6 @@
 module.exports = {
   test: async (req, res) => {
-    const UsersModel = app.get('models').Users
+    const UsersModel = req.app.get('models').Users
 
     const users = await UsersModel.findAll()
 
