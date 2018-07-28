@@ -15,8 +15,9 @@
 
 ## Test your development server
 
-- Go to `localhost:3000/dashboard` in a browser.
-- Go to `localhost:3001/dashboard` in a browser.
+- Go to `localhost:3000/dashboard` in a browser (dev server).
+- `cd` into the `public/` directory and run `yarn && yarn build`
+- Go to `localhost:3001/dashboard` in a browser (production build).
 - Send a `GET` request to `localhost:3001/api/test`.
 
 All three must work to confirm a successful development environment
