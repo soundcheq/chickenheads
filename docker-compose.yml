@@ -22,7 +22,7 @@ services:
     volumes:
       - .:/var/server
       - /var/server/node_modules
-    depends_on:
+    links:
       - psql_server
       - redis_server
   psql_server:

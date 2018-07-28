@@ -6,7 +6,14 @@ const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
 
 // .env variables
-const { NODE_ENV, SERVER_PORT, DB_DB, DB_HOST } = process.env
+const {
+  NODE_ENV,
+  SERVER_PORT,
+  DB_DB,
+  DB_HOST,
+  SESSION_SECRET,
+  REDIS_HOST
+} = process.env
 
 // Create an express app
 const app = express()
@@ -15,10 +22,14 @@ const app = express()
 // Redis allows session information to be saved and remembered on server restart
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
-    store: new RedisStore({ host: 'redis_server' }),
+    secret: SESSION_SECRET,
+    store: new RedisStore({ host: REDIS_HOST }),
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+      secure: NODE_ENV === 'development' ? false : true,
+      maxAge: 600000
+    }
   })
 )
 
@@ -53,11 +64,13 @@ async function startServer(opts = {}) {
       )
     }
 
-    // Initialize the sequelize instance
+    // Initialize the sequelize instance using all models in the models folder
     const { sequelize, models } = require('./models')
-    // Async await sequelizes sync process
+    // Async await sequelizes authenticate process
     await sequelize.authenticate()
 
+    // Set the models on the app instance to avoid multiple instances of sequelize
+    // http://www.redotheweb.com/2013/02/20/sequelize-the-javascript-orm-in-practice.html
     app.set('models', models)
 
     console.log(`Sequelize successfully sync'd to ${DB_DB}@${DB_HOST}`)

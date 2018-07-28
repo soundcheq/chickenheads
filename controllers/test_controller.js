@@ -9,5 +9,19 @@ module.exports = {
     }
 
     res.send({ test: true, users, session: req.session })
+  },
+  count: (req, res) => {
+    if (req.session.count === undefined) {
+      req.session.count = 0
+    } else {
+      req.session.count += 1
+    }
+
+    res.send({ session: req.session })
+  },
+  logout: async (req, res) => {
+    await req.session.destroy()
+
+    res.send('destroyed')
   }
 }
