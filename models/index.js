@@ -7,7 +7,7 @@ const venues_model = require('./venues_model')
 // .env variables
 const { DB_DB, DB_USER, DB_PASS, DB_HOST } = process.env
 
-const sequelize = new Sequelize(DB_DB, DB_USER, DB_PASS, {
+const sequelizeInstance = new Sequelize(DB_DB, DB_USER, DB_PASS, {
   host: DB_HOST,
   dialect: 'postgres',
 
@@ -31,10 +31,10 @@ const preModels = [
   { key: 'Venues', setup: venues_model }
 ]
 
-let postModels = { models: {}, sequelize }
+let postModels = { models: {}, sequelizeInstance }
 
 preModels.forEach(model => {
-  const setupModel = model.setup(sequelize, Sequelize)
+  const setupModel = model.setup(sequelizeInstance, Sequelize)
   postModels.models[model.key] = setupModel
 })
 

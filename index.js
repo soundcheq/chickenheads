@@ -65,9 +65,9 @@ async function startServer(opts = {}) {
     }
 
     // Initialize the sequelize instance using all models in the models folder
-    const { sequelize, models } = require('./models')
+    const { sequelizeInstance, models } = require('./models')
     // Async await sequelizes authenticate process
-    await sequelize.authenticate()
+    await sequelizeInstance.authenticate()
 
     // Set the models on the app instance to avoid multiple instances of sequelize
     // http://www.redotheweb.com/2013/02/20/sequelize-the-javascript-orm-in-practice.html
