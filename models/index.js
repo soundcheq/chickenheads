@@ -2,6 +2,7 @@ const Sequelize = require('sequelize')
 
 // Models
 const users_model = require('./users_model')
+const venues_model = require('./venues_model')
 
 // .env variables
 const { DB_DB, DB_USER, DB_PASS, DB_HOST } = process.env
@@ -25,7 +26,11 @@ const sequelize = new Sequelize(DB_DB, DB_USER, DB_PASS, {
   operatorsAliases: false
 })
 
-const preModels = [{ key: 'Users', setup: users_model }]
+const preModels = [
+  { key: 'Users', setup: users_model },
+  { key: 'Venues', setup: venues_model }
+]
+
 let postModels = { models: {}, sequelize }
 
 preModels.forEach(model => {
