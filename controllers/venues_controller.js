@@ -73,5 +73,42 @@ module.exports = {
       console.error('get_all_count failed in venues_controller.js:', err)
       res.status(500).send(err)
     }
+  },
+  get_one_soundtype1: async (req, res) => {
+    // Get all Venues where "stype1" is equal to "stype1" on req.params
+    try {
+      const VenuesModel = req.app.get('models').Venues
+      const { stype1 } = req.params
+      console.log(stype1)
+      let venues = await VenuesModel.findAll({
+        where: {
+          stype1: stype1
+        }
+      })
+      console.log(venues)
+      res.send(venues)
+    } catch (err) {
+      console.log('get_one_soundtype1 failed in venues_controller:', err)
+    }
+  },
+  get_venues_by_capacity: async (req, res) => {
+    try {
+      const VenuesModel = req.app.get('models').Venues
+      const { capacity } = req.params
+      const venues = await VenuesModel.findAll({
+        where: {
+          capacity: {
+            [Op.gt]: [capacity]
+          }
+        }
+      })
+      res.send(venues)
+    } catch (err) {
+      console.log(
+        'get_venues_bby_capcity has failed in venues_contreoller:',
+        err
+      )
+    }
   }
+  // Get all venues where capicity is passed in req.params.
 }
