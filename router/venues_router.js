@@ -13,7 +13,7 @@ Router.get('/capacity/:capacity', venues_controller.get_venues_by_capacity)
 
 Router.post(
   '/update/name/:id',
-  venues_middleware.checkForName,
+  venues_middleware.sanitizeUpdateName,
   venues_controller.update_venue_name
 )
 

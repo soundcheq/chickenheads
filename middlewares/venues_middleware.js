@@ -1,5 +1,5 @@
 module.exports = {
-  checkForName(req, res, next) {
+  sanitizeUpdateName(req, res, next) {
     const { id } = req.params
     const { name } = req.body
 
