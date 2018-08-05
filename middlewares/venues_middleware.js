@@ -11,7 +11,6 @@ module.exports = {
     if (typeof name === 'undefined')
       return res.status(500).send('Request body missing required name property')
 
-    console.log('everything checked out', id)
     next()
   }
 }
