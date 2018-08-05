@@ -109,6 +109,26 @@ module.exports = {
         err
       )
     }
+  },
+  update_venue_name: async (req, res) => {
+    try {
+      const VenuesModel = req.app.get('models').Venues
+      const { id } = req.params
+      const { name } = req.body
+
+      const [rows_updated, [updated_venue]] = await VenuesModel.update(
+        { name },
+        { returning: true, where: { id } }
+      )
+
+      // throw new Error('send this to the client')
+
+      res.send({ rows_updated, updated_venue })
+    } catch (err) {
+      console.error('update_venue_name failed in venues_controller.js:', err)
+      res
+        .status(500)
+        .send(`update_venue_name failed in venues_controller.js: ${err}`)
+    }
   }
-  // Get all venues where capicity is passed in req.params.
 }

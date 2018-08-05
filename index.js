@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+const bodyParser = require('body-parser')
 const path = require('path')
 const morgan = require('morgan')
 const session = require('express-session')
@@ -17,6 +18,9 @@ const {
 
 // Create an express app
 const app = express()
+
+// Use body parser to read JSON from request body
+app.use(bodyParser.json())
 
 // Use express sessions with a redis store
 // Redis allows session information to be saved and remembered on server restart
