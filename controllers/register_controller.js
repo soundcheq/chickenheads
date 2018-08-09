@@ -3,10 +3,10 @@ module.exports = {
     try {
       res.send({ hooked_up: true })
     } catch (err) {
-      console.error('register_user failed in login_controller.js:', err)
+      console.error('register_user failed in register_controller.js:', err)
       res
         .status(500)
-        .send(`register_user failed in login_controller.js: ${err}`)
+        .send(`register_user failed in register_controller.js: ${err}`)
     }
   },
 
@@ -15,12 +15,12 @@ module.exports = {
       res.send({ hooked_up: true })
     } catch (err) {
       console.error(
-        'register_venue_contact failed in login_controller.js:',
+        'register_venue_contact failed in register_controller.js:',
         err
       )
       res
         .status(500)
-        .send(`register_venue_contact failed in login_controller.js: ${err}`)
+        .send(`register_venue_contact failed in register_controller.js: ${err}`)
     }
   },
 
@@ -28,10 +28,10 @@ module.exports = {
     try {
       res.send({ hooked_up: true })
     } catch (err) {
-      console.error('register_venue failed in login_controller.js:', err)
+      console.error('register_venue failed in register_controller.js:', err)
       res
         .status(500)
-        .send(`register_venue failed in login_controller.js: ${err}`)
+        .send(`register_venue failed in register_controller.js: ${err}`)
     }
   }
 }
