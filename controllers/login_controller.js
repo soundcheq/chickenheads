@@ -28,7 +28,7 @@ module.exports = {
         res.send(venue_contact)
       } else {
         // The passwords did not match
-        res.status(500).send('Password is incorrect')
+        res.status(409).send('Password is incorrect')
       }
     } catch (err) {
       console.error('login failed in login_controller.js:', err)
