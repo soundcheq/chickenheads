@@ -10,7 +10,7 @@ export default class LeftPanel extends Component {
           <GifLogo src={Logo} alt="logogif" />
         </GifContainer>
         <MenuWrapper>
-          <Menu>Menu</Menu>
+          <Menu>Menussssss</Menu>
           <MenuContainer>
             <OptionContainer>
               <div>I</div>

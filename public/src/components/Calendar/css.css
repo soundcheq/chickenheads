@@ -1,0 +1,74 @@
+/* THE CONTAINER  */
+.react-calendar {
+  display: inline-block;
+  width: 100%;
+  height: 72%;
+  margin-top: 0rem;
+  padding: 2rem 8rem;
+  border: none;
+  font-family: 'ProximaNova';
+}
+
+/* THE MONTH TITLE */
+.react-calendar__navigation__label {
+  font-size: 1.5rem;
+  content: '';
+  background: #a48ad4;
+}
+
+/* BUTTONS GETTING HOVERED OVER */
+.react-calendar__tile {
+  height: 4rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.react-calendar__tile:enabled:hover {
+  content: 'Create Event';
+  position: relative;
+}
+
+/* NUMBER IN THE BUTTON */
+.react-calendar button:enabled:hover time {
+  /* display: none; */
+  font-size: 13px;
+  padding: 3px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* BUTTON CONTAINER I BELIEVE */
+button.react-calendar__tile:enabled:hover,
+button.react-calendar__tile:enabled:focus {
+  background: #a48ad4;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+button.react-calendar__tile--active:enabled:hover,
+button.react-calendar__tile--active:enabled:focus {
+  background: #a48ad4;
+  color: white;
+}
+
+button.react-calendar__tile:hover:after {
+  content: 'Create Event';
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* NAVIGATION ARROWS */
+.react-calendar__navigation__arrow,
+.react-calendar__navigation__next-button {
+  font-size: 2rem;
+}
+
+.react-calendar__navigation__next2-button {
+  display: none;
+}
+
+.react-calendar__navigation__prev2-button {
+  display: none;
+}
