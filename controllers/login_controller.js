@@ -25,6 +25,10 @@ module.exports = {
         // The passwords match
         // Remove the password from the venue_contact before sending it to the client
         delete venue_contact.dataValues.password
+
+        // Add the user to their session
+        req.session.user = venue_contact
+
         res.send(venue_contact)
       } else {
         // The passwords did not match

@@ -9,4 +9,7 @@ Router.use('/login', require('./login_router'))
 // Register Route(s)
 Router.use('/register', require('./register_router'))
 
+// Logout Route(s)
+Router.use('/logout', require('./logout_router'))
+
 module.exports = Router

@@ -1,6 +1,9 @@
 module.exports = {
   sanitizeVenueContact: (req, res, next) => {
     const { email, password } = req.body
+    const { user } = req.session
+
+    if (typeof user !== 'undefined') return res.status(200).send(user)
 
     if (typeof email !== 'string')
       return res
