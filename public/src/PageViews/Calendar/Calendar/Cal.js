@@ -18,7 +18,7 @@ class CalendarComp extends Component {
     const { events } = this.state
 
     const nextEvents = events.map(existingEvent => {
-      return existingEvent.id == event.id
+      return existingEvent.id === event.id
         ? { ...existingEvent, start, end }
         : existingEvent
     })
