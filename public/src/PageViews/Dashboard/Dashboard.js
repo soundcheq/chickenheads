@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import RightPanel from '../RightPanel/RightPanel'
-import LeftPanel from '../LeftPanel/LeftPanel'
+import RightPanel from '../../components/RightPanel/RightPanel'
+import LeftPanel from '../../components/LeftPanel/LeftPanel'
 
 export default class Dashboard extends Component {
   render() {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import CalendarComp from './Cal'
-import CalendarCard from './CalendarCard/CalendarCard'
-import LeftPanel from '../LeftPanel/LeftPanel'
-import RightPanel from '../RightPanel/RightPanel'
+import CalendarComp from './Calendar/Cal'
+import CalendarCard from './Calendar/CalendarCard/CalendarCard'
+import LeftPanel from '../../components/LeftPanel/LeftPanel'
+import RightPanel from '../../components/RightPanel/RightPanel'
 import styled from 'styled-components'
 
 export default class CalendarPage extends Component {
