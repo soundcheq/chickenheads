@@ -1,17 +1,21 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
+import React from 'react'
+import styled, { keyframes } from 'styled-components'
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
 class BannerRoll extends React.Component {
   render() {
-    let bannerWidth;
-    const { children, bannerItems, itemWidth, itemHeight, divider } = this.props;
+    let bannerWidth
+    const { children, bannerItems, itemWidth, itemHeight, divider } = this.props
     return (
-      <Container id="banner-roll" itemWidth={itemWidth} count={bannerItems.length}>
+      <Container
+        id="banner-roll"
+        itemWidth={itemWidth}
+        count={bannerItems.length}
+      >
         {children}
       </Container>
-    );
+    )
   }
 }
 
@@ -22,8 +26,7 @@ const looper = keyframes`
     to {
         transform: translateX(-50%);
     }
-`;
-
+`
 
 const Container = styled.div`
   display: inline-flex;
@@ -33,10 +36,9 @@ const Container = styled.div`
   border-left: none;
   border-right: none;
   overflow: hidden;
-  animation: ${looper} 10s linear infinite;
+  animation: ${looper} 60s linear infinite;
   transition: 1s linear;
   will-change: transform;
-`;
+`
 
-
-export default BannerRoll;
+export default BannerRoll
