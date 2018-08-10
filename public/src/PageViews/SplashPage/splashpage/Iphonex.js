@@ -5,7 +5,7 @@ import Iphone from '../../../assets/IphoneXNew.png'
 export default () => {
   return (
     <Container>
-      <div style={{ width: '74%' }}>
+      <section style={{ width: '74%' }}>
         <H1>Welcome to Soundcheq</H1>
         <div style={{ textAlign: 'left' }}>
           Discover events and venues based on what you like to do.Lorem ipsum
@@ -13,7 +13,7 @@ export default () => {
           Vestibulum leo felis, dictum sit amet ullamcorper tempor, rutrum eget
           erat. Cras non dolor atmpor, rutrum eget erat. Cras non dolor atg
         </div>
-      </div>
+      </section>
       <IphoneX src={Iphone} alt="Soundcheq" />
     </Container>
   )
