@@ -58,17 +58,14 @@ passport.use(new Auth0Strategy({
   callbackURL: CALLBACK_URL,
   scope: 'openid profile',
 }, function (accessToken, refreshToken, extraParams, profile, done) {
-  console.log(profile)
-  // register_user(profile)
   return done(null, profile)
 }))
 
-passport.serializeUser(function ({ displayName, id, user_id, name, picture, locale, nickname, gender }, done) {
-  done(null, { displayName, id, picture })
+passport.serializeUser(function ({ id }, done) {
+  done(null, { id })
 })
 
 passport.deserializeUser(function(user, done) {
-  console.log(user)
   done(null, user)
 })
 

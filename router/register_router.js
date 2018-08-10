@@ -5,10 +5,23 @@ const register_middleware = require('../middlewares').register_middleware
 
 const { SUCCESS_REDIRECT, FAILURE_REDIRECT } = process.env
 
-Router.get('/user', passport.authenticate('auth0', {
-  successRedirect: SUCCESS_REDIRECT,
-  failureRedirect: FAILURE_REDIRECT
-}))
+Router.get('/user', function(req, res, next) {
+  passport.authenticate('auth0', function(err, user, info) {
+    if (err) {
+      return next(err)
+    }
+    if (!user) {
+      return res.redirect(FAILURE_REDIRECT)
+    }
+    req.logIn(user, async function(err) {
+      if (err) {
+        return next(err)
+      }
+      await register_controller.register_user(req, res)
+      return res.redirect(SUCCESS_REDIRECT)
+    })
+  })(req, res, next)
+})
 
 Router.post(
   '/venue/contact',
