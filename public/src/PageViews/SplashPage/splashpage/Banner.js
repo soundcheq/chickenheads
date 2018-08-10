@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React from 'react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-import BannerRoll from "./Banner/BannerRoll";
-import BannerItem from "./Banner/BannerRoll/BannerItem";
-import DividerItem from "./Banner/BannerRoll/DividerItem";
+import BannerRoll from '../splashpage/Banner/BannerRoll'
+import BannerItem from './Banner/BannerRoll/BannerItem'
+import DividerItem from './Banner/BannerRoll/DividerItem'
 
 //required props:
 //bannerItems
@@ -13,7 +13,7 @@ import DividerItem from "./Banner/BannerRoll/DividerItem";
 
 class Banner extends React.Component {
   render() {
-    const extraItems = this.props.bannerItems.concat(this.props.bannerItems);
+    const extraItems = this.props.bannerItems.concat(this.props.bannerItems)
     const {
       bannerStyles,
       bannerWidth,
@@ -21,7 +21,7 @@ class Banner extends React.Component {
       spacing,
       icon,
       iconStyles
-    } = this.props;
+    } = this.props
     return (
       <Container id="banner-container" style={bannerStyles} width={bannerWidth}>
         <BannerRoll {...this.props}>
@@ -33,32 +33,27 @@ class Banner extends React.Component {
                   fontStyles={fontStyles}
                   margin={spacing}
                 />
-                {icon && (
-                  <DividerItem
-                    icon={icon}
-                    iconStyles={iconStyles}
-                  />
-                )}
+                {icon && <DividerItem icon={icon} iconStyles={iconStyles} />}
               </ChildrenContainer>
-            );
+            )
           })}
         </BannerRoll>
       </Container>
-    );
+    )
   }
 }
 
 const Container = styled.div`
-  width: ${props => (props.width ? `${props.width}px` : "100%")};
+  width: ${props => (props.width ? `${props.width}px` : '100%')};
   margin: auto;
   overflow: hidden;
   display: block;
-`;
+`
 
 const ChildrenContainer = styled.div`
   display: flex;
   flex-direction: row;
-`;
+`
 
 Banner.propTypes = {
   bannerItems: PropTypes.array.isRequired,
@@ -67,7 +62,7 @@ Banner.propTypes = {
   bannerStyles: PropTypes.object,
   iconStyles: PropTypes.object,
   divider: PropTypes.string,
-  spacing: PropTypes.number,
-};
+  spacing: PropTypes.number
+}
 
-export default Banner;
+export default Banner

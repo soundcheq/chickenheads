@@ -68,6 +68,8 @@ const MidContainer = styled.section`
   ${f} justify-content: center;
   align-items: center;
   height: 94%;
+  justify-content: center;
+  display: flex;
 `
 const MainContainer = styled.section`
   height: 100vh;
