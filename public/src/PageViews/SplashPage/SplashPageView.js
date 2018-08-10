@@ -37,11 +37,15 @@ const MidContainer = styled.section`
   ${f};
   justify-content: center;
   align-items: center;
-  height: 73%;
+  height: 70%;
   position: relative;
 `
 const MainContainer = styled.section`
+   background: #534569;
   height: 100vh;
+  width: 100%;
+  color: #ffffff;
+  letter-spacing: 2px;
 `
 
 const H1Section = styled.section`
@@ -49,13 +53,13 @@ const H1Section = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: lightgray;
   text-align: center;
 `
 const SoundcheqLogo = styled.img`
   width: 30rem;
   margin-bottom: 0.5rem;
   margin-left: 55px;
+  margin-top: 1rem;
 `
 
 const P = styled.div`
@@ -73,11 +77,11 @@ const FooterContainer = styled.section`
 
 const FP = styled.div`
   margin-right: 10px;
-  ${'' /* color: white; */} color: black;
+  color: white;
 `
 
 const Line = styled.div`
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid white;
   width: 44%;
   margin-top: 2rem;
 `

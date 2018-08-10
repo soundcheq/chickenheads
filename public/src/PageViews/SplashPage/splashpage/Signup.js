@@ -29,10 +29,9 @@ export default class SignUp extends Component {
 const MainContainer = styled.section`
   height: 15rem;
   width: 15rem;
-  background: lightgray;
+  background: ghostwhite;
   display: flex;
   justify-content: center;
-  display: f
   align-items: center;
   position: relative;
   letter-spacing: 1.25px;
@@ -70,5 +69,6 @@ const ButtonWrap = styled.section`
 
 const Text = styled.div`
   font-size: 11px;
-  color: white;
+  color: black;
+  font-weight: bold;
 `
