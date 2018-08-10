@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Iphone from './img/iphone-x-transparent.png'
+import Iphone from '../../../assets/IphoneXNew.png'
 
 export default () => {
   return (
@@ -25,8 +25,8 @@ const IphoneX = styled.img`
   height: 18rem;
   overflow: hidden;
   position: absolute;
-  top: -70px;
-  right: -70px;
+  top: -65px;
+  right: 13px;
   z-index: 1;
 `
 

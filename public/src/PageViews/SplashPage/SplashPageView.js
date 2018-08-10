@@ -77,7 +77,7 @@ const FooterContainer = styled.section`
 
 const FP = styled.div`
   margin-right: 10px;
-  color: white;
+  color: white;''
 `
 
 const Line = styled.div`
