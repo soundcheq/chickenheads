@@ -5,6 +5,7 @@ const path = require('path')
 const morgan = require('morgan')
 const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
+const figlet = require('figlet')
 
 // .env variables
 const {
@@ -82,6 +83,10 @@ async function startServer(opts = {}) {
     app.listen(3001, () =>
       console.log(`Server listening on port ${opts.SERVER_PORT || SERVER_PORT}`)
     )
+
+    figlet('Soundcheq Online', (err, data) => {
+      console.log(data)
+    })
   } catch (err) {
     console.error('startServer failed in index.js:', err)
   }

@@ -12,6 +12,11 @@ RUN apk --update add postgresql && \
     rm -rf /var/lib/apt/lists/* && \
     rm /var/cache/apk/*
 
+RUN apk --update add --no-cache --virtual .gyp \
+        python \
+        make \
+        g++
+
 RUN yarn
 
 CMD ["./scripts/wait.sh", "psql_server", "yarn", "dev"]

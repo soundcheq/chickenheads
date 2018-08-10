@@ -1,3 +1,13 @@
+CREATE TABLE venue_contacts (
+  id SERIAL PRIMARY KEY,
+  first_name TEXT,
+  last_name TEXT,
+  job_title TEXT,
+  email TEXT,
+  phone TEXT,
+  password TEXT
+);
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   first text,
@@ -22,7 +32,7 @@ INSERT INTO users (first, last, username, password) VALUES
 ('James', 'Lemire', 'jlemire', 'ilikelongislands');
 
 CREATE TABLE venues (
-  id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,  
   name text,
   street text,
   city text,

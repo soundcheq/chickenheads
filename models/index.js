@@ -2,6 +2,7 @@ const Sequelize = require('sequelize')
 
 // Models
 const users_model = require('./users_model')
+const venue_contacts_model = require('./venue_contacts_model')
 const venues_model = require('./venues_model')
 
 // .env variables
@@ -28,7 +29,8 @@ const sequelizeInstance = new Sequelize(DB_DB, DB_USER, DB_PASS, {
 
 const preModels = [
   { key: 'Users', setup: users_model },
-  { key: 'Venues', setup: venues_model }
+  { key: 'Venues', setup: venues_model },
+  { key: 'VenueContacts', setup: venue_contacts_model }
 ]
 
 let postModels = { models: {}, sequelizeInstance }
