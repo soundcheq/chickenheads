@@ -52,6 +52,7 @@ const Container = styled.div`
   width: ${props => (props.width ? `${props.width}px` : "100%")};
   margin: auto;
   overflow: hidden;
+  display: block;
 `;
 
 const ChildrenContainer = styled.div`
