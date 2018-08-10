@@ -2,18 +2,14 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 export default class SignUp extends Component {
-  UserLogin() {}
-
-  VenueLogin() {}
-
   render() {
     return (
       <MainContainer>
         <RegisterNow>Register Now or Sign In</RegisterNow>
         <ButtonWrap>
           <Text style={{ marginTop: '2rem' }}>Are you a User?</Text>
-          <LoginButtons onClick={_ => this.UserLogin()}>
-            User Login
+          <LoginButtons>
+            <a href="http:localhost:3001/api/register/user">User Login</a>
           </LoginButtons>
           <Text style={{ marginTop: '.5rem' }}>Are you a Venue??</Text>
           <LoginButtons onClick={_ => this.VenueLogin()}>
