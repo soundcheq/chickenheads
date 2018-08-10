@@ -3,14 +3,32 @@ const saltRounds = 10
 const Op = require('sequelize').Op
 
 module.exports = {
-  register_user: (req, res) => {
+  register_user: ({id, displayName, name: {familyName, givenName}, gender}) => {
+    // try {
+    //   res.send({ hooked_up: true })
+    // } catch (err) {
+    //   console.error('register_user failed in register_controller.js:', err)
+    //   res
+    //     .status(500)
+    //     .send(`register_user failed in register_controller.js: ${err}`)
+    // }
     try {
-      res.send({ hooked_up: true })
-    } catch (err) {
-      console.error('register_user failed in register_controller.js:', err)
-      res
-        .status(500)
-        .send(`register_user failed in register_controller.js: ${err}`)
+      const Users = req.app.get('models').Users
+      Users.findOrCreate({where: {auth0: id}, defaults: { 
+        first: giveName,
+        last: familyName, 
+        username: displayName, 
+        gender
+       }}).spread((user, created) => {
+         console.log(user.get({
+           plain: true
+         }))
+         console.log(created)
+       })
+
+    }
+    catch (err) {
+      console.error('Error register user', err)
     }
   },
 

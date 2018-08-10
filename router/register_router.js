@@ -1,8 +1,14 @@
 const Router = require('express').Router()
+const passport = require('passport')
 const register_controller = require('../controllers').register_controller
 const register_middleware = require('../middlewares').register_middleware
 
-Router.post('/user', register_controller.register_user)
+const { SUCCESS_REDIRECT, FAILURE_REDIRECT } = process.env
+
+Router.get('/user', passport.authenticate('auth0', {
+  successRedirect: SUCCESS_REDIRECT,
+  failureRedirect: FAILURE_REDIRECT
+}))
 
 Router.post(
   '/venue/contact',

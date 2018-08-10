@@ -6,6 +6,11 @@ const morgan = require('morgan')
 const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
 const figlet = require('figlet')
+const passport = require('passport')
+const Auth0Strategy = require('passport-auth0')
+
+// const register_user = require('./controllers/register_controller').register_user
+
 
 // .env variables
 const {
@@ -14,7 +19,11 @@ const {
   DB_DB,
   DB_HOST,
   SESSION_SECRET,
-  REDIS_HOST
+  REDIS_HOST,
+  DOMAIN,
+  CLIENT_ID,
+  CLIENT_SECRET,
+  CALLBACK_URL
 } = process.env
 
 // Create an express app
@@ -37,6 +46,31 @@ app.use(
     }
   })
 )
+
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.use(new Auth0Strategy({
+  domain: DOMAIN,
+  clientID: CLIENT_ID,
+  clientSecret: CLIENT_SECRET,
+  callbackURL: CALLBACK_URL,
+  scope: 'openid profile',
+}, function (accessToken, refreshToken, extraParams, profile, done) {
+  console.log(profile)
+  // register_user(profile)
+  return done(null, profile)
+}))
+
+passport.serializeUser(function ({ displayName, id, user_id, name, picture, locale, nickname, gender }, done) {
+  done(null, { displayName, id, picture })
+})
+
+passport.deserializeUser(function(user, done) {
+  console.log(user)
+  done(null, user)
+})
 
 // Log all incoming requests with the morgan package - https://github.com/expressjs/morgan
 if (NODE_ENV === 'development') {
