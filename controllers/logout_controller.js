@@ -12,8 +12,14 @@ module.exports = {
     }
   },
   logout_user: async (req, res) => {
-    await req.logout()
-    await req.session.destroy()
-    res.redirect(LOGOUT_REDIRECT)
+    try {
+      await req.logout()
+      await req.session.destroy()
+      res.redirect(LOGOUT_REDIRECT)
+    }
+    catch (err) {
+      console.error('user logout failed in logout_controller.js:', err)
+      res.status(500).send(`user logout failed in logout_controller.js: ${err}`)
+    }
   }
 }

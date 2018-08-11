@@ -20,9 +20,9 @@ module.exports = {
     next()
   },
   checkUserSession: (req, res, next) => {
-    //Check if user exists
+    //Check if user session exists; if not, redirect them to register/login page
     if (!req.user) {
-      res.status(409).send('User is not already logged in')
+      res.redirect(FAILURE_REDIRECT)
     }
     next()
   }

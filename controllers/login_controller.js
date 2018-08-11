@@ -55,7 +55,8 @@ module.exports = {
       return res.redirect(SUCCESS_REDIRECT)
       
     } catch (err) {
-      
+      console.error('user login failed in login controller.js:', err)
+      res.status(500).send(`user login failed in login_controller.js: ${err}`)
     }
   }
 }

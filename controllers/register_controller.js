@@ -38,7 +38,8 @@ module.exports = {
         // console.log(created)
       })
     } catch (err) {
-      console.error('Error registering user', err)
+      console.error('register_user failed in register_controller.js:', err)
+      res.status(500).send(`register_user failed in register_controller.js: ${err}`)
     }
   },
 
