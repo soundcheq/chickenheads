@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt')
+const { SUCCESS_REDIRECT, FAILURE_REDIRECT } = process.env
 
 module.exports = {
   login_venue_contact: async (req, res) => {
@@ -37,6 +38,24 @@ module.exports = {
     } catch (err) {
       console.error('login failed in login_controller.js:', err)
       res.status(500).send(`login failed in login_controller.js: ${err}`)
+    }
+  },
+  login_user: async (req, res) => {
+    try {
+      //get the auth id off the request user object
+      const { id } = req.user
+      const Users = req.app.get('models').Users
+      //find user that matches the auth id
+      const user = await Users.findOne({ where: { auth0: id }})
+      //if user was not found in database, send 409 status
+      if (!user) {
+        res.status(409).send('No user found in database.')
+      }
+      //if user was found, redirect to dashboard
+      return res.redirect(SUCCESS_REDIRECT)
+      
+    } catch (err) {
+      
     }
   }
 }

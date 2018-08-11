@@ -13,11 +13,14 @@ Router.get('/user', function(req, res, next) {
     if (!user) {
       return res.redirect(FAILURE_REDIRECT)
     }
-    req.logIn(user, async function(err) {
+    req.login(user, async function(err) {
       if (err) {
         return next(err)
       }
+
+      //wait for the user to be added to the database
       await register_controller.register_user(req, res)
+      //redirect to dashboard
       return res.redirect(SUCCESS_REDIRECT)
     })
   })(req, res, next)

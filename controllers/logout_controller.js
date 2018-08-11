@@ -1,3 +1,5 @@
+const { LOGOUT_REDIRECT } = process.env
+
 module.exports = {
   logout: async (req, res) => {
     try {
@@ -8,5 +10,10 @@ module.exports = {
       console.error('logout failed in logout_controller.js:', err)
       res.status(500).send(`logout failed in logout_controller.js: ${err}`)
     }
+  },
+  logout_user: async (req, res) => {
+    await req.logout()
+    await req.session.destroy()
+    res.redirect(LOGOUT_REDIRECT)
   }
 }

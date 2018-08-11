@@ -4,24 +4,41 @@ const Op = require('sequelize').Op
 
 module.exports = {
   register_user: async (req, res) => {
+    //if prop doesn't exist in user object from auth0, change it to empty string
     try {
-      const {id, displayName, name: {familyName, givenName}, gender} = req.user
-      const Users = req.app.get('models').Users
-      Users.findOrCreate({where: {auth0: id}, defaults: { 
-        first: givenName,
-        last: familyName, 
-        username: displayName, 
+      for (prop in req.user) {
+        if (!req.user[prop]) {
+          req.user[prop] = ''
+        }
+      }
+      //destructure properties off req.user to add to database
+      const {
+        id,
+        displayName,
+        name: { familyName, givenName },
         gender
-       }}).spread((user, created) => {
-         console.log(user.get({
-           plain: true
-         }))
-         console.log(created)
-       })
+      } = req.user
 
-    }
-    catch (err) {
-      console.error('Error register user', err)
+      const Users = req.app.get('models').Users
+      //check if user already exists in database; if not, add them
+      Users.findOrCreate({
+        where: { auth0: id },
+        defaults: {
+          first: givenName,
+          last: familyName,
+          username: displayName,
+          gender
+        }
+      }).spread((user, created) => {
+        // console.log(
+        //   user.get({
+        //     plain: true
+        //   })
+        // )
+        // console.log(created)
+      })
+    } catch (err) {
+      console.error('Error registering user', err)
     }
   },
 
