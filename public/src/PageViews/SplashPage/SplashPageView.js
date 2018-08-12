@@ -19,7 +19,8 @@ const bannerItems = [
   'PUNK',
   'JAZZ',
   'AVANT-GARDE',
-  'REGGAE'
+  'REGGAE',
+  'POP-PUNK'
 ]
 
 const fontStyles = {
