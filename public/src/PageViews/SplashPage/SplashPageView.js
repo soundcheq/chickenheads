@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import SignUp from './splashpage/Signup'
 import IphoneXContent from './splashpage/Iphonex'
 import Banner from './splashpage/Banner'
-import Soundcheq from '../../assets/WhiteLogo.PNG'
+import Soundcheq from '../../assets/BandW-animated-logo.gif'
+import landingBackground from '../../assets/landingBackground.jpg'
 
 export default class SplashPageView extends Component {
   render() {
@@ -41,7 +42,8 @@ const MidContainer = styled.section`
   position: relative;
 `
 const MainContainer = styled.section`
-   background: #534569;
+   background: url(${landingBackground});
+  opacity: 0.98;
   height: 100vh;
   width: 100%;
   color: #ffffff;
