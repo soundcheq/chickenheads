@@ -4,50 +4,11 @@ import SignUp from './splashpage/Signup'
 import IphoneXContent from './splashpage/Iphonex'
 import Banner from './splashpage/Banner'
 
-const bannerItems = [
-  'NU-DISCO',
-  'BREAKBEAT',
-  'DRUM AND BASS',
-  'DUBSTEP',
-  'TRAP',
-  'HIP HOP',
-  'TECHNO',
-  'METAL',
-  'LOUNGE',
-  'DEEP HOUSE',
-  'POP',
-  'PUNK',
-  'JAZZ',
-  'AVANT-GARDE',
-  'REGGAE',
-  'POP-PUNK'
-]
-
-const fontStyles = {
-  color: 'white',
-  fontFamily: 'sans-serif'
-}
-
-const bannerStyles = {
-  backgroundColor: '#544666',
-  height: '35px'
-}
-
-const iconStyles = {
-  color: '#85769A'
-}
-
 export default class SplashPageView extends Component {
   render() {
     return (
       <MainContainer>
-        <Banner
-          bannerItems={bannerItems}
-          bannerStyles={bannerStyles}
-          fontStyles={fontStyles}
-          iconStyles={iconStyles}
-          icon="fas fa-circle"
-        />
+        <Banner icon="fas fa-circle" />
         <H1Section>
           <div>Soundcheq</div>
           <div>LOREM IPSUM </div>
