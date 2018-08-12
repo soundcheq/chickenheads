@@ -8,17 +8,17 @@ export default class SplashPageView extends Component {
   render() {
     return (
       <MainContainer>
-      <Banner/>
-      <H1Section>
-      <div>Soundcheq</div>
-      <div>LOREM IPSUM </div>
-      <div/>
-      </H1Section>
-      <MidContainer>
-      <div></div>
-        <IphoneXContent/>
-        <SignUp/>
-      </MidContainer>
+        <Banner icon="fas fa-circle" />
+        <H1Section>
+          <div>Soundcheq</div>
+          <div>LOREM IPSUM </div>
+          <div />
+        </H1Section>
+        <MidContainer>
+          <div />
+          <IphoneXContent />
+          <SignUp />
+        </MidContainer>
       </MainContainer>
     )
   }
@@ -27,18 +27,18 @@ export default class SplashPageView extends Component {
 const f = 'display: flex'
 
 const MidContainer = styled.section`
-${f}
-justify-content: center;
-align-items: center;
-height: 94%;
+  ${f} justify-content: center;
+  align-items: center;
+  height: 94%;
+  justify-content: center;
+  display: flex;
 `
 const MainContainer = styled.section`
-height: 100vh;
+  height: 100vh;
 `
 
 const H1Section = styled.section`
-${f}
-flex-direction:column;
-justify-content:center;
-text-align: center;
+  ${f} flex-direction:column;
+  justify-content: center;
+  text-align: center;
 `
