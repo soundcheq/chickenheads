@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled, { keyframes } from 'styled-components'
-import bar from '../../../assets/lightgreenbar.png'
+import bar from '../../../../assets/lightgreenbar.png'
 
 export default class componentName extends Component {
   render() {
