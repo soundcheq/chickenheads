@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Bars from './SignUp/purpleBars'
+import { API } from '../../../config'
 
 export default class SignUp extends Component {
   render() {
@@ -13,10 +14,10 @@ export default class SignUp extends Component {
             <BarsContainer>
               <Bars />
             </BarsContainer>
-            <a href="http:localhost:3001/api/register/user">User Login</a>
+            <a href={API.registration.user}>User Login</a>
           </LoginButtons>
           <Text style={{ marginTop: '.5rem' }}>Are you a Venue??</Text>
-          <LoginButtons onClick={_ => this.VenueLogin()}>
+          <LoginButtons onClick={this.loginVenue}>
             <BarsContainer>
               <Bars />
             </BarsContainer>

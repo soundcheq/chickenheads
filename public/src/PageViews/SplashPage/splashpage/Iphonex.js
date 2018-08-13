@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Iphone from '../../../assets/IphoneXNew.png'
 import PhoneContent from '../../../assets/mobile-modal.png'
 
-export default () => {
+export default function iPhoneX() {
   return (
     <Container>
       <section style={{ width: '74%' }}>

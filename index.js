@@ -11,7 +11,6 @@ const Auth0Strategy = require('passport-auth0')
 
 // const register_user = require('./controllers/register_controller').register_user
 
-
 // .env variables
 const {
   NODE_ENV,
@@ -47,21 +46,25 @@ app.use(
   })
 )
 
-
 app.use(passport.initialize())
 app.use(passport.session())
 
-passport.use(new Auth0Strategy({
-  domain: DOMAIN,
-  clientID: CLIENT_ID,
-  clientSecret: CLIENT_SECRET,
-  callbackURL: CALLBACK_URL,
-  scope: 'openid profile',
-}, function (accessToken, refreshToken, extraParams, profile, done) {
-  return done(null, profile)
-}))
+passport.use(
+  new Auth0Strategy(
+    {
+      domain: DOMAIN,
+      clientID: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+      callbackURL: CALLBACK_URL,
+      scope: 'openid profile'
+    },
+    function(accessToken, refreshToken, extraParams, profile, done) {
+      return done(null, profile)
+    }
+  )
+)
 
-passport.serializeUser(function ({ id }, done) {
+passport.serializeUser(function({ id }, done) {
   done(null, { id })
 })
 
