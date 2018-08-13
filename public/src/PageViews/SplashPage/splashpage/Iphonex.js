@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Iphone from '../../../assets/IphoneXNew.png'
+import PhoneContent from '../../../assets/mobile-modal.png'
 
 export default () => {
   return (
@@ -14,7 +15,10 @@ export default () => {
           erat. Cras non dolor atmpor, rutrum eget erat. Cras non dolor atg
         </div>
       </section>
-      <IphoneX src={Iphone} alt="Soundcheq" />
+      <IphoneContainer>
+        <IphoneX src={Iphone} alt="Soundcheq" />
+        <ContentImg src={PhoneContent} alt="bleh" />
+      </IphoneContainer>
     </Container>
   )
 }
@@ -24,10 +28,20 @@ const f = 'display: flex'
 const IphoneX = styled.img`
   height: 18rem;
   overflow: hidden;
-  position: absolute;
-  top: -65px;
-  right: 13px;
   z-index: 1;
+  position: absolute;
+`
+const IphoneContainer = styled.section`
+  position: relative;
+  top: -101px;
+  right: -16px;
+`
+const ContentImg = styled.img`
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 123px;
+  height: 17rem;
 `
 
 const Container = styled.section`
