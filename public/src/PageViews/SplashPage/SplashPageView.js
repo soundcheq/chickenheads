@@ -10,7 +10,7 @@ export default class SplashPageView extends Component {
   render() {
     return (
       <MainContainer>
-        <Banner />
+        <Banner icon="fas fa-circle" />
         <H1Section>
           <SoundcheqLogo src={Soundcheq} />
           <P>Your Night, Rediscovered.</P>

@@ -53,5 +53,8 @@ module.exports = {
       return res.status(409).send('Passwords do not match')
 
     next()
+  },
+  sanitizeUser: (req, res, next) => {
+
   }
 }

@@ -3,14 +3,43 @@ const saltRounds = 10
 const Op = require('sequelize').Op
 
 module.exports = {
-  register_user: (req, res) => {
+  register_user: async (req, res) => {
+    //if prop doesn't exist in user object from auth0, change it to empty string
     try {
-      res.send({ hooked_up: true })
+      for (prop in req.user) {
+        if (!req.user[prop]) {
+          req.user[prop] = ''
+        }
+      }
+      //destructure properties off req.user to add to database
+      const {
+        id,
+        displayName,
+        name: { familyName, givenName },
+        gender
+      } = req.user
+
+      const Users = req.app.get('models').Users
+      //check if user already exists in database; if not, add them
+      Users.findOrCreate({
+        where: { auth0: id },
+        defaults: {
+          first: givenName,
+          last: familyName,
+          username: displayName,
+          gender
+        }
+      }).spread((user, created) => {
+        // console.log(
+        //   user.get({
+        //     plain: true
+        //   })
+        // )
+        // console.log(created)
+      })
     } catch (err) {
       console.error('register_user failed in register_controller.js:', err)
-      res
-        .status(500)
-        .send(`register_user failed in register_controller.js: ${err}`)
+      res.status(500).send(`register_user failed in register_controller.js: ${err}`)
     }
   },
 
