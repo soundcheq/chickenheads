@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Bars from './purpleBars'
+import Bars from './SignUp/purpleBars'
 
 export default class SignUp extends Component {
   render() {
