@@ -28,7 +28,7 @@ const {
 // Create an express app
 const app = express()
 
-// Use body parser to read JSON from request body
+// Use express.json to read JSON off of requests
 app.use(express.json())
 
 // Use express sessions with a redis store
