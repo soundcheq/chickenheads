@@ -5,12 +5,13 @@ import IphoneXContent from './splashpage/Iphonex'
 import Banner from './splashpage/Banner'
 import Soundcheq from '../../assets/BandW-animated-logo.gif'
 import landingBackground from '../../assets/landingBackground.jpg'
+import bannerItems from '../../utils/banner_items'
 
 export default class SplashPageView extends Component {
   render() {
     return (
       <MainContainer>
-        <Banner icon="fas fa-circle" />
+        <Banner icon="fas fa-circle" bannerItems={bannerItems} />
         <H1Section>
           <SoundcheqLogo src={Soundcheq} />
           <P>Your Night, Rediscovered.</P>

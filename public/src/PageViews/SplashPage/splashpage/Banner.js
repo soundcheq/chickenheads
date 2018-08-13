@@ -13,8 +13,10 @@ import DividerItem from './Banner/BannerRoll/DividerItem'
 
 class Banner extends React.Component {
   render() {
-    const extraItems = bannerItems.concat(bannerItems)
-    const { bannerWidth, spacing, icon } = this.props
+    const { bannerWidth, spacing, icon, bannerItems } = this.props
+    // Double the passed in bannerItems so it can fill the screen width
+    const doubleItems = bannerItems.concat(bannerItems)
+
     return (
       <Container id="banner-container" style={bannerStyles} width={bannerWidth}>
         <BannerRoll
@@ -23,7 +25,7 @@ class Banner extends React.Component {
           fontStyles={fontStyles}
           iconStyles={iconStyles}
         >
-          {extraItems.map((item, i) => {
+          {doubleItems.map((item, i) => {
             return (
               <ChildrenContainer key={`${item}.${i}`}>
                 <BannerItem
@@ -64,24 +66,6 @@ Banner.propTypes = {
 }
 
 export default Banner
-
-const bannerItems = [
-  'NU-DISCO',
-  'BREAKBEAT',
-  'DRUM AND BASS',
-  'DUBSTEP',
-  'TRAP',
-  'HIP HOP',
-  'TECHNO',
-  'METAL',
-  'LOUNGE',
-  'DEEP HOUSE',
-  'POP',
-  'PUNK',
-  'JAZZ',
-  'AVANT-GARDE',
-  'REGGAE'
-]
 
 const fontStyles = {
   color: 'white',
