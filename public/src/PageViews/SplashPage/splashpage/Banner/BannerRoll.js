@@ -1,18 +1,11 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
-import PropTypes from 'prop-types'
-
 class BannerRoll extends React.Component {
   render() {
-    let bannerWidth
-    const { children, bannerItems, itemWidth, itemHeight, divider } = this.props
+    const { children, bannerItems } = this.props
     return (
-      <Container
-        id="banner-roll"
-        itemWidth={itemWidth}
-        count={bannerItems.length}
-      >
+      <Container id="banner-roll" count={bannerItems.length}>
         {children}
       </Container>
     )
