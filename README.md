@@ -29,3 +29,15 @@ All three must work to confirm a successful development environment
 During the docker build process it creates images to be used by the docker containers. The image build process is what runs `yarn` to install depedencies. In order to update packages in docker, you'll have to remove the image and re-build it.
 
 You can also use a program called kitematic to launch a terminal inside the docker container. You can then run the `yarn add <package>` to install your package without re-building the image. However, any time the container restarts you'll have to re-run the `yarn add <package>` until the image is re-built.
+
+
+## Docker Troubleshooting
+
+If the project isn't working correctly try these Docker troubleshooting techniques.
+
+* Close and re-open Docker using the icon in the menu bar
+* Run these commands to get a fresh docker environment:
+  * `docker rm -f $(docker ps -a -q)`
+  * `docker rmi $(docker images -q)`
+  * `docker volume prune -f`
+  * `docker-compose up`
