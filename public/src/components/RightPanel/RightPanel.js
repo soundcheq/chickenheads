@@ -67,8 +67,10 @@ const f = 'display: flex'
 const RightPanelContainer = styled.section`
   position: absolute;
   right: 0;
-  width: 260px;
+  width: 16.6vw;
   background: #ecedef;
+  z-index: 1;
+  margin: 0 auto
 `
 
 const UserContainer = styled.div`

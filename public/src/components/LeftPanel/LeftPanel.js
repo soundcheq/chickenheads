@@ -51,11 +51,12 @@ export default class LeftPanel extends Component {
 const f = 'display: flex'
 
 const Container = styled.section`
-  width: 16.5%;
-  height: 100vh;
+  width: 16.6vw;
+  height: 100%;
   background: #12171d;
-  position: fixed;
+  position: absolute;
   color: white;
+  z-index: 1;
 `
 
 const GifContainer = styled.section`
