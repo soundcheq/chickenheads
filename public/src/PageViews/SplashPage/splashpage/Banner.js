@@ -14,8 +14,6 @@ import DividerItem from './Banner/BannerRoll/DividerItem'
 class Banner extends React.Component {
   render() {
     const { bannerWidth, spacing, icon, bannerItems } = this.props
-    // Double the passed in bannerItems so it can fill the screen width
-    const doubleItems = bannerItems.concat(bannerItems)
 
     return (
       <Container id="banner-container" style={bannerStyles} width={bannerWidth}>
@@ -25,7 +23,7 @@ class Banner extends React.Component {
           fontStyles={fontStyles}
           iconStyles={iconStyles}
         >
-          {doubleItems.map((item, i) => {
+          {bannerItems.map((item, i) => {
             return (
               <ChildrenContainer key={`${item}.${i}`}>
                 <BannerItem
