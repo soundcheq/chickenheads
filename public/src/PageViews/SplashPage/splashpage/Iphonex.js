@@ -23,8 +23,6 @@ export default function iPhoneX() {
   )
 }
 
-const f = 'display: flex'
-
 const IphoneX = styled.img`
   height: 18rem;
   overflow: hidden;
@@ -53,7 +51,7 @@ const Container = styled.section`
   letter-spacing: 1px;
   border-radius: 7px;
   color: white;
-  ${f};
+  display: flex;
   position: relative;
 `
 
