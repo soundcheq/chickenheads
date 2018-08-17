@@ -29,7 +29,7 @@ export default class SpotLight extends Component {
 
 const Container = styled.section`
   background: #4c4c4c;
-  height: 25.4vh;
+  height: 130px;
   padding: 0.85rem 1.5rem;
 `
 

@@ -43,9 +43,9 @@ const MidContainer = styled.section`
   position: relative;
 `
 const MainContainer = styled.section`
-   background: url(${landingBackground});
+  background: url(${landingBackground});
   opacity: 0.98;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   color: #ffffff;
   letter-spacing: 2px;
