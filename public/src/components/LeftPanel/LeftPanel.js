@@ -55,6 +55,7 @@ const Container = styled.section`
   height: 100vh;
   background: #12171d;
   color: white;
+  z-index: 1;
 `
 
 const GifContainer = styled.section`

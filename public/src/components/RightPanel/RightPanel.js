@@ -68,6 +68,8 @@ const RightPanelContainer = styled.section`
   width: 17%;
   height: 100vh;
   background: #ecedef;
+  z-index: 1;
+  margin: 0 auto;
 `
 
 const UserContainer = styled.div`
