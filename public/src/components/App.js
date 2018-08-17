@@ -6,7 +6,9 @@ import LeftPanel from './LeftPanel'
 import RightPanel from './RightPanel'
 import './App.css'
 
-const pathsWithoutPanels = ['/']
+const pathsWithoutPanels = {
+  '/': true
+}
 
 class App extends Component {
   render() {
@@ -16,17 +18,17 @@ class App extends Component {
     return (
       <Container>
         <Content>
-          {pathsWithoutPanels.includes(currentPath) ? null : <LeftPanel />}
+          {pathsWithoutPanels[currentPath] ? null : <LeftPanel />}
 
           <RouterContainer
             style={{
-              width: pathsWithoutPanels.includes(currentPath) ? '100%' : '70%'
+              width: pathsWithoutPanels[currentPath] ? '100%' : '70%'
             }}
           >
             {router}
           </RouterContainer>
 
-          {pathsWithoutPanels.includes(currentPath) ? null : <RightPanel />}
+          {pathsWithoutPanels[currentPath] ? null : <RightPanel />}
         </Content>
       </Container>
     )
