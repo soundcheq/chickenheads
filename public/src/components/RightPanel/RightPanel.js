@@ -28,7 +28,7 @@ export default class componentName extends Component {
           </InfoContainer>
         </UserContainer>
         {/* TEMPORARY UNTIL DATA ADDED */}
-        <EventsContainer style={{ height: '62.6vh' }}>
+        <EventsContainer>
           <Events>Events</Events>
           <CardContainer>
             <IconContainer>
@@ -65,14 +65,14 @@ export default class componentName extends Component {
 const f = 'display: flex'
 
 const RightPanelContainer = styled.section`
-  position: absolute;
-  right: 0;
-  width: 260px;
+  width: 17%;
+  height: 100vh;
   background: #ecedef;
 `
 
 const UserContainer = styled.div`
   background: #70cc81;
+  height: 130px;
   ${f};
   color: white;
   justify-content: space-around;
@@ -140,6 +140,7 @@ const LINE = styled.div`
 // *events CSS Below¿
 
 const EventsContainer = styled.section`
+  height: calc(100% - 260px);
   padding: 1.5rem 0.75rem;
 `
 const Events = styled.div`
