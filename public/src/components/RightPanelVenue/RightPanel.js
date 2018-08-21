@@ -65,7 +65,7 @@ export default class componentName extends Component {
 const f = 'display: flex'
 
 const RightPanelContainer = styled.section`
-  width: 17%;
+  width: 267px;
   height: 100vh;
   background: #ecedef;
   z-index: 1;

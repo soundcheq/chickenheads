@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import ContactInfo from './VenueRegister/ContactInfo'
 
-import Left from '../../components/LeftPanel/index'
-import Right from '../../components/RightPanel/index'
+import Left from '../../components/LeftPanelVenue/index'
+import Right from '../../components/RightPanelVenue/index'
 
 const Wrapper = styled.div`
   height: 100%;
@@ -15,15 +15,13 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
-
-
 class VenueRegister extends Component {
   render() {
     return (
       <div>
         <Left />
         <Wrapper>
-          <ContactInfo/>
+          <ContactInfo />
         </Wrapper>
         <Right />
       </div>

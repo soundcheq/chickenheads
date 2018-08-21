@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import CalendarComp from './Calendar/Cal'
 import CalendarCard from './Calendar/CalendarCard/CalendarCard'
-import LeftPanel from '../../components/LeftPanel/LeftPanel'
-import RightPanel from '../../components/RightPanel/RightPanel'
 import styled from 'styled-components'
 
 export default class CalendarPage extends Component {
@@ -19,7 +17,6 @@ export default class CalendarPage extends Component {
   render() {
     return (
       <Container>
-        <LeftPanel />
         <CalendarContainer>
           <MyEvents>My Events</MyEvents>
           <ViewContainer>
@@ -46,7 +43,6 @@ export default class CalendarPage extends Component {
           </ViewContainer>
           {this.state.buttonChoice ? <CalendarComp /> : <CalendarCard />}
         </CalendarContainer>
-        <RightPanel />
       </Container>
     )
   }
