@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import S3Upload from './UserRegister/S3Upload'
+import TopUserData from './UserRegister/TopUserData'
+import RegisterForm from './UserRegister/RegisterUserForm'
 
 export default class UserRegister extends Component {
   render() {
@@ -8,16 +10,10 @@ export default class UserRegister extends Component {
       <ProfileContainer>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <S3Upload />
-
-          <ProfileStats>
-            <Stats>Top City FORTLAUDERDALE</Stats>
-            <Stats>Top Venue REVOLUTION</Stats>
-            <Stats>Total Reviews: 24</Stats>
-            <Stats>Total Check-ins: 56</Stats>
-          </ProfileStats>
+          <TopUserData />
         </div>
 
-        <div>Edit Your Profile</div>
+        <RegisterForm />
       </ProfileContainer>
     )
   }
@@ -29,13 +25,4 @@ const ProfileContainer = styled.section`
   background: lightgray;
   color: #c8c8c8;
   display: flex;
-`
-
-const ProfileStats = styled.section`
-  background: white;
-  width: 250px;
-`
-
-const Stats = styled.div`
-  padding: 10px;
 `

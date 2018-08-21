@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+import DefaultImg from '../../../assets/200x200fav.png'
 
 function sendToback(photo) {
   return axios.post('/api/uploadPhoto', photo)
@@ -10,7 +11,7 @@ export default class S3Upload extends Component {
   constructor() {
     super()
     this.state = {
-      file: '',
+      file: DefaultImg,
       filename: '',
       filetype: ''
     }
@@ -46,11 +47,14 @@ export default class S3Upload extends Component {
     return (
       <UploadContainer>
         <UploadBox>
-          <Upload
-            type="file"
-            accept=".jpg,.jpeg,.png,.gif"
-            onChange={this.handlePhoto}
-          />
+          <Upload type="file" onChange={this.handlePhoto} />
+          {this.state.file && (
+            <ImageUpload
+              src={this.state.file}
+              alt=""
+              className="file-preview"
+            />
+          )}
         </UploadBox>
       </UploadContainer>
     )
@@ -72,6 +76,7 @@ const Upload = styled.input`
   top: 0;
   opacity: 0;
   cursor: pointer;
+  z-index: 3;
 `
 
 const UploadContainer = styled.section`
@@ -79,4 +84,11 @@ const UploadContainer = styled.section`
   padding: 6px;
   width: 250px;
   margin-bottom: 7px;
+`
+const ImageUpload = styled.img`
+  position: absolute;
+  top: 0;
+  height: 200px;
+  width: 237px;
+  left: 0;
 `
