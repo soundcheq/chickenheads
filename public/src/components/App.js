@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import router from '../router'
-import LeftPanel from './LeftPanel'
-import RightPanel from './RightPanel'
+import LeftPanel from './LeftPanelVenue/LeftPanel'
+import RightPanel from './RightPanelVenue/RightPanel'
 import './App.css'
 
 const pathsWithoutPanels = {
