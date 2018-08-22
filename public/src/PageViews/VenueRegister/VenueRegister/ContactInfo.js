@@ -20,15 +20,20 @@ const Form = styled.form`
 
 const Header = styled.div`
   font-size: 40px;
-  margin-bottom: 30px;
-  color: #343535;
+  margin-bottom: 20px;
+  color: #343a42;
 `
+const SubHeader = Header.extend`
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 30px;
+`
+
 const Error = styled.div`
   height: 40px;
   width: 200px;
   color: #ff9494;
   margin-left: 10px;
-  
 `
 const InputContainer = styled.div`
   display: flex;
@@ -56,24 +61,26 @@ class ContactInfo extends Component {
     let { name, value } = e.target
     this.setState({
       [name]: value
-    }, () => console.log(this.state[name], name) )
+    })
   }
 
   render() {
     return (
       <RegisterContainer>
         <Header>Contact Information</Header>
+        <SubHeader>
+          At Soundcheq, venues get access to their customers in ways never
+          before possible.
+        </SubHeader>
         <Form onSubmit={() => this.handleSubmit()}>
-          <InputContainer>
-            <TextInput
-              name={'firstName'}
-              placeholder={'First Name'}
-              type={'text'}
-              updateFn={this.handleInput}
-              required={'required'}
-            />
-            <Error>* You dun goofed </Error>
-          </InputContainer>
+          <TextInput
+            name={'firstName'}
+            placeholder={'First Name'}
+            type={'text'}
+            updateFn={this.handleInput}
+            required={'required'}
+          />
+
           <TextInput
             name={'lastName'}
             placeholder={'Last Name'}
