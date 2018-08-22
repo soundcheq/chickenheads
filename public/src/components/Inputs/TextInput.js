@@ -3,14 +3,16 @@ import styled from 'styled-components'
 
 const Input = styled.input`
   height: 40px;
-  width: 215px;
-  border-radius: 3px;
+  width: 300px;
+  border: none;
+  border-radius: 2px;
   padding: 0px 20px;
-  font-size: 20px;
+  font-size: 16px;
   color: #343535;
+  background-color: #E9E9E9;
   margin-bottom: 20px;
   &::placeholder {
-    color: #D5D0D0;
+    color: #909090;
     font-style: italic;
   }
   &:focus {

@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
 class VenueRegister extends Component {
   state = {
-    contactInfoCompleted: true
+    contactInfoCompleted: false
   }
   render() {
     let { contactInfoCompleted } = this.state
