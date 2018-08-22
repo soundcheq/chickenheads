@@ -11,6 +11,7 @@ const Input = styled.input`
   margin-bottom: 20px;
   &::placeholder {
     color: #D5D0D0;
+    font-style: italic;
   }
   &:focus {
     outline: 0 none;
