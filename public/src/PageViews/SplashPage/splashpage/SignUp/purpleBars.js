@@ -9,9 +9,20 @@ export default class componentName extends Component {
         <Bar1 src={bar} alt="nuttin" />
         <Bar2 src={bar} alt="nuttin" />
         <Bar3 src={bar} alt="nuttin" />
-        <Bar4 src={bar} alt="nuttin" />
-        <Bar5 src={bar} alt="nuttin" />
-        <Bar6 src={bar} alt="nuttin" />
+        <Bar1 style={{ left: '28px', bottom: '-26px', animationDelay: '.3s' }} src={bar} alt="nuttin" />
+        <Bar2 style={{ left: '36px', bottom: '-25.5px', animationDelay: '.1.25s', height: '28px' }} src={bar} alt="nuttin" />
+        <Bar3 style={{ left: '44px', bottom: '-23px', animationDelay: '.2s', height: '27px' }} src={bar} alt="nuttin" />
+        <Bar2 style={{ left: '52px', bottom: '-33px', animationDelay: '.1s', height: '31px' }} src={bar} alt="nuttin" />
+        <Bar1 style={{ left: '60px', bottom: '-22px', animationDelay: '.5s', height: '22px' }} src={bar} alt="nuttin" />
+        <Bar3 style={{ left: '68px', bottom: '-28px', animationDelay: '.1s', height: '27px' }} src={bar} alt="nuttin" />
+        <Bar3 style={{ left: '76px', bottom: '-26px', height: '27px' }} src={bar} alt="nuttin" />
+        <Bar3 style={{ left: '84px', bottom: '-28px', animationDelay: '.1s', height: '31px' }} src={bar} alt="nuttin" />
+        <Bar3 style={{ left: '92px', bottom: '-29px', animationDelay: '.2s', height: '28px' }} src={bar} alt="nuttin" />
+        <Bar3 style={{ left: '100px', bottom: '-34px', animationDelay: '.1s', height: '33px' }} src={bar} alt="nuttin" />
+        <Bar3 style={{ left: '108px', bottom: '-25px', height: '25px' }} src={bar} alt="nuttin" />
+        <Bar9 src={bar} alt="nuttin" />
+        <Bar10 src={bar} alt="nuttin" />
+        <Bar11 src={bar} alt="nuttin" />
       </div>
     )
   }
@@ -76,7 +87,8 @@ const Bar1 = styled.img`
   width: 0.5rem;
   height: 2rem;
   bottom: -29px;
-  left: 3px;
+  left: 4px;
+  z-index: 3;
   animation: ${BarAnimation1} ease-in 1s 0.1s infinite;
 `
 const Bar2 = styled.img`
@@ -84,7 +96,8 @@ const Bar2 = styled.img`
   width: 0.5rem;
   height: 2rem;
   bottom: -25px;
-  left: 11px;
+  left: 12px;
+  z-index: 3;
   animation: ${BarAnimation2} ease-in 1s infinite;
 `
 const Bar3 = styled.img`
@@ -92,30 +105,34 @@ const Bar3 = styled.img`
   width: 0.5rem;
   height: 2rem;
   bottom: -27px;
-  left: 19px;
+  left: 20px;
+  z-index: 3;
   animation: ${BarAnimation3} ease-in 1s 0.6s infinite;
 `
-const Bar4 = styled.img`
+const Bar9 = styled.img`
   position: absolute;
   width: 0.5rem;
   height: 2rem;
   bottom: -27px;
-  right: 19px;
+  right: 20px;
+  z-index: 3;
   animation: ${BarAnimation1} ease-in 1s 0.1s infinite;
 `
-const Bar5 = styled.img`
+const Bar10 = styled.img`
   position: absolute;
   width: 0.5rem;
   height: 2rem;
   bottom: -29px;
-  right: 11px;
+  right: 12px;
+  z-index: 3;
   animation: ${BarAnimation2} ease-in 1s infinite;
 `
-const Bar6 = styled.img`
+const Bar11 = styled.img`
   position: absolute;
   width: 0.5rem;
   height: 2rem;
   bottom: -26px;
-  right: 3px;
+  right: 4px;
+  z-index: 3;
   animation: ${BarAnimation3} ease-in 1s 0.6s infinite;
 `

@@ -14,14 +14,14 @@ export default class SignUp extends Component {
             <BarsContainer>
               <Bars />
             </BarsContainer>
-            <a href={API.registration.user}>User Login</a>
+            <A href={API.registration.user}>User Login</A>
           </LoginButtons>
           <Text style={{ marginTop: '.5rem' }}>Are you a Venue??</Text>
-          <LoginButtons onClick={this.loginVenue}>
+          <LoginButtons>
             <BarsContainer>
               <Bars />
             </BarsContainer>
-            Venue Login
+            <A href={API.registration.venue}>Venue Login</A> 
           </LoginButtons>
         </ButtonWrap>
       </MainContainer>
@@ -39,6 +39,7 @@ const MainContainer = styled.section`
   position: relative;
   letter-spacing: 1.25px;
   border-radius: 9px;
+  text-decoration-line: none;
 `
 
 const LoginButtons = styled.button`
@@ -54,15 +55,13 @@ const LoginButtons = styled.button`
   border-width: 0;
   outline: none;
   border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-  color: #ecf0f1;
-  transition: background-color 0.3s;
+  transition: background-color, opacity 0.3s;
 `
 const BarsContainer = styled.section`
+  transition: opacity ease-in-out .25s;
   opacity: 0;
-  transition: opacity ease .1s
   ${LoginButtons}:hover & {
-    transition: hover 4s;
+    transition: opacity ease-in-out .5s;
     opacity: 1;
   }
 `
@@ -90,4 +89,10 @@ const Text = styled.div`
   font-size: 11px;
   color: black;
   font-weight: bold;
+`
+const A = styled.a`
+  text-decoration-line: none;
+    color: white;
+    position: relative;
+    z-index: 50;
 `
