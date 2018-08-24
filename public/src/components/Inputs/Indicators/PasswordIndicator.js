@@ -3,10 +3,11 @@ import styled from 'styled-components'
 
 const ArrowBox = styled.div`
 	position: absolute;
-  height: 100px;
+  border-radius: 5px;
+  height: 80px;
   width: 200px;
-	background: #88b7d5;
-	border: 1px solid #c2e1f5;
+	background: #ffffff;
+  color: #6A6A6A;
   margin-right: 10px;
   text-align: center;
   font-size: 12px;
@@ -14,26 +15,27 @@ const ArrowBox = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 
   &::before {
     left: 100%;
 	top: 25%;
-	border: solid transparent;
+	border: .5px solid transparent;
 	content: " ";
 	height: 0;
 	width: 0;
 	position: absolute;
 	pointer-events: none;
-  border-color: rgba(194, 225, 245, 0);
-	border-left-color: #c2e1f5;
+	border-left-color: #ffffff;
 	border-width: 9px;
 	margin-top: -9px;
+  
 
 }
   }
 
   &::after{
-    left: 100%;
+  left: 100%;
 	top: 25%;
 	border: solid transparent;
 	content: " ";
@@ -41,8 +43,8 @@ const ArrowBox = styled.div`
 	width: 0;
 	position: absolute;
 	pointer-events: none;
-  border-color: rgba(136, 183, 213, 0);
-	border-left-color: #88b7d5;
+
+	border-left-color: #ffffff;
 	border-width: 8px;
 	margin-top: -8px;
 
@@ -53,8 +55,7 @@ class PasswordIndicator extends Component {
   render() {
     return (
       <ArrowBox>
-        Use at least 8 characters. Don't use a password from another site, or
-        something too obvious like your pets name.
+        Use 8 or more characters with a mix of letters, numbers & symbols
       </ArrowBox>
     )
   }

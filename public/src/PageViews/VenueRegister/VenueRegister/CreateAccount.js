@@ -12,18 +12,19 @@ const RegisterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 `
 
 const Header = styled.div`
   font-size: 40px;
   margin-bottom: 20px;
-  color: #5d626a;
+  color: #1e1e1e;
 `
 const SubHeader = Header.extend`
   text-align: center;
@@ -43,9 +44,22 @@ const InputContainer = styled.div`
   align-items: center;
   padding-left: 210px;
 `
-const PasswordInputWrapper = styled.div`
+const TextInputWrapper = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
+`
+const FormGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const HintText = styled.div`
+  font-size: 12px;
+  color: #1e1e1e;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 `
 
 class ContactInfo extends Component {
@@ -79,56 +93,80 @@ class ContactInfo extends Component {
           before possible.
         </SubHeader>
         <Form onSubmit={() => this.handleSubmit()}>
-          <TextInput
-            name={'firstName'}
-            placeholder={'First Name'}
-            type={'text'}
-            updateFn={this.handleInput}
-            required={'required'}
-          />
+          <FormGroup>
+            <TextInput
+              marginRight={'5px'}
+              name={'firstName'}
+              width={'200px'}
+              placeholder={'First Name'}
+              type={'text'}
+              updateFn={this.handleInput}
+              required={'required'}
+            />
 
-          <TextInput
-            name={'lastName'}
-            placeholder={'Last Name'}
-            type={'text'}
-            updateFn={this.handleInput}
-            required={'required'}
-          />
-          <TextInput
-            name={'jobTitle'}
-            placeholder={'Job Title'}
-            type={'text'}
-            updateFn={this.handleInput}
-            required={'required'}
-          />
-          <TextInput
-            name={'email'}
-            placeholder={'Email'}
-            type={'text'}
-            updateFn={this.handleInput}
-            required={'required'}
-          />
-          <TextInput
-            name={'phone'}
-            placeholder={'Phone'}
-            type={'text'}
-            updateFn={this.handleInput}
-            required={'required'}
-          />
-          <TextInput
-            name={'password'}
-            placeholder={'Password'}
-            type={'password'}
-            updateFn={this.handleInput}
-            required={'required'}
-          />
-          <TextInput
-            name={'confirmPassword'}
-            placeholder={'Confirm Password'}
-            type={'password'}
-            updateFn={this.handleInput}
-            required={'required'}
-          />
+            <TextInput
+              width={'200px'}
+              name={'lastName'}
+              placeholder={'Last Name'}
+              type={'text'}
+              updateFn={this.handleInput}
+              required={'required'}
+            />
+          </FormGroup>
+          <TextInputWrapper>
+            <TextInput
+              marginBottom={'50px'}
+              name={'email'}
+              placeholder={'Email'}
+              type={'text'}
+              updateFn={this.handleInput}
+              required={'required'}
+            />
+            <HintText>You'll use this to sign in later.</HintText>
+          </TextInputWrapper>
+          <FormGroup>
+            <TextInput
+              marginRight={'5px'}
+              width={'200px'}
+              name={'jobTitle'}
+              placeholder={'Job Title'}
+              type={'text'}
+              updateFn={this.handleInput}
+              required={'required'}
+            />
+            <TextInput
+              width={'200px'}
+              name={'phone'}
+              placeholder={'Phone'}
+              type={'text'}
+              updateFn={this.handleInput}
+              required={'required'}
+            />
+          </FormGroup>
+          <FormGroup>
+          <TextInputWrapper>
+            <TextInput
+              marginRight={'5px'}
+              width={'200px'}
+              name={'password'}
+              placeholder={'Password'}
+              type={'password'}
+              updateFn={this.handleInput}
+              required={'required'}
+            />
+
+            <TextInput
+              marginBottom={'50px'}
+              width={'200px'}
+              name={'confirmPassword'}
+              placeholder={'Confirm Password'}
+              type={'password'}
+              updateFn={this.handleInput}
+              required={'required'}
+            />
+            <HintText>Use 8 or more characters with a mix of letters, numbers & symbols</HintText>
+            </TextInputWrapper>
+          </FormGroup>
           <FormButton type={'submit'} title={'Next'} />
         </Form>
       </RegisterContainer>
