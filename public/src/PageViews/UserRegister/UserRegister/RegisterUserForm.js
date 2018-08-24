@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 export default class RegisterForm extends Component {
   state = {
-    username: '',
+    firstName: '',
+    lastName: '',
     location: '',
     birthday: '',
     email: '',
@@ -36,13 +37,26 @@ export default class RegisterForm extends Component {
 
   render() {
     const Test = this.state.favMusic.map(v => <div key={v}>{v}</div>)
+    const favMusic = ['Test', 'Punk', 'regae']
+    const favMusicOptions = favMusic.map(v => (
+      <AddFavButton key={v}>{v}</AddFavButton>
+    ))
     return (
       <FormContainer>
         <Title>Edit Your Profile</Title>
-        <button>Go Back</button>
+        <GoBack>Go Back</GoBack>
         <section>
           <OptionInputContainer>
-            <FormOption>Name</FormOption>
+            <FormOption>First Name</FormOption>
+            <input
+              onChange={e => this.inputTracker(e)}
+              type="text"
+              placeholder="name"
+              name="name"
+            />
+          </OptionInputContainer>
+          <OptionInputContainer>
+            <FormOption>Last Name</FormOption>
             <input
               onChange={e => this.inputTracker(e)}
               type="text"
@@ -88,26 +102,19 @@ export default class RegisterForm extends Component {
               name="state"
             />
           </OptionInputContainer>
+
+          <FormOption>Sound Types</FormOption>
           <OptionInputContainer>
-            <FormOption>Fav Music</FormOption>
             <div>{Test}</div>
+            <div>{favMusicOptions}</div>
             <button onClick={_ => this.addFavMusic()}>add</button>
           </OptionInputContainer>
+          <FormOption>Fav Venue</FormOption>
           <OptionInputContainer>
-            <FormOption>Sound Types</FormOption>
-            <div>{this.state.soundTypes}</div>
-            <button onClick={_ => this.addFavMusic()}>add</button>
-          </OptionInputContainer>
-          <OptionInputContainer>
-            <FormOption>Fav Venue</FormOption>
             <div>{this.state.favVenues}</div>
             <button>add</button>
           </OptionInputContainer>
-          <OptionInputContainer>
-            <FormOption>Fav Drinks</FormOption>
-            <div>{this.state.favDrinks}</div>
-            <button>add</button>
-          </OptionInputContainer>
+
           <button>Save Changes</button>
         </section>
       </FormContainer>
@@ -119,11 +126,19 @@ const FormContainer = styled.section`
   width: 100%;
   color: black;
   padding: 1rem;
+  position: relative;
+`
+
+const GoBack = styled.button`
+  position: absolute;
+  right: 4px;
+  top: 23px;
 `
 
 const Title = styled.section`
   font-size: 32px;
   text-align: center;
+  margin-bottom: 40px;
 `
 const FormOption = styled.section`
   margin-right: 16px;
@@ -131,4 +146,7 @@ const FormOption = styled.section`
 const OptionInputContainer = styled.section`
   margin-bottom: 16px;
   display: flex;
+`
+const AddFavButton = styled.button`
+  background: #d0d0d0;
 `
