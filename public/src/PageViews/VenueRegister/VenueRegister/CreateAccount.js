@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import TextInput from '../../../components/Inputs/TextInput'
 import FormButton from '../../../components/Buttons/FormButton'
+import PasswordIndicator from '../../../components/Inputs/Indicators/PasswordIndicator'
 
 const RegisterContainer = styled.div`
   height: 90vh;
   width: 60vw;
-  padding: 100px;
+  padding: 40px;
   background: #ffffff;
   display: flex;
   flex-direction: column;
@@ -16,12 +17,13 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `
 
 const Header = styled.div`
   font-size: 40px;
   margin-bottom: 20px;
-  color: #343a42;
+  color: #5d626a;
 `
 const SubHeader = Header.extend`
   text-align: center;
@@ -40,6 +42,10 @@ const InputContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding-left: 210px;
+`
+const PasswordInputWrapper = styled.div`
+  display: flex;
+  width: 100%;
 `
 
 class ContactInfo extends Component {
@@ -67,7 +73,7 @@ class ContactInfo extends Component {
   render() {
     return (
       <RegisterContainer>
-        <Header>Contact Information</Header>
+        <Header>Create An Account</Header>
         <SubHeader>
           At Soundcheq, venues get access to their customers in ways never
           before possible.
