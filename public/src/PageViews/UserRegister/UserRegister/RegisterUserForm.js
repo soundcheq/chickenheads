@@ -23,84 +23,112 @@ export default class RegisterForm extends Component {
       _ => console.log(this.state)
     )
   }
+
+  addFavMusic() {
+    this.setState(
+      {
+        favMusic: [...this.state.favMusic, 'dog']
+      },
+      _ => console.log(this.state.favMusic)
+    )
+    console.log(this.state.favMusic)
+  }
+
   render() {
+    const Test = this.state.favMusic.map(v => <div key={v}>{v}</div>)
     return (
-      <div style={{ width: '100%' }}>
-        <div>Edit Your Profile</div>
+      <FormContainer>
+        <Title>Edit Your Profile</Title>
         <button>Go Back</button>
         <section>
-          <div style={{ display: 'flex' }}>
-            <div>Name</div>
+          <OptionInputContainer>
+            <FormOption>Name</FormOption>
             <input
               onChange={e => this.inputTracker(e)}
               type="text"
               placeholder="name"
               name="name"
             />
-          </div>
-          <div style={{ display: 'flex' }}>
-            <div>Email</div>
+          </OptionInputContainer>
+          <OptionInputContainer>
+            <FormOption>Email</FormOption>
             <input
               onChange={e => this.inputTracker(e)}
               type="text"
               placeholder="email"
               name="email"
             />
-          </div>
-          <div style={{ display: 'flex' }}>
-            <div>Birthday</div>
+          </OptionInputContainer>
+          <OptionInputContainer>
+            <FormOption>Birthday</FormOption>
             <input
               onChange={e => this.inputTracker(e)}
               type="text"
               placeholder="Birthday"
               name="birthday"
             />
-          </div>
-          <div style={{ display: 'flex' }}>
-            <div>Location</div>
+          </OptionInputContainer>
+          <OptionInputContainer
+            style={{
+              alignItems: 'center'
+            }}
+          >
+            <FormOption>Location</FormOption>
             <input
               onChange={e => this.inputTracker(e)}
               type="text"
               placeholder="location"
               name="location"
             />
-            <div>State</div>
+            <FormOption style={{ marginLeft: '16px' }}>State</FormOption>
             <input
               onChange={e => this.inputTracker(e)}
               type="text"
               placeholder="state"
               name="state"
             />
-          </div>
-          <div style={{ display: 'flex' }}>
-            <div>Fav Music</div>
-            <div>{this.state.favMusic}</div>
-            <button>+</button>
-          </div>
-          <div style={{ display: 'flex' }}>
-            <div>Sound Types</div>
+          </OptionInputContainer>
+          <OptionInputContainer>
+            <FormOption>Fav Music</FormOption>
+            <div>{Test}</div>
+            <button onClick={_ => this.addFavMusic()}>add</button>
+          </OptionInputContainer>
+          <OptionInputContainer>
+            <FormOption>Sound Types</FormOption>
             <div>{this.state.soundTypes}</div>
-            <button>+</button>
-          </div>
-          <div style={{ display: 'flex' }}>
-            <div>Fav Venue</div>
+            <button onClick={_ => this.addFavMusic()}>add</button>
+          </OptionInputContainer>
+          <OptionInputContainer>
+            <FormOption>Fav Venue</FormOption>
             <div>{this.state.favVenues}</div>
-            <button>+</button>
-          </div>
-          <div style={{ display: 'flex' }}>
-            <div>Fav Drinks</div>
+            <button>add</button>
+          </OptionInputContainer>
+          <OptionInputContainer>
+            <FormOption>Fav Drinks</FormOption>
             <div>{this.state.favDrinks}</div>
-            <button>+</button>
-          </div>
+            <button>add</button>
+          </OptionInputContainer>
           <button>Save Changes</button>
         </section>
-      </div>
+      </FormContainer>
     )
   }
 }
 
 const FormContainer = styled.section`
+  width: 100%;
+  color: black;
+  padding: 1rem;
+`
+
+const Title = styled.section`
+  font-size: 32px;
+  text-align: center;
+`
+const FormOption = styled.section`
+  margin-right: 16px;
+`
+const OptionInputContainer = styled.section`
+  margin-bottom: 16px;
   display: flex;
-  justify-content: center;
-  align-items: center;
 `
