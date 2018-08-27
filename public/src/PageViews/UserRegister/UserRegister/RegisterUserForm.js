@@ -9,10 +9,9 @@ export default class RegisterForm extends Component {
     birthday: '',
     email: '',
     state: '',
-    favMusic: ['punkrock yo'],
     soundTypes: ['punk', 'techno'],
     favVenues: ['bar', 'the clam'],
-    favDrinks: ['tequila', 'Rum']
+    StypeOptionsMenu: false
   }
 
   inputTracker(e) {
@@ -25,21 +24,39 @@ export default class RegisterForm extends Component {
     )
   }
 
-  addFavMusic() {
+  openOptions(bool) {
     this.setState(
       {
-        favMusic: [...this.state.favMusic, 'dog']
+        StypeOptionsMenu: !bool
       },
-      _ => console.log(this.state.favMusic)
+      _ => console.log(this.state.StypeOptionsMenu)
     )
-    console.log(this.state.favMusic)
+  }
+
+  addSoundType(e) {
+    let { name, value } = e.target
+    console.log('hitting')
+    this.setState(
+      {
+        soundType: [...this.state.soundTypes, value]
+      },
+      _ => console.log(this.state.soundTypes)
+    )
   }
 
   render() {
-    const Test = this.state.favMusic.map(v => <div key={v}>{v}</div>)
-    const favMusic = ['Test', 'Punk', 'regae']
-    const favMusicOptions = favMusic.map(v => (
-      <AddFavButton key={v}>{v}</AddFavButton>
+    const soundTypes = this.state.soundTypes.map(v => (
+      <div soundTypes={v}>{v}</div>
+    ))
+    const favSTypes = ['Stype1', 'SType2', 'Stype3']
+    const STypeButtons = favSTypes.map(v => (
+      <AddFavButton
+        key={v}
+        name="soundType"
+        onClick={e => this.addSoundType(e)}
+      >
+        {v}
+      </AddFavButton>
     ))
     return (
       <FormContainer>
@@ -47,38 +64,34 @@ export default class RegisterForm extends Component {
         <GoBack>Go Back</GoBack>
         <section>
           <OptionInputContainer>
-            <FormOption>First Name</FormOption>
             <input
               onChange={e => this.inputTracker(e)}
               type="text"
-              placeholder="name"
+              placeholder="First Name"
               name="name"
             />
           </OptionInputContainer>
           <OptionInputContainer>
-            <FormOption>Last Name</FormOption>
             <input
               onChange={e => this.inputTracker(e)}
               type="text"
-              placeholder="name"
+              placeholder="Last Name"
               name="name"
             />
           </OptionInputContainer>
           <OptionInputContainer>
-            <FormOption>Email</FormOption>
             <input
               onChange={e => this.inputTracker(e)}
               type="text"
-              placeholder="email"
+              placeholder="Email"
               name="email"
             />
           </OptionInputContainer>
           <OptionInputContainer>
-            <FormOption>Birthday</FormOption>
             <input
               onChange={e => this.inputTracker(e)}
               type="text"
-              placeholder="Birthday"
+              placeholder="Date of Birth"
               name="birthday"
             />
           </OptionInputContainer>
@@ -87,29 +100,28 @@ export default class RegisterForm extends Component {
               alignItems: 'center'
             }}
           >
-            <FormOption>Location</FormOption>
             <input
               onChange={e => this.inputTracker(e)}
               type="text"
-              placeholder="location"
-              name="location"
-            />
-            <FormOption style={{ marginLeft: '16px' }}>State</FormOption>
-            <input
-              onChange={e => this.inputTracker(e)}
-              type="text"
-              placeholder="state"
+              placeholder="Zip"
               name="state"
             />
           </OptionInputContainer>
-
-          <FormOption>Sound Types</FormOption>
+          <FormOption>Why Type Of Music do you enjoy most?</FormOption>
           <OptionInputContainer>
-            <div>{Test}</div>
-            <div>{favMusicOptions}</div>
-            <button onClick={_ => this.addFavMusic()}>add</button>
+            <div style={{ display: 'flex' }}>{soundTypes}</div>
+            <TypeContainer
+              display={this.state.StypeOptionsMenu === true ? 'block' : 'none'}
+            >
+              {STypeButtons}
+            </TypeContainer>
+            <button
+              onClick={_ => this.openOptions(this.state.StypeOptionsMenu)}
+            >
+              add
+            </button>
           </OptionInputContainer>
-          <FormOption>Fav Venue</FormOption>
+          <FormOption>What Venues do you prefer?</FormOption>
           <OptionInputContainer>
             <div>{this.state.favVenues}</div>
             <button>add</button>
@@ -127,12 +139,19 @@ const FormContainer = styled.section`
   color: black;
   padding: 1rem;
   position: relative;
+  background: white;
 `
 
 const GoBack = styled.button`
   position: absolute;
-  right: 4px;
-  top: 23px;
+  right: 20px;
+  top: 16px;
+  width: 64px;
+  height: 32px;
+  color: gray;
+  background: lightgray;
+  outline: none;
+  border: none;
 `
 
 const Title = styled.section`
@@ -149,4 +168,8 @@ const OptionInputContainer = styled.section`
 `
 const AddFavButton = styled.button`
   background: #d0d0d0;
+`
+
+const TypeContainer = styled.section`
+  display: ${props => props.display};
 `
