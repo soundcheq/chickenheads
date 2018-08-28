@@ -1,7 +1,7 @@
 const { FAILURE_REDIRECT } = process.env
 
 module.exports = {
-  sanitizeVenueContact: (req, res, next) => {
+  validateVenueContact: (req, res, next) => {
     const { email, password } = req.body
     const { user } = req.session
 
