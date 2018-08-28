@@ -38,16 +38,14 @@ export default class RegisterForm extends Component {
     let { name } = e.target
     let { soundTypes } = this.state
     soundTypes.forEach(v => {
-      if (soundTypes.includes(name)) {
-        console.log('You already have this favorite added')
-      } else {
-        this.setState(
-          {
-            soundTypes: [...this.state.soundTypes, name]
-          },
-          _ => console.log(soundTypes)
-        )
-      }
+      soundTypes.includes(name)
+        ? console.log('You already have this favorite added')
+        : this.setState(
+            {
+              soundTypes: [...this.state.soundTypes, name]
+            },
+            _ => console.log(soundTypes)
+          )
     })
   }
 
