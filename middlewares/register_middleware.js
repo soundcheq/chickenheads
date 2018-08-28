@@ -54,5 +54,8 @@ module.exports = {
 
     next()
   },
+  validateVenue: (req, res, next) => {
+    next()
+  },
   sanitizeUser: (req, res, next) => {}
 }
