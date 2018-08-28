@@ -20,7 +20,7 @@ export default class RegisterForm extends Component {
       {
         [name]: value
       },
-      _ => console.log(this.state)
+      _ => console.log(this.state.soundTypes)
     )
   }
 
@@ -34,27 +34,29 @@ export default class RegisterForm extends Component {
   }
 
   addSoundType(e) {
-    let { name, value } = e.target
-    console.log('hitting')
-    this.setState(
-      {
-        soundType: [...this.state.soundTypes, value]
-      },
-      _ => console.log(this.state.soundTypes)
-    )
+    console.log('clicking the button mofo')
+    let { name } = e.target
+    let { soundTypes } = this.state
+    soundTypes.forEach(v => {
+      if (soundTypes.includes(name)) {
+        console.log('You already have this favorite added')
+      } else {
+        this.setState(
+          {
+            soundTypes: [...this.state.soundTypes, name]
+          },
+          _ => console.log(soundTypes)
+        )
+      }
+    })
   }
 
   render() {
-    const soundTypes = this.state.soundTypes.map(v => (
-      <div soundTypes={v}>{v}</div>
-    ))
+    const soundTypes = this.state.soundTypes.map(v => <div key={v}>{v}</div>)
+
     const favSTypes = ['Stype1', 'SType2', 'Stype3']
     const STypeButtons = favSTypes.map(v => (
-      <AddFavButton
-        key={v}
-        name="soundType"
-        onClick={e => this.addSoundType(e)}
-      >
+      <AddFavButton key={v} name={v} onClick={e => this.addSoundType(e)}>
         {v}
       </AddFavButton>
     ))
@@ -155,7 +157,8 @@ const GoBack = styled.button`
 `
 
 const Title = styled.section`
-  font-size: 32px;
+  font-size: 40px;
+  color: #1e1e1e;
   text-align: center;
   margin-bottom: 40px;
 `
