@@ -54,7 +54,7 @@ const LoginButtons = styled.button`
   overflow: hidden;
   border-width: 0;
   outline: none;
-  border-radius: 2px;
+  border-radius: 5px;
   transition: background-color, opacity 0.3s;
 `
 const BarsContainer = styled.section`
