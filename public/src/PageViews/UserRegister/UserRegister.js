@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 // import S3Upload from './UserRegister/S3Upload'
-import TopUserData from './UserRegister/TopUserData'
+// import TopUserData from './UserRegister/TopUserData'
 import RegisterForm from './UserRegister/RegisterUserForm'
 
 export default class UserRegister extends Component {
