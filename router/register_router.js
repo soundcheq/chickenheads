@@ -28,7 +28,7 @@ Router.get('/user', function(req, res, next) {
 
 Router.post(
   '/venue/contact',
-  register_middleware.sanitizeVenueContact,
+  register_middleware.validateVenueContact,
   register_controller.register_venue_contact
 )
 
