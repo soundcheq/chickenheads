@@ -1,5 +1,5 @@
 module.exports = {
-  sanitizeVenueContact: (req, res, next) => {
+  validateVenueContact: (req, res, next) => {
     const {
       first_name,
       last_name,
@@ -54,7 +54,8 @@ module.exports = {
 
     next()
   },
-  sanitizeUser: (req, res, next) => {
-
-  }
+  validateVenue: (req, res, next) => {
+    next()
+  },
+  sanitizeUser: (req, res, next) => {}
 }

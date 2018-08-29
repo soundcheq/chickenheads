@@ -10,7 +10,7 @@ Router.get(
 
 Router.post(
   '/venue',
-  login_middleware.sanitizeVenueContact,
+  login_middleware.validateVenueContact,
   login_controller.login_venue_contact
 )
 
