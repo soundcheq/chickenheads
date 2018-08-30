@@ -59,6 +59,7 @@ passport.use(
       scope: 'openid profile'
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
+      console.log(profile)
       return done(null, profile)
     }
   )

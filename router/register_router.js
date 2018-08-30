@@ -18,6 +18,7 @@ Router.get('/user', function(req, res, next) {
         return next(err)
       }
 
+      // console.log(user)
       //wait for the user to be added to the database
       await register_controller.register_user(req, res)
       //redirect to dashboard
