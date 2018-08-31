@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const Button = styled.button`
-  height: 50px;
-  width: 120px;
+  height: 45px;
+  width: 144px;
   color: #ffffff;
   background: #469f56;
   font-size:16px;
   border-radius: 5px;
   align-self: flex-end;
+  margin-top: 10px;
 
 `
 
