@@ -1,3 +1,5 @@
+const { venue_contact_registration } = require('../utils/validators')
+
 module.exports = {
   validateVenueContact: (req, res, next) => {
     const {
@@ -51,6 +53,12 @@ module.exports = {
 
     if (password !== confirm_password)
       return res.status(409).send('Passwords do not match')
+
+    const results = venue_contact_registration(req.body)
+
+    if (results.error) {
+      return res.status(409).send(results)
+    }
 
     next()
   },
