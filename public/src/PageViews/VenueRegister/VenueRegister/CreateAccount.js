@@ -50,7 +50,7 @@ const HintText = styled.div`
   left: 20px;
 `
 const ErrorText = styled(HintText)`
-  color: #cf0001;
+  color: red;
 `
 const grow = keyframes`
 from {
@@ -58,7 +58,7 @@ from {
     transform: scaleY(0)
   }
     to {
-    height: 12px;
+    height: 16px;
     transform: scaleY(1)
   }
 `
@@ -68,7 +68,7 @@ from {
     transform: scaleY(1)
   }
     to {
-    height: 0px;
+    height: 12px;
     transform: scaleY(0))
   }
 `
@@ -239,7 +239,7 @@ class ContactInfo extends Component {
                   symbols.
                 </HintText>
               ) : this.state.passwordError1 && !this.this.state.passwordError2 ? (
-                <ErrorText>Your password's do not match</ErrorText>
+                <ErrorText>Hmm.. try matching them again.</ErrorText>
               ) : !this.state.passwordError1 && this.state.passwordError2 ? (
                 <ErrorText>
                   Please use 8 or more characters with a mix of letters, numbers
