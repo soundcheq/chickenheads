@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import FormButton from '../../../components/Buttons/FormButton'
+import axios from 'axios'
 
 export default class RegisterForm extends Component {
   state = {
@@ -9,13 +10,51 @@ export default class RegisterForm extends Component {
     zip: '',
     birthday: '',
     email: '',
+    gender: '',
     soundTypes: ['Stype1'],
     venueTypes: ['bar', 'the clam'],
     stypeOptionsMenu: false,
     duplicateVenueType: false,
     maxVenuesError: false
   }
+  //Get Endpoints
+  getSTypes() {
+    axios.get('/api/sTypes').then()
+  }
 
+  getVTypes() {
+    axios.get('/api/VTypes').then()
+  }
+
+  getUserInfo() {
+    axios.get('/api/userInfo').then()
+  }
+  //end of Gets
+
+  //post Endpoints
+  submitForm() {
+    const {
+      firstName,
+      lastName,
+      zip,
+      birthday,
+      gender,
+      soundTypes,
+      venueTypes
+    } = this.state
+    axios
+      .post('/api/submitUserApplication', {
+        firstName,
+        lastName,
+        zip,
+        birthday,
+        gender,
+        soundTypes,
+        venueTypes
+      })
+      .then(res => {})
+  }
+  //End of Posts
   inputTracker(e) {
     let { name, value } = e.target
     this.setState(
@@ -135,16 +174,33 @@ export default class RegisterForm extends Component {
               * Remove Soundtype to add another
             </Error>
           </div>
+          <Parent>
+            <Cbox
+              type="checkbox"
+              className="cbox"
+              onClick={_ => this.openOptions(this.state.stypeOptionsMenu)}
+            />
+            <Add for="cbox" className="add">
+              Add Your SoundTypes
+            </Add>
+            <Message
+              className="message"
+              type="text"
+              placeholder={
+                this.state.stypeOptionsMenu ? 'Search for your Soundtype' : ''
+              }
+            />
+          </Parent>
           <TypeContainer
             display={this.state.stypeOptionsMenu === true ? 'grid' : 'none'}
           >
             {sTypeButtons}
           </TypeContainer>
-          <AddTypeButton
+          {/* <AddTypeButton
             onClick={_ => this.openOptions(this.state.stypeOptionsMenu)}
           >
             + add
-          </AddTypeButton>
+          </AddTypeButton> */}
         </OptionInputContainer>
         <FormOption>
           What Venues do you prefer? <Max>( Max 3 )</Max>
@@ -265,4 +321,95 @@ const Max = styled.div`
   display: flex;
   align-items: center;
   margin-left: 10px;
+`
+
+// cool input styles
+const Parent = styled.div`
+  width: 200px;
+  height: 50px;
+  position: relative;
+
+  .message {
+    position: absolute;
+  }
+  .add,
+  .message {
+    color: orange;
+  }
+  .add {
+    top: 9px;
+    right: -15px;
+    transition: 0.6s all 0.3s;
+    letter-spacing: 1px;
+  }
+`
+const Add = styled.label`
+  position: absolute;
+  color: orange;
+  top: 12px;
+  right: -15px;
+  transition: 0.6s all 0.3s;
+  letter-spacing: 1px;
+`
+const Message = styled.input`
+  position: absolute;
+  color: orange;
+  outline: none;
+  left: 19px;
+  top: 11px;
+  height: 0;
+  width: 0;
+  transition: 0.4s all;
+  background: none;
+  border: 2px solid orange;
+  transition: 0.4s width 0.2s, 0.1s height;
+  font-size: 30px;
+  padding-left: 10px;
+  &::placeholder {
+    color: orange;
+  }
+`
+
+const Cbox = styled.input`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  background: orange;
+  border-radius: 100%;
+  -webkit-appearance: none;
+  z-index: 3;
+  &:before,
+  &:after {
+    position: absolute;
+    content: '';
+    width: 20px;
+    height: 2px;
+    background: #e8e8e8;
+    transition: 0.4s all;
+  }
+  &:after {
+    transform: rotate(90deg);
+  }
+  &:checked {
+    ~ .message {
+      width: 300px;
+      height: 50px;
+      transition: 0.3s width, 0.3s height 0.2s;
+    }
+    &:before,
+    &:after {
+      transform: rotate(360deg);
+      transition: 0.4s all;
+    }
+    ~ .add {
+      font-size: 13px;
+      transform: translateY(-16px);
+      transition: 0.3s all;
+    }
+  }
 `
