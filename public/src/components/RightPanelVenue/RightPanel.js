@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import SpotLight from '../Spotlight/Spotlight'
 
+import ListAnim from './RightPanel/ListAnim'
+
 export default class componentName extends Component {
   state = {
     user: 'Skallywag',
@@ -54,6 +56,7 @@ export default class componentName extends Component {
             </EventDetailsContainer>
             <CreateIcon />
           </CardContainer>
+          <ListAnim />
         </EventsContainer>
         {/* TEMPORARY UNTIL DATA ADDED */}
         <SpotLight />

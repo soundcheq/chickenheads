@@ -9,6 +9,7 @@
     "react": "^16.4.1",
     "react-big-calendar": "^0.19.2",
     "react-dom": "^16.4.1",
+    "react-flip-toolkit": "^4.0.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
