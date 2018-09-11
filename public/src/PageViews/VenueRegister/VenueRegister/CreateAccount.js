@@ -1,87 +1,89 @@
 import React, { Component } from 'react'
 import styled, { keyframes } from 'styled-components'
+
 import TextInput from '../../../components/Inputs/TextInput'
 import FormButton from '../../../components/Buttons/FormButton'
 import { emailFn, nameFn, passwordFn } from '../../../utils/formValidators'
+
+const grow = keyframes`	
+from {
+    margin-bottom: 0px;
+    height: 0px;	
+    transform: scaleY(0);	
+  }	
+    to {	
+    margin-bottom: 25px;    
+    height: 12px;	
+    transform: scaleY(1);	
+  }	
+`
+const shrink = keyframes`	
+from {
+    margin-bottom: 25px;	
+    height: 12px;	
+    transform: scaleY(1);	
+  }	
+    to {
+    margin-bottom: 0px;	
+    height: 0px;	
+    transform: scaleY(0);	
+  }	
+`
 
 const RegisterContainer = styled.div`
   height: 90vh;
   width: 60vw;
   padding: 40px;
   background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `
 
 const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 405px;
+  height: 450px;
+  position: relative;
+  margin: 0 auto;
 `
 
 const Header = styled.div`
   font-size: 40px;
   margin-bottom: 20px;
+  display: block;
   color: #1e1e1e;
+  text-align: center;
 `
 const SubHeader = styled(Header)`
   text-align: center;
   font-size: 16px;
+  display: block;
   margin-bottom: 40px;
 `
 
-const FormGroup = styled.div`
-  display: flex;
-`
+const FormGroup = styled.div``
 
 const TextInputWrapper = styled.div`
-  position: relative;
-  display: flex;
   width: 100%;
 `
 
 const HintText = styled.div`
   font-size: 12px;
   color: #1e1e1e;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
+  width: 100%;
+  margin: 0px 0px 25px 0px;
+  padding-left: 20px;
+  display: block;
 `
 const ErrorText = styled(HintText)`
   color: red;
 `
-const grow = keyframes`
-from {
-    height: 0px;
-    transform: scaleY(0)
-  }
-    to {
-    height: 16px;
-    transform: scaleY(1)
-  }
-`
-const shrink = keyframes`
-from {
-    height: 12px;
-    transform: scaleY(1)
-  }
-    to {
-    height: 12px;
-    transform: scaleY(0))
-  }
-`
-
 const LessCommonError = styled.div`
-  display: ${props => (props.error ? 'flex' : 'none')};
+  overflow: hidden;
+  height: 0px;
   width: 100%;
   color: red;
   margin-left: 20px;
-  align-self: flex-start;
   font-size: 12px;
-  margin-bottom: 20px;
-  animation: ${props => (props.error ? grow : shrink)} 0.5s forwards;
+  margin-bottom: 0px;
+  animation: ${props => (props.error === true ? grow : shrink)} 0.5s forwards;
 `
 
 class ContactInfo extends Component {
@@ -129,13 +131,36 @@ class ContactInfo extends Component {
     let result = passwordFn(password, confirmPassword)
     console.log(result)
     if (result === 'No match') {
-      this.setState({ passwordError1: true })
+      this.setState({ passwordError1: true, passwordError2: false })
     } else {
-      this.setState({ passwordError2: !result })
+      this.setState({ passwordError1: false, passwordError2: !result })
     }
   }
 
   render() {
+    let subText
+    if (!this.state.passwordError1 && !this.state.passwordError2) {
+      subText = (
+        <HintText>
+          Use 8 or more characters with a mix of uppercase & lowercase letters,
+          numbers & symbols.
+        </HintText>
+      )
+    } else {
+      if (this.state.passwordError1 && !this.state.passwordError2) {
+        subText = <ErrorText>Hmm.. try matching them again.</ErrorText>
+      } else if (!this.state.passwordError1 && this.state.passwordError2) {
+        subText = (
+          <ErrorText>
+            Please use 8 or more characters with a mix of uppercase & lowercase
+            letters, numbers & symbols.
+          </ErrorText>
+        )
+      } else {
+        subText = <ErrorText>Hmm.. try matching them again.</ErrorText>
+      }
+    }
+
     return (
       <RegisterContainer>
         <Header>Create An Account</Header>
@@ -149,7 +174,7 @@ class ContactInfo extends Component {
               <TextInput
                 marginRight={'5px'}
                 name={'firstName'}
-                width={'200px'}
+                width={'50%'}
                 placeholder={'First Name'}
                 type={'text'}
                 updateFn={this.handleInput}
@@ -157,7 +182,7 @@ class ContactInfo extends Component {
                 onBlur={this.checkName}
               />
               <TextInput
-                width={'200px'}
+                width={'calc(50% - 5px)'}
                 name={'lastName'}
                 placeholder={'Last Name'}
                 type={'text'}
@@ -165,17 +190,14 @@ class ContactInfo extends Component {
                 required={'required'}
                 onBlur={this.checkName}
               />
-              <HintText />
+              <LessCommonError error={this.state.nameError}>
+                <span>Are you sure you typed your name in right?</span>
+              </LessCommonError>
             </TextInputWrapper>
           </FormGroup>
 
-          <LessCommonError error={this.state.nameError}>
-            Are you sure you entered the correct name?
-          </LessCommonError>
-
           <TextInputWrapper>
             <TextInput
-              marginBottom={'50px'}
               name={'email'}
               placeholder={'Email'}
               type={'text'}
@@ -194,7 +216,7 @@ class ContactInfo extends Component {
           <FormGroup>
             <TextInput
               marginRight={'5px'}
-              width={'200px'}
+              width={'50%'}
               name={'phone'}
               placeholder={'Phone'}
               type={'text'}
@@ -202,8 +224,7 @@ class ContactInfo extends Component {
               required={'required'}
             />
             <TextInput
-              marginRight={'5px'}
-              width={'200px'}
+              width={'calc(50% - 5px)'}
               name={'jobTitle'}
               placeholder={'Job Title'}
               type={'text'}
@@ -215,7 +236,7 @@ class ContactInfo extends Component {
             <TextInputWrapper>
               <TextInput
                 marginRight={'5px'}
-                width={'200px'}
+                width={'50%'}
                 name={'password'}
                 placeholder={'Password'}
                 type={'password'}
@@ -224,8 +245,7 @@ class ContactInfo extends Component {
               />
 
               <TextInput
-                marginBottom={'50px'}
-                width={'200px'}
+                width={'calc(50% - 5px)'}
                 name={'confirmPassword'}
                 placeholder={'Confirm Password'}
                 type={'password'}
@@ -233,24 +253,18 @@ class ContactInfo extends Component {
                 required={'required'}
                 onBlur={this.checkPassword}
               />
-              {!this.state.passwordError1 && !this.state.passwordError2 ? (
-                <HintText>
-                  Use 8 or more characters with a mix of letters, numbers &
-                  symbols.
-                </HintText>
-              ) : this.state.passwordError1 && !this.this.state.passwordError2 ? (
-                <ErrorText>Hmm.. try matching them again.</ErrorText>
-              ) : !this.state.passwordError1 && this.state.passwordError2 ? (
-                <ErrorText>
-                  Please use 8 or more characters with a mix of letters, numbers
-                  & symbols.
-                </ErrorText>
-              ) : (
-                <ErrorText>Your password's do not match</ErrorText>
-              )}
+              {subText}
             </TextInputWrapper>
           </FormGroup>
-          <FormButton type={'submit'} title={'Next'} />
+
+          <FormButton
+            type={'submit'}
+            title={'Next'}
+            position={'absolute'}
+            bottom={'0px'}
+            right={'0px'}
+            marginTop={'0px'}
+          />
         </Form>
       </RegisterContainer>
     )
