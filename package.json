@@ -17,7 +17,6 @@
     "passport-auth0": "^1.0.0",
     "path": "^0.12.7",
     "pg": "^7.4.3",
-    "react-tippy": "^1.2.2",
     "sequelize": "^4.38.0"
   },
   "devDependencies": {

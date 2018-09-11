@@ -5,7 +5,6 @@ import TextInput from '../../../components/Inputs/TextInput'
 import FormButton from '../../../components/Buttons/FormButton'
 import { emailFn, nameFn, passwordFn } from '../../../utils/formValidators'
 
-
 const RegisterContainer = styled.div`
   height: 90vh;
   width: 60vw;
@@ -111,7 +110,8 @@ class ContactInfo extends Component {
     if (!this.state.passwordError1 && !this.state.passwordError2) {
       subText = (
         <HintText>
-          Use 8 or more characters with a mix of uppercase & lowercase letters, numbers & symbols.
+          Use 8 or more characters with a mix of uppercase & lowercase letters,
+          numbers & symbols.
         </HintText>
       )
     } else {
@@ -139,9 +139,7 @@ class ContactInfo extends Component {
         <Form onSubmit={() => this.handleSubmit()}>
           <FormGroup>
             <TextInputWrapper>
-              <Tooltip>
-
-              </Tooltip>
+              <Tooltip />
               <TextInput
                 marginRight={'5px'}
                 name={'firstName'}
@@ -161,7 +159,6 @@ class ContactInfo extends Component {
                 required={'required'}
                 onBlur={this.checkName}
               />
-              
             </TextInputWrapper>
           </FormGroup>
 
