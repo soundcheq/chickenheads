@@ -64,9 +64,3 @@ module.exports = {
     }
   }
 }
-
-// Password
-// 8-16 any character
-// must contain 1 special character
-// must contain 1 capital letter
-// must contain 1 number
