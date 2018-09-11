@@ -5,51 +5,47 @@ import TextInput from '../../../components/Inputs/TextInput'
 import FormButton from '../../../components/Buttons/FormButton'
 import { emailFn, nameFn, passwordFn } from '../../../utils/formValidators'
 
-
 const RegisterContainer = styled.div`
   height: 90vh;
   width: 60vw;
   padding: 40px;
   background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `
 
 const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 405px;
+  height: 410px;
+  position: relative;
+  margin: 0 auto;
 `
 
 const Header = styled.div`
   font-size: 40px;
   margin-bottom: 20px;
+  display: block;
   color: #1e1e1e;
+  text-align: center;
 `
 const SubHeader = styled(Header)`
   text-align: center;
   font-size: 16px;
+  display: block;
   margin-bottom: 40px;
 `
 
-const FormGroup = styled.div`
-  display: flex;
-`
+const FormGroup = styled.div``
 
 const TextInputWrapper = styled.div`
-  position: relative;
-  display: flex;
   width: 100%;
 `
 
 const HintText = styled.div`
   font-size: 12px;
   color: #1e1e1e;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
+  width: 100%;
+  margin: 0px 0px 25px 0px;
+  padding-left: 20px;
+  display: block;
 `
 const ErrorText = styled(HintText)`
   color: red;
@@ -111,7 +107,8 @@ class ContactInfo extends Component {
     if (!this.state.passwordError1 && !this.state.passwordError2) {
       subText = (
         <HintText>
-          Use 8 or more characters with a mix of uppercase & lowercase letters, numbers & symbols.
+          Use 8 or more characters with a mix of uppercase & lowercase letters,
+          numbers & symbols.
         </HintText>
       )
     } else {
@@ -125,7 +122,7 @@ class ContactInfo extends Component {
           </ErrorText>
         )
       } else {
-        subText = <ErrorText>Your password's do not match</ErrorText>
+        subText = <ErrorText>Hmm.. try matching them again.</ErrorText>
       }
     }
 
@@ -139,13 +136,11 @@ class ContactInfo extends Component {
         <Form onSubmit={() => this.handleSubmit()}>
           <FormGroup>
             <TextInputWrapper>
-              <Tooltip>
-
-              </Tooltip>
+              <Tooltip />
               <TextInput
                 marginRight={'5px'}
                 name={'firstName'}
-                width={'200px'}
+                width={'50%'}
                 placeholder={'First Name'}
                 type={'text'}
                 updateFn={this.handleInput}
@@ -153,7 +148,7 @@ class ContactInfo extends Component {
                 onBlur={this.checkName}
               />
               <TextInput
-                width={'200px'}
+                width={'calc(50% - 5px)'}
                 name={'lastName'}
                 placeholder={'Last Name'}
                 type={'text'}
@@ -161,13 +156,11 @@ class ContactInfo extends Component {
                 required={'required'}
                 onBlur={this.checkName}
               />
-              
             </TextInputWrapper>
           </FormGroup>
 
           <TextInputWrapper>
             <TextInput
-              marginBottom={'50px'}
               name={'email'}
               placeholder={'Email'}
               type={'text'}
@@ -186,7 +179,7 @@ class ContactInfo extends Component {
           <FormGroup>
             <TextInput
               marginRight={'5px'}
-              width={'200px'}
+              width={'50%'}
               name={'phone'}
               placeholder={'Phone'}
               type={'text'}
@@ -194,8 +187,7 @@ class ContactInfo extends Component {
               required={'required'}
             />
             <TextInput
-              marginRight={'5px'}
-              width={'200px'}
+              width={'calc(50% - 5px)'}
               name={'jobTitle'}
               placeholder={'Job Title'}
               type={'text'}
@@ -207,7 +199,7 @@ class ContactInfo extends Component {
             <TextInputWrapper>
               <TextInput
                 marginRight={'5px'}
-                width={'200px'}
+                width={'50%'}
                 name={'password'}
                 placeholder={'Password'}
                 type={'password'}
@@ -216,8 +208,7 @@ class ContactInfo extends Component {
               />
 
               <TextInput
-                marginBottom={'50px'}
-                width={'200px'}
+                width={'calc(50% - 5px)'}
                 name={'confirmPassword'}
                 placeholder={'Confirm Password'}
                 type={'password'}
@@ -228,7 +219,15 @@ class ContactInfo extends Component {
               {subText}
             </TextInputWrapper>
           </FormGroup>
-          <FormButton type={'submit'} title={'Next'} />
+
+          <FormButton
+            type={'submit'}
+            title={'Next'}
+            position={'absolute'}
+            bottom={'0px'}
+            right={'0px'}
+            marginTop={'0px'}
+          />
         </Form>
       </RegisterContainer>
     )
