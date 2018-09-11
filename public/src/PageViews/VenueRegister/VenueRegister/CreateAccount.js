@@ -52,37 +52,6 @@ const HintText = styled.div`
 const ErrorText = styled(HintText)`
   color: red;
 `
-const grow = keyframes`
-from {
-    height: 0px;
-    transform: scaleY(0)
-  }
-    to {
-    height: 16px;
-    transform: scaleY(1)
-  }
-`
-const shrink = keyframes`
-from {
-    height: 12px;
-    transform: scaleY(1)
-  }
-    to {
-    height: 12px;
-    transform: scaleY(0))
-  }
-`
-
-const LessCommonError = styled.div`
-  display: ${props => (props.error ? 'flex' : 'none')};
-  width: 100%;
-  color: red;
-  margin-left: 20px;
-  align-self: flex-start;
-  font-size: 12px;
-  margin-bottom: 20px;
-  animation: ${props => (props.error ? grow : shrink)} 0.5s forwards;
-`
 
 class ContactInfo extends Component {
   state = {
@@ -129,13 +98,35 @@ class ContactInfo extends Component {
     let result = passwordFn(password, confirmPassword)
     console.log(result)
     if (result === 'No match') {
-      this.setState({ passwordError1: true })
+      this.setState({ passwordError1: true, passwordError2: false })
     } else {
-      this.setState({ passwordError2: !result })
+      this.setState({ passwordError1: false, passwordError2: !result })
     }
   }
 
   render() {
+    let subText
+    if (!this.state.passwordError1 && !this.state.passwordError2) {
+      subText = (
+        <HintText>
+          Use 8 or more characters with a mix of uppercase & lowercase letters, numbers & symbols.
+        </HintText>
+      )
+    } else {
+      if (this.state.passwordError1 && !this.state.passwordError2) {
+        subText = <ErrorText>Hmm.. try matching them again.</ErrorText>
+      } else if (!this.state.passwordError1 && this.state.passwordError2) {
+        subText = (
+          <ErrorText>
+            Please use 8 or more characters with a mix of letters, numbers &
+            symbols.
+          </ErrorText>
+        )
+      } else {
+        subText = <ErrorText>Your password's do not match</ErrorText>
+      }
+    }
+
     return (
       <RegisterContainer>
         <Header>Create An Account</Header>
@@ -168,10 +159,6 @@ class ContactInfo extends Component {
               <HintText />
             </TextInputWrapper>
           </FormGroup>
-
-          <LessCommonError error={this.state.nameError}>
-            Are you sure you entered the correct name?
-          </LessCommonError>
 
           <TextInputWrapper>
             <TextInput
@@ -233,21 +220,7 @@ class ContactInfo extends Component {
                 required={'required'}
                 onBlur={this.checkPassword}
               />
-              {!this.state.passwordError1 && !this.state.passwordError2 ? (
-                <HintText>
-                  Use 8 or more characters with a mix of letters, numbers &
-                  symbols.
-                </HintText>
-              ) : this.state.passwordError1 && !this.this.state.passwordError2 ? (
-                <ErrorText>Hmm.. try matching them again.</ErrorText>
-              ) : !this.state.passwordError1 && this.state.passwordError2 ? (
-                <ErrorText>
-                  Please use 8 or more characters with a mix of letters, numbers
-                  & symbols.
-                </ErrorText>
-              ) : (
-                <ErrorText>Your password's do not match</ErrorText>
-              )}
+              {subText}
             </TextInputWrapper>
           </FormGroup>
           <FormButton type={'submit'} title={'Next'} />
