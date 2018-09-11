@@ -1,65 +1,89 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
 import TextInput from '../../../components/Inputs/TextInput'
 import FormButton from '../../../components/Buttons/FormButton'
-import PasswordIndicator from '../../../components/Inputs/Indicators/PasswordIndicator'
+import { emailFn, nameFn, passwordFn } from '../../../utils/formValidators'
+
+const grow = keyframes`	
+from {
+    margin-bottom: 0px;
+    height: 0px;	
+    transform: scaleY(0);	
+  }	
+    to {	
+    margin-bottom: 25px;    
+    height: 12px;	
+    transform: scaleY(1);	
+  }	
+`
+const shrink = keyframes`	
+from {
+    margin-bottom: 25px;	
+    height: 12px;	
+    transform: scaleY(1);	
+  }	
+    to {
+    margin-bottom: 0px;	
+    height: 0px;	
+    transform: scaleY(0);	
+  }	
+`
 
 const RegisterContainer = styled.div`
   height: 90vh;
   width: 60vw;
   padding: 40px;
   background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `
 
 const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 405px;
+  height: 450px;
+  position: relative;
+  margin: 0 auto;
 `
 
 const Header = styled.div`
   font-size: 40px;
   margin-bottom: 20px;
+  display: block;
   color: #1e1e1e;
+  text-align: center;
 `
-const SubHeader = Header.extend`
+const SubHeader = styled(Header)`
   text-align: center;
   font-size: 16px;
-  margin-bottom: 30px;
+  display: block;
+  margin-bottom: 40px;
 `
 
-const Error = styled.div`
-  height: 40px;
-  width: 200px;
-  color: #ff9494;
-  margin-left: 10px;
-`
-const InputContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 210px;
-`
+const FormGroup = styled.div``
+
 const TextInputWrapper = styled.div`
-  position: relative;
-  display: flex;
   width: 100%;
-`
-const FormGroup = styled.div`
-  display: flex;
-  justify-content: space-between;
 `
 
 const HintText = styled.div`
   font-size: 12px;
   color: #1e1e1e;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
+  width: 100%;
+  margin: 0px 0px 25px 0px;
+  padding-left: 20px;
+  display: block;
+`
+const ErrorText = styled(HintText)`
+  color: red;
+`
+const LessCommonError = styled.div`
+  overflow: hidden;
+  height: 0px;
+  width: 100%;
+  color: red;
+  margin-left: 20px;
+  font-size: 12px;
+  margin-bottom: 0px;
+  animation: ${props => (props.error === true ? grow : shrink)} 0.5s forwards;
 `
 
 class ContactInfo extends Component {
@@ -70,11 +94,15 @@ class ContactInfo extends Component {
     email: '',
     phone: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    nameError: false,
+    emailError: false,
+    passwordError1: false,
+    passwordError2: false
   }
 
-  handleSubmit = () => {
-    alert('Submitted')
+  handleSubmit = e => {
+    e.preventDefault()
   }
 
   handleInput = e => {
@@ -84,7 +112,55 @@ class ContactInfo extends Component {
     })
   }
 
+  checkEmail = () => {
+    let { email } = this.state
+    let result = emailFn(email)
+    this.setState({ emailError: !result })
+  }
+
+  checkName = () => {
+    let { firstName, lastName } = this.state
+    let fullName = firstName + lastName
+    let result = nameFn(fullName)
+
+    this.setState({ nameError: !result })
+  }
+
+  checkPassword = () => {
+    let { password, confirmPassword } = this.state
+    let result = passwordFn(password, confirmPassword)
+    console.log(result)
+    if (result === 'No match') {
+      this.setState({ passwordError1: true, passwordError2: false })
+    } else {
+      this.setState({ passwordError1: false, passwordError2: !result })
+    }
+  }
+
   render() {
+    let subText
+    if (!this.state.passwordError1 && !this.state.passwordError2) {
+      subText = (
+        <HintText>
+          Use 8 or more characters with a mix of uppercase & lowercase letters,
+          numbers & symbols.
+        </HintText>
+      )
+    } else {
+      if (this.state.passwordError1 && !this.state.passwordError2) {
+        subText = <ErrorText>Hmm.. try matching them again.</ErrorText>
+      } else if (!this.state.passwordError1 && this.state.passwordError2) {
+        subText = (
+          <ErrorText>
+            Please use 8 or more characters with a mix of uppercase & lowercase
+            letters, numbers & symbols.
+          </ErrorText>
+        )
+      } else {
+        subText = <ErrorText>Hmm.. try matching them again.</ErrorText>
+      }
+    }
+
     return (
       <RegisterContainer>
         <Header>Create An Account</Header>
@@ -94,80 +170,101 @@ class ContactInfo extends Component {
         </SubHeader>
         <Form onSubmit={() => this.handleSubmit()}>
           <FormGroup>
-            <TextInput
-              marginRight={'5px'}
-              name={'firstName'}
-              width={'200px'}
-              placeholder={'First Name'}
-              type={'text'}
-              updateFn={this.handleInput}
-              required={'required'}
-            />
-
-            <TextInput
-              width={'200px'}
-              name={'lastName'}
-              placeholder={'Last Name'}
-              type={'text'}
-              updateFn={this.handleInput}
-              required={'required'}
-            />
+            <TextInputWrapper>
+              <TextInput
+                marginRight={'5px'}
+                name={'firstName'}
+                width={'50%'}
+                placeholder={'First Name'}
+                type={'text'}
+                updateFn={this.handleInput}
+                required={'required'}
+                onBlur={this.checkName}
+              />
+              <TextInput
+                width={'calc(50% - 5px)'}
+                name={'lastName'}
+                placeholder={'Last Name'}
+                type={'text'}
+                updateFn={this.handleInput}
+                required={'required'}
+                onBlur={this.checkName}
+              />
+              <LessCommonError error={this.state.nameError}>
+                <span>Are you sure you typed your name in right?</span>
+              </LessCommonError>
+            </TextInputWrapper>
           </FormGroup>
+
           <TextInputWrapper>
             <TextInput
-              marginBottom={'50px'}
               name={'email'}
               placeholder={'Email'}
               type={'text'}
               updateFn={this.handleInput}
               required={'required'}
+              onBlur={this.checkEmail}
             />
-            <HintText>You'll use this to sign in later.</HintText>
+            {!this.state.emailError ? (
+              <HintText>You'll use this to sign in later.</HintText>
+            ) : (
+              <ErrorText>
+                Are you sure you entered your correct email?
+              </ErrorText>
+            )}
           </TextInputWrapper>
           <FormGroup>
             <TextInput
               marginRight={'5px'}
-              width={'200px'}
-              name={'jobTitle'}
-              placeholder={'Job Title'}
-              type={'text'}
-              updateFn={this.handleInput}
-              required={'required'}
-            />
-            <TextInput
-              width={'200px'}
+              width={'50%'}
               name={'phone'}
               placeholder={'Phone'}
               type={'text'}
               updateFn={this.handleInput}
               required={'required'}
             />
+            <TextInput
+              width={'calc(50% - 5px)'}
+              name={'jobTitle'}
+              placeholder={'Job Title'}
+              type={'text'}
+              updateFn={this.handleInput}
+              required={'required'}
+            />
           </FormGroup>
           <FormGroup>
-          <TextInputWrapper>
-            <TextInput
-              marginRight={'5px'}
-              width={'200px'}
-              name={'password'}
-              placeholder={'Password'}
-              type={'password'}
-              updateFn={this.handleInput}
-              required={'required'}
-            />
+            <TextInputWrapper>
+              <TextInput
+                marginRight={'5px'}
+                width={'50%'}
+                name={'password'}
+                placeholder={'Password'}
+                type={'password'}
+                updateFn={this.handleInput}
+                required={'required'}
+              />
 
-            <TextInput
-              marginBottom={'50px'}
-              width={'200px'}
-              name={'confirmPassword'}
-              placeholder={'Confirm Password'}
-              type={'password'}
-              updateFn={this.handleInput}
-              required={'required'}
-            />
-            <HintText>Use 8 or more characters with a mix of letters, numbers & symbols</HintText>
+              <TextInput
+                width={'calc(50% - 5px)'}
+                name={'confirmPassword'}
+                placeholder={'Confirm Password'}
+                type={'password'}
+                updateFn={this.handleInput}
+                required={'required'}
+                onBlur={this.checkPassword}
+              />
+              {subText}
             </TextInputWrapper>
           </FormGroup>
-          <FormButton type={'submit'} title={'Next'} />
+
+          <FormButton
+            type={'submit'}
+            title={'Next'}
+            position={'absolute'}
+            bottom={'0px'}
+            right={'0px'}
+            marginTop={'0px'}
+          />
         </Form>
       </RegisterContainer>
     )
