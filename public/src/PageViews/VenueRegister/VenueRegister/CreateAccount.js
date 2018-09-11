@@ -1,9 +1,34 @@
 import React, { Component } from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Tooltip } from 'react-tippy'
+
 import TextInput from '../../../components/Inputs/TextInput'
 import FormButton from '../../../components/Buttons/FormButton'
 import { emailFn, nameFn, passwordFn } from '../../../utils/formValidators'
+
+const grow = keyframes`	
+from {
+    margin-bottom: 0px;
+    height: 0px;	
+    transform: scaleY(0);	
+  }	
+    to {	
+    margin-bottom: 25px;    
+    height: 12px;	
+    transform: scaleY(1);	
+  }	
+`
+const shrink = keyframes`	
+from {
+    margin-bottom: 25px;	
+    height: 12px;	
+    transform: scaleY(1);	
+  }	
+    to {
+    margin-bottom: 0px;	
+    height: 0px;	
+    transform: scaleY(0);	
+  }	
+`
 
 const RegisterContainer = styled.div`
   height: 90vh;
@@ -14,7 +39,7 @@ const RegisterContainer = styled.div`
 
 const Form = styled.form`
   width: 405px;
-  height: 410px;
+  height: 450px;
   position: relative;
   margin: 0 auto;
 `
@@ -49,6 +74,16 @@ const HintText = styled.div`
 `
 const ErrorText = styled(HintText)`
   color: red;
+`
+const LessCommonError = styled.div`
+  overflow: hidden;
+  height: 0px;
+  width: 100%;
+  color: red;
+  margin-left: 20px;
+  font-size: 12px;
+  margin-bottom: 0px;
+  animation: ${props => (props.error === true ? grow : shrink)} 0.5s forwards;
 `
 
 class ContactInfo extends Component {
@@ -117,8 +152,8 @@ class ContactInfo extends Component {
       } else if (!this.state.passwordError1 && this.state.passwordError2) {
         subText = (
           <ErrorText>
-            Please use 8 or more characters with a mix of letters, numbers &
-            symbols.
+            Please use 8 or more characters with a mix of uppercase & lowercase
+            letters, numbers & symbols.
           </ErrorText>
         )
       } else {
@@ -136,7 +171,6 @@ class ContactInfo extends Component {
         <Form onSubmit={() => this.handleSubmit()}>
           <FormGroup>
             <TextInputWrapper>
-              <Tooltip />
               <TextInput
                 marginRight={'5px'}
                 name={'firstName'}
@@ -156,6 +190,9 @@ class ContactInfo extends Component {
                 required={'required'}
                 onBlur={this.checkName}
               />
+              <LessCommonError error={this.state.nameError}>
+                <span>Are you sure you typed your name in right?</span>
+              </LessCommonError>
             </TextInputWrapper>
           </FormGroup>
 
