@@ -59,12 +59,31 @@ export default class RegisterForm extends Component {
     })
   }
 
+  deleteType() {
+    this.state.soundTypes.map((v, i) =>
+      this.setState(
+        {
+          soundTypes: [v.splice(0, i), ...v]
+        },
+        _ => console.log(v)
+      )
+    )
+  }
+
   render() {
     const soundTypes = this.state.soundTypes.map(v => (
-      <SoundTypesDiv key={v}>{v}</SoundTypesDiv>
+      <SoundTypesDiv key={v}>
+        {v}
+        <DeleteX onClick={e => this.deleteType(e)}>x</DeleteX>
+      </SoundTypesDiv>
     ))
     // eslint-disable-next-line
-    const venueTypes = this.state.venueTypes.map(v => <div key={v}>{v}</div>)
+    const venueTypes = this.state.venueTypes.map(v => v => (
+      <SoundTypesDiv key={v}>
+        {v}
+        <DeleteX>x</DeleteX>
+      </SoundTypesDiv>
+    ))
 
     const favSTypes = [
       'Stype1',
@@ -313,6 +332,7 @@ const SoundTypesDiv = styled.div`
   background: #469f56;
   opacity: 0.6;
   color: white;
+  position: relative;
 `
 const FavoritesContainer = styled.section`
   display: flex;
@@ -442,4 +462,12 @@ const TypeWrapper = styled.section`
   display: flex;
   justify-content: space-around;
   margin: 35px 64px;
+`
+
+const DeleteX = styled.div`
+  position: absolute;
+  top: 0;
+  right: 3px;
+  font-size: 11px;
+  cursor: pointer;
 `
