@@ -14,47 +14,9 @@ export default class RegisterForm extends Component {
     soundTypes: ['Stype1'],
     venueTypes: ['bar', 'the clam'],
     stypeOptionsMenu: false,
-    duplicateVenueType: false,
+    duplicateSoundType: false,
     maxVenuesError: false
   }
-  //Get Endpoints
-  getSTypes() {
-    axios.get('/api/sTypes').then()
-  }
-
-  getVTypes() {
-    axios.get('/api/vTypes').then()
-  }
-
-  getUserInfo() {
-    axios.get('/api/userInfo').then()
-  }
-  //end of Gets
-
-  //post Endpoints
-  submitForm() {
-    const {
-      firstName,
-      lastName,
-      zip,
-      birthday,
-      gender,
-      soundTypes,
-      venueTypes
-    } = this.state
-    axios
-      .post('/api/submitUserApplication', {
-        firstName,
-        lastName,
-        zip,
-        birthday,
-        gender,
-        soundTypes,
-        venueTypes
-      })
-      .then(res => {})
-  }
-  //End of Posts
 
   inputTracker(e) {
     let { name, value } = e.target
@@ -81,15 +43,16 @@ export default class RegisterForm extends Component {
     soundTypes.forEach(v => {
       soundTypes.includes(name) || soundTypes.length >= 3
         ? this.setState({
-            duplicateVenueType: true
+            duplicateSoundType: true
           })
         : this.setState({
-            duplicateVenueType: false,
+            duplicateSoundType: false,
             soundTypes: [...this.state.soundTypes, name]
           })
+      // eslint-disable-next-line
       soundTypes.length >= 3
         ? this.setState({
-            duplicateVenueType: false,
+            duplicateSoundType: false,
             maxVenuesError: true
           })
         : null
@@ -100,6 +63,7 @@ export default class RegisterForm extends Component {
     const soundTypes = this.state.soundTypes.map(v => (
       <SoundTypesDiv key={v}>{v}</SoundTypesDiv>
     ))
+    // eslint-disable-next-line
     const venueTypes = this.state.venueTypes.map(v => <div key={v}>{v}</div>)
 
     const favSTypes = [
@@ -110,7 +74,21 @@ export default class RegisterForm extends Component {
       'Stype5',
       'Stype6'
     ]
+    const favVTypes = [
+      'Vtype1',
+      'VType2',
+      'Vtype3',
+      'Vtype4',
+      'Vtype5',
+      'Vtype6'
+    ]
+
     const sTypeButtons = favSTypes.map(v => (
+      <AddFavButton key={v} name={v} onClick={e => this.addSoundType(e)}>
+        {v}
+      </AddFavButton>
+    ))
+    const vTypeButtons = favVTypes.map(v => (
       <AddFavButton key={v} name={v} onClick={e => this.addSoundType(e)}>
         {v}
       </AddFavButton>
@@ -120,91 +98,128 @@ export default class RegisterForm extends Component {
         <Title>Edit Your Profile</Title>
         <GoBack>Go Back</GoBack>
         <InputContainer>
-          <OptionInputContainer>
-            <Input
-              onChange={e => this.inputTracker(e)}
-              type="text"
-              placeholder="First Name"
-              name="firstName"
-              required="true"
-            />
-          </OptionInputContainer>
-          <OptionInputContainer>
-            <Input
-              onChange={e => this.inputTracker(e)}
-              type="text"
-              placeholder="Last Name"
-              name="lastName"
-            />
-          </OptionInputContainer>
-          <OptionInputContainer>
-            <Input
-              onChange={e => this.inputTracker(e)}
-              type="text"
-              placeholder="Email"
-              name="email"
-            />
-          </OptionInputContainer>
-          <OptionInputContainer>
-            <Input
-              onChange={e => this.inputTracker(e)}
-              type="text"
-              placeholder="Date of Birth"
-              name="birthday"
-            />
-          </OptionInputContainer>
-          <OptionInputContainer>
-            <Input
-              onChange={e => this.inputTracker(e)}
-              type="text"
-              placeholder="Zip"
-              name="zip"
-            />
-          </OptionInputContainer>
+          <Input
+            onChange={e => this.inputTracker(e)}
+            type="text"
+            placeholder="First Name"
+            name="firstName"
+            required="required"
+            style={{ gridArea: 'first' }}
+          />
+
+          <Input
+            onChange={e => this.inputTracker(e)}
+            type="text"
+            placeholder="Last Name"
+            name="lastName"
+            required="required"
+            style={{ gridArea: 'last' }}
+          />
+
+          <Input
+            onChange={e => this.inputTracker(e)}
+            type="text"
+            placeholder="Email"
+            name="email"
+            required="required"
+            style={{ gridArea: 'email' }}
+          />
+
+          <Input
+            onChange={e => this.inputTracker(e)}
+            type="text"
+            placeholder="Date of Birth"
+            name="birthday"
+            required="required"
+            style={{ gridArea: 'dob' }}
+          />
+
+          <Input
+            onChange={e => this.inputTracker(e)}
+            type="text"
+            placeholder="Zip"
+            name="zip"
+            required="required"
+            style={{ test }}
+          />
         </InputContainer>
-        <FormOption>
-          Why Type Of Music do you enjoy most? <Max>( Max 3 )</Max>
-        </FormOption>
-        <OptionInputContainer>
-          <div style={{ display: 'flex' }}>
-            <FavoritesContainer>{soundTypes}</FavoritesContainer>
-            <Error display={this.state.duplicateVenueType ? 'flex' : 'none'}>
+        <TypeWrapper>
+          <div style={{ width: '50%' }}>
+            <div>
+              <div>FavTypes:</div>
+              <FavoritesContainer>{soundTypes}</FavoritesContainer>
+            </div>
+            <Error display={this.state.duplicateSoundType ? 'flex' : 'none'}>
               * You Already Have this Item
             </Error>
             <Error display={this.state.maxVenuesError ? 'flex' : 'none'}>
               * Remove Soundtype to add another
             </Error>
+            <FormOption>
+              Lets Add Some Sound Types? <Max>( Max 3 )</Max>
+            </FormOption>
+            <Parent>
+              <Cbox
+                type="checkbox"
+                className="cbox"
+                onClick={_ => this.openOptions(this.state.stypeOptionsMenu)}
+              />
+              <Add for="cbox" className="add">
+                Add Your SoundTypes
+              </Add>
+              <Message
+                className="message"
+                type="text"
+                placeholder={
+                  this.state.stypeOptionsMenu ? 'Search for your Soundtype' : ''
+                }
+              />
+            </Parent>
+            <TypeContainer
+              display={this.state.stypeOptionsMenu === true ? 'grid' : 'none'}
+            >
+              {sTypeButtons}
+            </TypeContainer>
           </div>
-          <Parent>
-            <Cbox
-              type="checkbox"
-              className="cbox"
-              onClick={_ => this.openOptions(this.state.stypeOptionsMenu)}
-            />
-            <Add for="cbox" className="add">
-              Add Your SoundTypes
-            </Add>
-            <Message
-              className="message"
-              type="text"
-              placeholder={
-                this.state.stypeOptionsMenu ? 'Search for your Soundtype' : ''
-              }
-            />
-          </Parent>
-          <TypeContainer
-            display={this.state.stypeOptionsMenu === true ? 'grid' : 'none'}
-          >
-            {sTypeButtons}
-          </TypeContainer>
-        </OptionInputContainer>
-        <FormOption>
-          What Venues do you prefer? <Max>( Max 3 )</Max>
-        </FormOption>
-        <OptionInputContainer>
-          <div>{this.state.venueTypes}</div>
-          <AddTypeButton>+ add</AddTypeButton>
-        </OptionInputContainer>
+          {/* RIGHT SIDE CONTENT */}
+          <div style={{ width: '50%' }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <div>Venue Types:</div>
+              <FavoritesContainer>{venueTypes}</FavoritesContainer>
+            </div>
+            <Error display={this.state.duplicateSoundType ? 'flex' : 'none'}>
+              * You Already Have this Item
+            </Error>
+            <Error display={this.state.maxVenuesError ? 'flex' : 'none'}>
+              * Remove VenueType to add another
+            </Error>
+            <FormOption>
+              Lets Add Some Venue Types? <Max>( Max 3 )</Max>
+            </FormOption>
+            <Parent>
+              <Cbox
+                type="checkbox"
+                className="cbox"
+                onClick={_ => this.openOptions(this.state.stypeOptionsMenu)}
+              />
+              <Add for="cbox" className="add">
+                Add Your VenueTypes
+              </Add>
+              <Message
+                className="message"
+                type="text"
+                placeholder={
+                  this.state.stypeOptionsMenu ? 'Search for your VenueType' : ''
+                }
+              />
+            </Parent>
+            <TypeContainer
+              display={this.state.stypeOptionsMenu === true ? 'grid' : 'none'}
+            >
+              {vTypeButtons}
+            </TypeContainer>
+          </div>
+        </TypeWrapper>
 
         <FormButton title="Save Changes" />
       </FormContainer>
@@ -212,17 +227,21 @@ export default class RegisterForm extends Component {
   }
 }
 
+let test = {
+  gridArea: 'zip'
+}
+
 const FormContainer = styled.section`
   width: 100%;
   color: black;
-  padding: 1rem;
+  padding: 40px;
   position: relative;
   background: white;
 `
 
 const GoBack = styled.button`
   position: absolute;
-  right: 20px;
+  left: 20px;
   top: 16px;
   width: 64px;
   height: 32px;
@@ -241,17 +260,17 @@ const Title = styled.section`
 const FormOption = styled.section`
   margin-right: 16px;
   display: flex;
+  margin: 5px 0;
 `
-const OptionInputContainer = styled.section`
-  margin-bottom: 16px;
-  display: flex;
-  flex-direction: column;
-`
+
 const AddFavButton = styled.button`
   width: 64px;
   background: #469f56;
   color: white;
-  padding: 6px 10px;
+  padding: 4px 14px;
+  margin: 0 4px;
+  opacity: 0.8;
+  border-radius: 6px;
 `
 
 const TypeContainer = styled.section`
@@ -287,8 +306,8 @@ const AddTypeButton = styled.button`
 `
 const SoundTypesDiv = styled.div`
   background: lightgray;
-  padding: 10px 13px;
-  margin-right: 3px;
+  padding: 4px 14px;
+  margin: 0 4px;
   opacity: 0.8;
   border-radius: 6px;
   background: #469f56;
@@ -301,9 +320,15 @@ const FavoritesContainer = styled.section`
 `
 const InputContainer = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'first last'
+    'email email'
+    'dob zip';
   grid-template-rows: 55px 55px;
-  grid-gap: 15px;
+  width: 565px;
+  margin: 0 auto;
+  grid-gap: 4px;
+  grid-row-gap: 16px;
 `
 const Error = styled.div`
   display: ${props => props.display};
@@ -331,7 +356,7 @@ const Parent = styled.div`
   }
   .add,
   .message {
-    color: orange;
+    color: #a48ad4;
   }
   .add {
     top: 9px;
@@ -342,7 +367,7 @@ const Parent = styled.div`
 `
 const Add = styled.label`
   position: absolute;
-  color: orange;
+  color: #a48ad4;
   top: 12px;
   right: -15px;
   transition: 0.6s all 0.3s;
@@ -350,7 +375,7 @@ const Add = styled.label`
 `
 const Message = styled.input`
   position: absolute;
-  color: orange;
+  color: #a48ad4;
   outline: none;
   left: 24px;
   top: 21px;
@@ -358,11 +383,11 @@ const Message = styled.input`
   width: 0;
   transition: 0.4s all;
   background: none;
-  border: 2px solid red;
+  border: 2px solid #a48ad4;
   transition: 0.4s width 0.2s, 0.1s height;
   font-size: 19px;
   &::placeholder {
-    color: orange;
+    color: #a48ad4;
   }
 `
 
@@ -376,7 +401,7 @@ const Cbox = styled.input`
   outline: none;
   width: 30px;
   height: 30px;
-  background: orange;
+  background: #a48ad4;
   border-radius: 100%;
   -webkit-appearance: none;
   z-index: 3;
@@ -396,6 +421,8 @@ const Cbox = styled.input`
     ~ .message {
       width: 241px;
       height: 30px;
+      font-size: 12px;
+      padding-left: 13px;
       transition: 0.3s width, 0.3s height 0.2s;
     }
     &:before,
@@ -405,8 +432,14 @@ const Cbox = styled.input`
     }
     ~ .add {
       font-size: 13px;
-      transform: translateY(-16px);
+      transform: translate(-32px, -3px);
       transition: 0.3s all;
     }
   }
+`
+
+const TypeWrapper = styled.section`
+  display: flex;
+  justify-content: space-around;
+  margin: 35px 64px;
 `

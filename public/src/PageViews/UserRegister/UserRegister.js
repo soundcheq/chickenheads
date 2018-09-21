@@ -21,7 +21,7 @@ export default class UserRegister extends Component {
 
 const ProfileContainer = styled.section`
   height: 100vh;
-  padding: 1rem;
+  padding: 40px;
   background: lightgray;
   color: #c8c8c8;
   display: flex;
