@@ -11,7 +11,7 @@ export default class RegisterForm extends Component {
     birthday: '',
     email: '',
     gender: '',
-    soundTypes: ['Stype1'],
+    soundTypes: ['y'],
     venueTypes: ['bar', 'the clam'],
     stypeOptionsMenu: false,
     duplicateSoundType: false,
@@ -39,9 +39,9 @@ export default class RegisterForm extends Component {
 
   addSoundType(e) {
     let { name } = e.target
-    let { soundTypes } = this.state
-    soundTypes.forEach(v => {
-      soundTypes.includes(name) || soundTypes.length >= 3
+    let soundTypesCopy = [...this.state.soundTypes]
+    soundTypesCopy.forEach(v => {
+      soundTypesCopy.includes(name) || soundTypesCopy.length >= 3
         ? this.setState({
             duplicateSoundType: true
           })
@@ -50,7 +50,7 @@ export default class RegisterForm extends Component {
             soundTypes: [...this.state.soundTypes, name]
           })
       // eslint-disable-next-line
-      soundTypes.length >= 3
+      soundTypesCopy.length >= 3
         ? this.setState({
             duplicateSoundType: false,
             maxVenuesError: true
@@ -59,29 +59,24 @@ export default class RegisterForm extends Component {
     })
   }
 
-  deleteType() {
-    this.state.soundTypes.map((v, i) =>
-      this.setState(
-        {
-          soundTypes: [v.slice(i, 1)]
-        },
-        _ => console.log(v)
-      )
-    )
+  deleteType = index => {
+    let soundTypesCopy = [...this.state.soundTypes]
+    soundTypesCopy.splice(index, 1)
+    this.setState({ soundTypes: soundTypesCopy })
   }
 
   render() {
-    const soundTypes = this.state.soundTypes.map(v => (
+    const soundTypes = this.state.soundTypes.map((v, index) => (
       <SoundTypesDiv key={v}>
         {v}
-        <DeleteX onClick={e => this.deleteType(e)}>x</DeleteX>
+        <DeleteX onClick={_ => this.deleteType(index)}>x</DeleteX>
       </SoundTypesDiv>
     ))
     // eslint-disable-next-line
     const venueTypes = this.state.venueTypes.map(v => v => (
       <SoundTypesDiv key={v}>
         {v}
-        <DeleteX>x</DeleteX>
+        <DeleteX key={v}>x</DeleteX>
       </SoundTypesDiv>
     ))
 
