@@ -11,7 +11,7 @@ export default class RegisterForm extends Component {
     birthday: '',
     email: '',
     gender: '',
-    soundTypes: ['y'],
+    soundTypes: [''],
     venueTypes: ['bar', 'the clam'],
     stypeOptionsMenu: false,
     duplicateSoundType: false,
@@ -43,10 +43,12 @@ export default class RegisterForm extends Component {
     soundTypesCopy.forEach(v => {
       soundTypesCopy.includes(name) || soundTypesCopy.length >= 3
         ? this.setState({
-            duplicateSoundType: true
+            duplicateSoundType: true,
+            maxVenuesError: false
           })
         : this.setState({
             duplicateSoundType: false,
+            maxVenuesError: false,
             soundTypes: [...this.state.soundTypes, name]
           })
       // eslint-disable-next-line
@@ -55,14 +57,22 @@ export default class RegisterForm extends Component {
             duplicateSoundType: false,
             maxVenuesError: true
           })
-        : null
+        : this.setState({
+            soundTypes: [name]
+          })
     })
   }
 
   deleteType = index => {
     let soundTypesCopy = [...this.state.soundTypes]
+
     soundTypesCopy.splice(index, 1)
     this.setState({ soundTypes: soundTypesCopy })
+    if (soundTypesCopy.length != 3) {
+      this.setState({
+        maxVenuesError: false
+      })
+    }
   }
 
   render() {
