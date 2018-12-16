@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const Input = styled.input`
+const Select = styled.select`
   height: 40px;
   width: ${props => (props.width ? props.width : '100%')};
   border: none;
@@ -21,7 +21,17 @@ const Input = styled.input`
   }
 `
 
-class TextInput extends Component {
+const Option = styled.option`
+  font-size: 16px;
+  background-color: #e9e9e9;
+  color: #6A6A6A;
+`
+
+const Hidden = styled.option`
+  font-style: italic;
+`
+
+class VenueTagInput extends Component {
   render() {
     let {
       name,
@@ -33,13 +43,16 @@ class TextInput extends Component {
       onBlur,
       width,
       marginRight,
-      marginBottom,
-      maxLength,
-      minLength
+      marginBottom
     } = this.props
-    
+
+    let soundTypes = ['House', 'EDM', 'Live Band', 'Top 40', 'Mash-Up', 'Ambient', 'Atmosphere', 'Hip-Hop', 'Latin Dance', 'Reggaeton', 'Rock', 'Country', 'Piano', 'Stand Up', 'Live Sports', 'Indie', 'Local Bands', 'Jukebox', 'DJ', 'Jazz']
+    let soundOptions = soundTypes.map( soundType => {
+      <Option value="{soundType}">{soundType}</Option>
+    })
+
     return (
-      <Input
+      <Select
         marginBottom={marginBottom}
         marginRight={marginRight}
         width={width}
@@ -49,12 +62,12 @@ class TextInput extends Component {
         onChange={updateFn}
         required={required}
         onFocus={onFocus}
-        onBlur={onBlur}
-        maxLength={maxLength}
-        minLength={minLength}
-      />
+        onBlur={onBlur}>
+            <Hidden value="" hidden>Sound Tag</Hidden>
+            {soundOptions}
+      </Select>
     )
   }
 }
 
-export default TextInput
+export default VenueTagInput

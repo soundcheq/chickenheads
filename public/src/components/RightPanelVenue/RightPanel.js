@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import styled from 'styled-components'
 import SpotLight from '../Spotlight/Spotlight'
 
@@ -6,11 +7,21 @@ import ListAnim from './RightPanel/ListAnim'
 
 export default class componentName extends Component {
   state = {
-    user: 'Skallywag',
+    user: 'Metro',
     points: 420,
     rsvps: 50,
-    eventTime: '10pm'
+    eventTime: '10pm',
+    eventData: []
   }
+
+  componentDidMount(){
+    axios.get("/api/events").then(response => {
+      this.setState({
+        eventsData: response.body
+      });
+    })
+  }
+
   render() {
     return (
       <RightPanelContainer>
@@ -30,6 +41,7 @@ export default class componentName extends Component {
           </InfoContainer>
         </UserContainer>
         {/* TEMPORARY UNTIL DATA ADDED */}
+
         <EventsContainer>
           <Events>Events</Events>
           <CardContainer>
@@ -58,6 +70,9 @@ export default class componentName extends Component {
           </CardContainer>
           <ListAnim />
         </EventsContainer>
+
+
+
         {/* TEMPORARY UNTIL DATA ADDED */}
         <SpotLight />
       </RightPanelContainer>

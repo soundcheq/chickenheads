@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const Input = styled.input`
+const Select = styled.select`
   height: 40px;
   width: ${props => (props.width ? props.width : '100%')};
   border: none;
@@ -21,7 +21,17 @@ const Input = styled.input`
   }
 `
 
-class TextInput extends Component {
+const Option = styled.option`
+  font-size: 16px;
+  background-color: #e9e9e9;
+  color: #6A6A6A;
+`
+
+const Hidden = styled.option`
+  font-style: italic;
+`
+
+class VenueTagInput extends Component {
   render() {
     let {
       name,
@@ -33,13 +43,16 @@ class TextInput extends Component {
       onBlur,
       width,
       marginRight,
-      marginBottom,
-      maxLength,
-      minLength
+      marginBottom
     } = this.props
-    
+
+    let venueTypes = ["Nightclub", "Activities", "Lounge", "VIP", "Comedy Club", "Strip Club", "Disco", "Dive Bar", "Dance Club", "Ultra Lounge", "Big Bar", "Sports Bar", "Pub", "Hookah Lounge", "College Bar", "Live Venue", "Day Club", "Brew Pub", "Bar & Grille", "Casino", "Smoking Lounge", "Karaoke Bar", "Theatre", "Billiard Hall", "Speakeasy", "Restaurant Bar", "Gay Bar"]
+    let venueOptions = venueTypes.map( venueType => {
+      <Option value="{venueType}">{venueType}</Option>
+    })
+
     return (
-      <Input
+      <Select
         marginBottom={marginBottom}
         marginRight={marginRight}
         width={width}
@@ -49,12 +62,12 @@ class TextInput extends Component {
         onChange={updateFn}
         required={required}
         onFocus={onFocus}
-        onBlur={onBlur}
-        maxLength={maxLength}
-        minLength={minLength}
-      />
+        onBlur={onBlur}>
+            <Hidden value="" hidden>Venue Tag</Hidden>
+            {venueOptions}
+      </Select>
     )
   }
 }
 
-export default TextInput
+export default VenueTagInput

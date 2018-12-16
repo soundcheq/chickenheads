@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Logo from '../../assets/Soundcheq-Logo-Animated.gif'
+import Q from '../../assets/soundcheqQ.png'
 
 export default class LeftPanel extends Component {
   render() {
+
+    let hoverText;
+    if(document.get)
+
     return (
       <Container>
         <GifContainer>
@@ -51,9 +56,12 @@ export default class LeftPanel extends Component {
 const f = 'display: flex'
 
 const Container = styled.section`
-  width: 225px;
+  width: 13%;
   height: 100vh;
-  background: #12171d;
+  background-color: #12171d;
+  background-image: url("${Q}");
+  background-repeat: no-repeat;
+  background-position: bottom 15px right;
   color: white;
   z-index: 1;
 `
@@ -102,12 +110,15 @@ const Option = styled.section`
 
 const Footer = styled.section`
   bottom: 15px;
+  left: -10px;
   position: absolute;
+  white-space: nowrap;
   ${f};
 `
 const Footerp = styled.div`
-  font-size: 10px;
-  margin-left: 1.75rem;
+  width: 100%;
+  font-size: 9px;
+  margin-left: 1rem;
   opacity: 0.7;
   cursor: pointer;
 `

@@ -19,7 +19,7 @@ export default class SplashPageView extends Component {
         </H1Section>
         <MidContainer>
           <div />
-          <IphoneXContent />
+          <IphoneXContent/>
           <SignUp />
         </MidContainer>
         <FooterContainer>
