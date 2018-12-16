@@ -46,7 +46,8 @@ module.exports = {
       return {
         error: true,
         field: 'phone',
-        format: '(999) 999 - 9999'
+        // format: '(999) 999 - 9999'
+        format: '9999999999'
       }
     }
 
