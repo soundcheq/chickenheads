@@ -33,8 +33,11 @@ class TextInput extends Component {
       onBlur,
       width,
       marginRight,
-      marginBottom
+      marginBottom,
+      maxLength,
+      minLength
     } = this.props
+    
     return (
       <Input
         marginBottom={marginBottom}
@@ -47,6 +50,8 @@ class TextInput extends Component {
         required={required}
         onFocus={onFocus}
         onBlur={onBlur}
+        maxLength={maxLength}
+        minLength={minLength}
       />
     )
   }

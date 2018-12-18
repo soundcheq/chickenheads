@@ -3,7 +3,8 @@ const {
   email_expression,
   job_expression,
   phone_expression,
-  password_expression
+  password_expression,
+  website_expression
 } = require('../utils/regular_expressions')
 
 module.exports = {
@@ -46,7 +47,8 @@ module.exports = {
       return {
         error: true,
         field: 'phone',
-        format: '(999) 999 - 9999'
+        // format: '(999) 999 - 9999'
+        format: '9999999999'
       }
     }
 
@@ -58,7 +60,7 @@ module.exports = {
           '8 - 16 characters in length. At least one lowercase letter, one uppercase letter, one special character, and one number.'
       }
     }
-
+    
     return {
       error: false
     }

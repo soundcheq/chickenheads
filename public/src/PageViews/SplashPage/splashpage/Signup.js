@@ -30,15 +30,15 @@ export default class SignUp extends Component {
 }
 
 const MainContainer = styled.section`
+  border-radius: 3px;
   height: 15rem;
   width: 15rem;
-  background: ghostwhite;
+  background: #f7f7ff;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   letter-spacing: 1.25px;
-  border-radius: 9px;
   text-decoration-line: none;
 `
 
@@ -75,7 +75,7 @@ const RegisterNow = styled.section`
   padding: 1rem 0;
   color: white;
   background: #a48ad4;
-  border-radius: 5px;
+  border-radius: 3px 3px 0px 0px;
 `
 
 const ButtonWrap = styled.section`

@@ -9,10 +9,7 @@ export default function iPhoneX() {
       <section style={{ width: '74%' }}>
         <H1>Welcome to Soundcheq</H1>
         <div style={{ textAlign: 'left' }}>
-          Discover events and venues based on what you like to do.Lorem ipsum
-          dolor s. Vestibulum leo felis, dictum sit amet ullamcorper te.
-          Vestibulum leo felis, dictum sit amet ullamcorper tempor, rutrum eget
-          erat. Cras non dolor atmpor, rutrum eget erat. Cras non dolor atg
+          Discover events based on what your mood and taste.  Connect with your favorite artists and venues so you can sieze every moment.   
         </div>
       </section>
       <IphoneContainer>
