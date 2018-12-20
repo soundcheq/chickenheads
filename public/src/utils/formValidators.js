@@ -21,7 +21,6 @@ export function jobTitleFn(str){
 }
 
 export function passwordFn(str1, str2) {
-  console.log(str1, str2)
   if(str1 === "" || str2 === "") {return true}
   if(str1 !== str2){return "No match"} 
   let passwordTest = RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm);

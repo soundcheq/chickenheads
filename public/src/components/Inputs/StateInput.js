@@ -5,35 +5,24 @@ const Select = styled.select`
   height: 40px;
   width: ${props => (props.width ? props.width : '100%')};
   border: none;
-  border-radius: 2px;
   padding: 0px 20px;
   font-size: 16px;
   color: #343535;
   background-color: #e9e9e9;
   margin-bottom: ${props => props.marginBottom ? props.marginBottom : '25px'} ;
   margin-right: ${props => props.marginRight ? props.marginRight : '0px'}};
-  &::placeholder {
-    color: #6A6A6A;
-    font-style: italic;
-  }
   &:focus {
     outline: none;
   }
-`
-
-const Option = styled.option`
-  font-size: 16px;
-  background-color: #e9e9e9;
-  color: #6A6A6A;
-`
-
-const Hidden = styled.option`
-  font-style: italic;
-  background-color: purple;
+  &:invalid {
+    font-style: italic;
+    color: #696a69;
+  }
 `
 
 class StateInput extends Component {
   render() {
+
     let {
       name,
       type,
@@ -44,8 +33,9 @@ class StateInput extends Component {
       onBlur,
       width,
       marginRight,
-      marginBottom
-    } = this.props
+      marginBottom,
+		} = this.props
+		
     return (
       <Select
         marginBottom={marginBottom}
@@ -58,58 +48,58 @@ class StateInput extends Component {
         required={required}
         onFocus={onFocus}
         onBlur={onBlur}>
-            <Hidden value="" hidden>State</Hidden>
-            <Option value="AL">Alabama</Option>
-	        <Option value="AK">Alaska</Option>
-	        <Option value="AZ">Arizona</Option>
-	        <Option value="AR">Arkansas</Option>
-	        <Option value="CA">California</Option>
-	        <Option value="CO">Colorado</Option>
-	        <Option value="CT">Connecticut</Option>
-	        <Option value="DE">Delaware</Option>
-	        <Option value="DC">District Of Columbia</Option>
-	        <Option value="FL">Florida</Option>
-	        <Option value="GA">Georgia</Option>
-	        <Option value="HI">Hawaii</Option>
-	        <Option value="ID">Idaho</Option>
-	        <Option value="IL">Illinois</Option>
-	        <Option value="IN">Indiana</Option>
-	        <Option value="IA">Iowa</Option>
-	        <Option value="KS">Kansas</Option>
-	        <Option value="KY">Kentucky</Option>
-	        <Option value="LA">Louisiana</Option>
-	        <Option value="ME">Maine</Option>
-	        <Option value="MD">Maryland</Option>
-	        <Option value="MA">Massachusetts</Option>
-	        <Option value="MI">Michigan</Option>
-	        <Option value="MN">Minnesota</Option>
-	        <Option value="MS">Mississippi</Option>
-	        <Option value="MO">Missouri</Option>
-	        <Option value="MT">Montana</Option>
-	        <Option value="NE">Nebraska</Option>
-	        <Option value="NV">Nevada</Option>
-	        <Option value="NH">New Hampshire</Option>
-	        <Option value="NJ">New Jersey</Option>
-	        <Option value="NM">New Mexico</Option>
-	        <Option value="NY">New York</Option>
-	        <Option value="NC">North Carolina</Option>
-	        <Option value="ND">North Dakota</Option>
-	        <Option value="OH">Ohio</Option>
-	        <Option value="OK">Oklahoma</Option>
-	        <Option value="OR">Oregon</Option>
-	        <Option value="PA">Pennsylvania</Option>
-	        <Option value="RI">Rhode Island</Option>
-	        <Option value="SC">South Carolina</Option>
-	        <Option value="SD">South Dakota</Option>
-	        <Option value="TN">Tennessee</Option>
-	        <Option value="TX">Texas</Option>
-	        <Option value="UT">Utah</Option>
-	        <Option value="VT">Vermont</Option>
-	        <Option value="VA">Virginia</Option>
-	        <Option value="WA">Washington</Option>
-	        <Option value="WV">West Virginia</Option>
-	        <Option value="WI">Wisconsin</Option>
-	        <Option value="WY">Wyoming</Option>
+          <option hidden selected value="">State</option>
+          <option value="AL">Alabama</option>
+	        <option value="AK">Alaska</option>
+	        <option value="AZ">Arizona</option>
+	        <option value="AR">Arkansas</option>
+	        <option value="CA">California</option>
+	        <option value="CO">Colorado</option>
+	        <option value="CT">Connecticut</option>
+	        <option value="DE">Delaware</option>
+	        <option value="DC">District Of Columbia</option>
+	        <option value="FL">Florida</option>
+	        <option value="GA">Georgia</option>
+	        <option value="HI">Hawaii</option>
+	        <option value="ID">Idaho</option>
+	        <option value="IL">Illinois</option>
+	        <option value="IN">Indiana</option>
+	        <option value="IA">Iowa</option>
+	        <option value="KS">Kansas</option>
+	        <option value="KY">Kentucky</option>
+	        <option value="LA">Louisiana</option>
+	        <option value="ME">Maine</option>
+	        <option value="MD">Maryland</option>
+	        <option value="MA">Massachusetts</option>
+	        <option value="MI">Michigan</option>
+	        <option value="MN">Minnesota</option>
+	        <option value="MS">Mississippi</option>
+	        <option value="MO">Missouri</option>
+	        <option value="MT">Montana</option>
+	        <option value="NE">Nebraska</option>
+	        <option value="NV">Nevada</option>
+	        <option value="NH">New Hampshire</option>
+	        <option value="NJ">New Jersey</option>
+	        <option value="NM">New Mexico</option>
+	        <option value="NY">New York</option>
+	        <option value="NC">North Carolina</option>
+	        <option value="ND">North Dakota</option>
+	        <option value="OH">Ohio</option>
+	        <option value="OK">Oklahoma</option>
+	        <option value="OR">Oregon</option>
+	        <option value="PA">Pennsylvania</option>
+	        <option value="RI">Rhode Island</option>
+	        <option value="SC">South Carolina</option>
+	        <option value="SD">South Dakota</option>
+	        <option value="TN">Tennessee</option>
+	        <option value="TX">Texas</option>
+	        <option value="UT">Utah</option>
+	        <option value="VT">Vermont</option>
+	        <option value="VA">Virginia</option>
+	        <option value="WA">Washington</option>
+	        <option value="WV">West Virginia</option>
+	        <option value="WI">Wisconsin</option>
+	        <option value="WY">Wyoming</option>
       </Select>
     )
   }

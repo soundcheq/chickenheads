@@ -68,7 +68,7 @@ export default class componentName extends Component {
             </EventDetailsContainer>
             <CreateIcon />
           </CardContainer>
-          <ListAnim />
+          {/* <ListAnim /> */}
         </EventsContainer>
 
 

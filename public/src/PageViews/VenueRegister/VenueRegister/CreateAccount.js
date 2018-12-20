@@ -88,6 +88,7 @@ const TermsConditions = styled.div`
 
 const LessCommonError = styled.div`
   overflow: hidden;
+  display: ${props => (props.error === true ? `block` : `none`)}
   height: 0px;
   width: 100%;
   color: red;
@@ -146,7 +147,8 @@ class ContactInfo extends Component {
     })
   }
 
-  nextClick = () => {
+  nextClick = (e) => {
+    e.preventDefault();
     let checkState = document.getElementById("checkbox");
     if(checkState.checked &&
       !this.state.emailError &&
@@ -210,6 +212,8 @@ class ContactInfo extends Component {
                 type={'text'}
                 updateFn={this.props.handleVenueRegistrationInput}
                 required={'required'}
+                minLength={"3"}
+                maxLength={"30"}
                 onBlur={this.checkName}
               />
               <TextInput
@@ -219,11 +223,13 @@ class ContactInfo extends Component {
                 type={'text'}
                 updateFn={this.props.handleVenueRegistrationInput}
                 required={'required'}
+                minLength={"3"}
+                maxLength={"30"}
                 onBlur={this.checkName}
               />
-              {/* <LessCommonError error={this.state.nameError}>
+              <LessCommonError error={this.state.nameError}>
                 <span>Are you sure you typed your name in right?</span>
-              </LessCommonError> */}
+              </LessCommonError>
             </TextInputWrapper>
           </FormGroup>
 
@@ -266,6 +272,9 @@ class ContactInfo extends Component {
               updateFn={this.props.handleVenueRegistrationInput}
               required={'required'}
             />
+            <LessCommonError error={this.state.phoneError}>
+                <span>Are you sure you entered a correct phone number?</span>
+              </LessCommonError>
           </FormGroup>
           <FormGroup>
             <TextInputWrapper>
@@ -306,7 +315,7 @@ class ContactInfo extends Component {
             bottom={'0px'}
             right={'0px'}
             marginTop={'0px'}
-            onClick={()=>{this.nextClick()}}
+            onClickFn={(e) => {this.nextClick()}}
           />
         </Form>
       </RegisterContainer>

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { addressFn, zipcodeFn, websiteFn} from '../../../utils/formValidators'
-import styled from 'styled-components'
+
+//Styled Components
+import styled, { keyframes } from 'styled-components'
 import TextInput from '../../../components/Inputs/TextInput'
 import FormButton from '../../../components/Buttons/FormButton'
 import StateInput from '../../../components/Inputs/StateInput'
-import VenueTagInput from '../../../components/Inputs/VenueTagInput'
-import SoundTagInput from '../../../components/Inputs/SoundTagInput'
+import DynamicTagSelect from '../../../components/Inputs/DynamicTagSelect'
 
 const RegisterContainer = styled.div`
   height: 95vh;
@@ -15,6 +16,30 @@ const RegisterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+const grow = keyframes`	
+from {
+    margin-bottom: 0px;
+    height: 0px;	
+    transform: scaleY(0);	
+  }	
+    to {	
+    margin-bottom: 25px;    
+    height: 12px;	
+    transform: scaleY(1);	
+  }	
+`
+const shrink = keyframes`	
+from {
+    margin-bottom: 25px;	
+    height: 12px;	
+    transform: scaleY(1);	
+  }	
+    to {
+    margin-bottom: 0px;	
+    height: 0px;	
+    transform: scaleY(0);	
+  }	
 `
 const Form = styled.form`
   display: flex;
@@ -32,11 +57,20 @@ const SubHeader = Header.extend`
   font-size: 16px;
   margin-bottom: 30px;
 `
+const TagHeader = SubHeader.extend`
+  margin-bottom: 10px;
+  font-size: 16px;
+`
 const Error = styled.div`
-  height: 40px;
-  width: 200px;
-  color: #ff9494;
-  margin-left: 10px;
+  overflow: hidden;
+  display: ${props => (props.error === true ? `block` : `none`)}
+  height: 0px;
+  width: 100%;
+  color: red;
+  margin-left: 20px;
+  font-size: 12px;
+  margin-bottom: 0px;
+  animation: ${props => (props.error === true ? grow : shrink)} 0.5s forwards;
 `
 const InputContainer = styled.div`
   display: flex;
@@ -44,17 +78,26 @@ const InputContainer = styled.div`
   align-items: center;
   width: 100%;
 `
-
 const VenueTagContainer = styled.div`
-  width: 50%;
   margin-right: 10px;
+  width: calc(50% - 5px);
 `
-
 const SoundTagContainer = styled.div`
-  width: calc(50% - 10px);
+  width: calc(50% - 5px);
+`
+const VenueExistsContainer = styled.div`
+  background-color: ${props => (props.error === true ? `red` : `white`)};
+  width: 100%;
+`
+const TagText = styled.span`
+  font-size: 12px;
+  text-align: center;
+  margin-left: 5px;
+  display: none;
 `
 
-class VenueRegistration extends Component {
+export default class VenueRegistration extends Component {
+
   state = {
     venueName: '',
     address: '',
@@ -66,25 +109,39 @@ class VenueRegistration extends Component {
 
     //tags
 
-    venueTag1: null,
-    venueTag2: null,
-    venueTag3: null,
-
-    soundTag1: null,
-    soundTag2: null,
-    soundTag3: null,
+    venueTagArray: ["Nightclub", "Activities", "Lounge", "VIP", "Comedy Club", "Strip Club", "Disco", "Dive Bar", "Dance Club", "Ultra Lounge", "Big Bar", "Sports Bar", "Pub", "Hookah Lounge", "College Bar", "Live Venue", "Day Club", "Brew Pub", "Bar & Grille", "Casino", "Smoking Lounge", "Karaoke Bar", "Theatre", "Billiard Hall", "Speakeasy", "Restaurant Bar", "Gay Bar"],
+    venueTag1: '',
+    venueTag2: '',
+    venueTag3: '',
+    soundTagArray: ['House', 'EDM', 'Live Band', 'Top 40', 'Mash-Up', 'Ambient', 'Atmosphere', 'Hip-Hop', 'Latin Dance', 'Reggaeton', 'Rock', 'Country', 'Piano', 'Stand Up', 'Live Sports', 'Indie', 'Local Bands', 'Jukebox', 'DJ', 'Jazz'],
+    soundTag1: '',
+    soundTag2: '',
+    soundTag3: '',
 
     //errors
 
     addressError: false, 
     websiteError: false,
     zipcodeError: false,
-    capacityError: false
+    capacityError: false,
+    venueMatch: false,
   }
 
   handleSubmit = () => {
     // CHECK FOR ERRORS
     alert('Submitted')
+  }
+
+  updateVenueTag = (value, venueTag) => {
+    this.setState({
+      [venueTag]: value
+    })
+  }
+
+  updateSoundTag = (value, soundTag) => {
+    this.setState({
+      [soundTag] : value
+    })
   }
 
   handleInput = e => {
@@ -120,17 +177,7 @@ class VenueRegistration extends Component {
 
   render() {
 
-    let venueTagSelect2;
-    this.state.venueTag1 ? <VenueTagInput/> : "Please add three venue tags"
-
-    let venueTagSelect3;
-    this.state.venueTag2 ? <VenueTagInput/> : "Please add three venue tags"
-    
-    let soundTagSelect2;
-    this.state.soundTag1 ? <SoundTagInput/> : "Please add three sound tags"
-
-    let soundTagSelect3;
-    this.state.soundTag2 ? <SoundTagInput/> : "Please add three sound tags"
+    let {venueTag1, venueTag2, venueTag3, soundTag1, soundTag2, soundTag3} = this.state;
 
     return (
       <RegisterContainer>
@@ -141,15 +188,17 @@ class VenueRegistration extends Component {
         </SubHeader>
         <Form onSubmit={() => this.handleSubmit()}>
 
-            {/* We need a a way to check if the venue exists in the db */}
-
+          <VenueExistsContainer>
           <TextInput
             name={'venueName'}
             placeholder={'Venue Name'}
             type={'text'}
             updateFn={this.handleInput}
             required={'required'}
+            minLength={'3'}
+            maxLength={'40'}
           />
+          </VenueExistsContainer>
 
           <InputContainer>
           <TextInput
@@ -182,6 +231,10 @@ class VenueRegistration extends Component {
           />
           </InputContainer>
 
+          <Error error={this.state.addressError}>
+            <span>Please confirm your address</span>
+          </Error>
+
           <InputContainer>
 
           <TextInput
@@ -207,36 +260,84 @@ class VenueRegistration extends Component {
           />
 
           </InputContainer>
+          <Error error={this.state.websiteError}>
+            <span>Please confirm your web address for accuracy</span>
+          </Error>
 
+        <InputContainer  style={{marginBottom : "15px"}}>
 
-{/* VENUE TAGS */}
-        <InputContainer>
           <VenueTagContainer>
-            <VenueTagInput
-              type={'text'}
-              required={'required'}
+          <TagHeader marginBottom={"10px"}>Venue Tags</TagHeader>
+          <DynamicTagSelect 
+            list={this.state.venueTagArray}
+            updateFn={(e) => this.updateVenueTag(e.target.value, 'venueTag1')}
+            choice1={venueTag2}
+            choice2={venueTag3}
+            marginBottom={"10px"}
+            defaultValue={"Venue Tag"}
             />
-
-            {venueTagSelect2}
-            {venueTagSelect3}
+        {venueTag1 ?
+          <DynamicTagSelect 
+            list={this.state.venueTagArray}
+            updateFn={(e) => this.updateVenueTag(e.target.value, 'venueTag2')}
+            marginBottom={"10px"}
+            choice1={venueTag1}
+            choice2={venueTag3}
+            defaultValue={"Venue Tag"}/> : <TagText>Please add another tag</TagText>
+        }
+        {venueTag1 && !venueTag2 ? <TagText>Please add another tag </TagText> : null}
+        {venueTag2 ?
+          <DynamicTagSelect
+            list={this.state.venueTagArray}
+            updateFn={(e) => this.updateVenueTag(e.target.value, 'venueTag3')}
+            choice1={venueTag1}
+            choice2={venueTag2}
+            defaultValue={"Venue Tag"}/> : null
+        }
+        {venueTag1 && venueTag2 && !venueTag3 ? <TagText>Please add another tag</TagText> : null}
           </VenueTagContainer>
 
+
           <SoundTagContainer>
-            <SoundTagInput
-              type={'text'}
-              required={'required'}
+          <TagHeader marginBottom={"10px"}>Sound Tags</TagHeader>
+          <DynamicTagSelect 
+            list={this.state.soundTagArray}
+            updateFn={(e) => this.updateSoundTag(e.target.value, 'soundTag1')}
+            choice1={soundTag2}
+            choice2={soundTag3}
+            marginBottom={"10px"}
+            defaultValue={"Sound Tag"}
             />
-            {soundTagSelect2}
-            {soundTagSelect3}
+        {soundTag1 ?
+          <DynamicTagSelect 
+            list={this.state.soundTagArray}
+            updateFn={(e) => this.updateSoundTag(e.target.value, 'soundTag2')}
+            marginBottom={"10px"}
+            choice1={soundTag1}
+            choice2={soundTag3}
+            defaultValue={"Sound Tag"}/> : <TagText>Please add another sound tag</TagText>
+        }
+        {soundTag1 && !soundTag2 ? <TagText>Please add another sound tag </TagText> : null}
+        {soundTag2 ?
+          <DynamicTagSelect
+            list={this.state.soundTagArray}
+            updateFn={(e) => this.updateSoundTag(e.target.value, 'soundTag3')}
+            choice1={soundTag1}
+            choice2={soundTag2}
+            defaultValue={"Sound Tag"}/> : null
+        }
+        {soundTag1 && soundTag2 && !soundTag3 ? <TagText>Please add another sound tag</TagText> : null}
+
+
           </SoundTagContainer>
           </InputContainer>
 
 
-          <FormButton type={'submit'} title={'Add Venue'} />
+          <FormButton marginTop={"10px"}type={'submit'} title={'Add Venue'} />
         </Form>
       </RegisterContainer>
     )
   }
 }
 
-export default VenueRegistration
+

@@ -3,7 +3,6 @@ import axios from 'axios';
 import styled from 'styled-components'
 import EditButton from '../../../components/Buttons/EditButton';
 import TextInput from '../../../components/Inputs/TextInput'
-import VenueTagInput from '../../../components/Inputs/VenueTagInput'
 
 const DashboardContainer = styled.div`
   height: 95vh;
@@ -180,7 +179,7 @@ handleInput = e => {
 
           <WebsiteFieldContainer>
           <i style={{fontSize: "24px", marginRight: "29px"}} class="fas fa-tags"></i>
-           <VenueTagInput
+           <TextInput
               name={'website'}
               placeholder={'Website'}
               type={'text'}
@@ -193,7 +192,7 @@ handleInput = e => {
 
           <WebsiteFieldContainer>
           <i style={{fontSize: "24px", marginRight: "29px"}} class="fas fa-tags"></i>
-            <VenueTagInput
+            <TextInput
               name={'website'}
               placeholder={'Website'}
               type={'text'}
@@ -206,7 +205,7 @@ handleInput = e => {
 
           <WebsiteFieldContainer>
           <i style={{fontSize: "24px", marginRight: "29px"}} class="fas fa-tags"></i>
-            <VenueTagInput
+            <TextInput
               name={'website'}
               placeholder={'Website'}
               type={'text'}
