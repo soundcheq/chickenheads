@@ -12,9 +12,27 @@ export default class Dashboard extends Component {
               <Tab>Acuity</Tab>
             </Tabs>
 
-          <Card>
+          <Card column>
             <DashSection>
-              One
+
+              <ArtistProfile>
+
+                <ArtistImage/>
+
+                <ArtistText>
+                  <p>Next Event:</p>
+                  <h1>This Artist is Super Long Name</h1>
+                  <h5>Friday, April 3rd</h5>
+                </ArtistText>
+                
+              </ArtistProfile>
+
+              <GenreBar>
+                <p>Hip Hop</p>
+                <p>Jazz</p>
+                <p>Rock</p>
+              </GenreBar>
+
             </DashSection>
 
             <DashSection grey topLayer>
@@ -42,11 +60,15 @@ export default class Dashboard extends Component {
 }
 
 
+//----Variables-----//
 const f = 'display: flex;'
 const column = 'flex-direction: column;'
 const center = 'align-items: center;'
 const allCenter = 'justify-content: center; align-items: center;'
+//----Variables-----//
 
+
+//-----Layout Components------//
 const Container = styled.section`
   ${f};
   ${column};
@@ -66,6 +88,18 @@ const Card = styled.div`
   margin: 0 20px;
   overflow: hidden;
 `
+
+const DashSection = styled.div`
+${f};
+${column};
+${allCenter};
+width: 33%;
+height: 100%;
+position: relative;
+background: ${props => props.grey ? '#f7f7f7;' : 'white;'};
+z-index: ${props => props.topLayer ? '2' : ''}
+`
+
 const WithTabs = styled.div`
   ${f};
   ${column};
@@ -88,6 +122,8 @@ background: ${props => props.currentTab ? 'white' : '#d7d7d7'}
 cursor: pointer;
 font-weight: 600;
 `
+//-----Layout Components------//
+
 
 const PurpleBox = styled.div`
   ${f};
@@ -106,11 +142,67 @@ font-size: 2em;
 color: white;
 `
 
-const DashSection = styled.div`
+
+const GenreBar = styled.div`
 ${f};
-width: 33%;
-height: 100%;
-position: relative;
-background: ${props => props.grey ? '#f7f7f7;' : 'white;'};
-z-index: ${props => props.topLayer ? '2' : ''}
+${center};
+justify-content: space-evenly;
+background: black;
+color: white;
+border-radius: 15px;
+height: 20px;
+width: fit-content;
+padding: 15px 10px;
+p {
+  padding: 0px 10px;
+}
 `
+
+//---Artist Info-----//
+
+const ArtistProfile = styled.div`
+${f};
+${center};
+width: 100%;
+height: 100px;
+padding: 0px 20px;
+margin: 20px 0px;
+border: 1px solid pink;
+`
+
+const ArtistImage = styled.div`
+width: 80px;
+min-width: 80px;
+height: 80px;
+min-height: 80px;
+margin-right: 10px;
+border-radius: 50px;
+border: 2px solid #00ff4f;
+`
+
+const ArtistText = styled.div`
+${f};
+${column};
+justify-content: space-evenly;
+width: fit-content;
+max-width: 200px;
+height: 80%;
+border: 1px solid gray;
+
+h1 {
+  font-size: 1.5em;
+  font-weight: 600;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+h5 {
+  color: gray;
+}
+p {
+  font-size: 0.8em;
+  color: gray;
+}
+`
+
+//---Artist Info-----//
