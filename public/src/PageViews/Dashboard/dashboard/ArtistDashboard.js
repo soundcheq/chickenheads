@@ -3,18 +3,20 @@ import styled from 'styled-components'
 import * as style from '../_Variables'
 import {PurpleBox} from '../_Components'
 
-export default function ArtistDashboard() {
+export default function ArtistDashboard(props) {
   return (
     <React.Fragment>
             <DashSection>
 
               <ArtistProfile>
 
-                <ArtistImage/>
+                <ArtistImage>
+                  <img src={props.artistImage} alt="artist profile"/>
+                </ArtistImage>
 
                 <ArtistText>
                   <p>Next Event:</p>
-                  <h1>This Artist is Super Long Name</h1>
+                  <h1>Jessie J Live</h1>
                   <h5>Friday, April 3rd</h5>
                 </ArtistText>
                 
@@ -89,7 +91,7 @@ p {
 
 const ArtistProfile = styled.div`
 ${style.f};
-${style.center};
+${style.allCenter};
 ${style.w100};
 height: 100px;
 padding: 0px 20px;
@@ -104,6 +106,12 @@ min-height: 80px;
 margin-right: 10px;
 border-radius: 50px;
 border: 2px solid #00ff4f;
+object-fit: cover;
+overflow: hidden;
+
+img {
+  width: 90px;
+}
 `
 
 const ArtistText = styled.div`
@@ -150,7 +158,8 @@ const DashMetric = styled.div`
 
 const GenderBar = styled.div`
 width: 70%;
-height: 30px;
+height: 20px;
+margin: 20px 0px;
 background: #e8e8e8;
 border-radius: 5px;
 overflow: hidden;

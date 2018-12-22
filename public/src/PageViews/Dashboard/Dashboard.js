@@ -11,7 +11,8 @@ export default class Dashboard extends Component {
     super(props)
     this.state = {
       currentTab: 1,
-      currentSubTab: 0
+      currentSubTab: 1,
+      artistImage: 'https://i.ibb.co/YLgWD3V/jj.jpg'
     }
   }
 
@@ -20,7 +21,7 @@ export default class Dashboard extends Component {
   }
 
   render() {
-    const {currentTab, currentSubTab} = this.state
+    const {currentTab, currentSubTab, artistImage} = this.state
     
     return (
       <Container>
@@ -41,7 +42,8 @@ export default class Dashboard extends Component {
           <Card column height={currentTab === 0 ? '35vh' : '80vh'}>
 
           {currentTab === 0 ? 
-          <ArtistDashboard/> 
+          <ArtistDashboard
+          artistImage={artistImage}/> 
           : 
           <ArtistAcuity 
           subMenu={currentSubTab}

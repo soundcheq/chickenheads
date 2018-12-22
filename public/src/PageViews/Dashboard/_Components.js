@@ -30,7 +30,7 @@ export const H1 = styled.h1`
   color: ${props => props.black ? 'black' : 'white'}
 `
 
-export const Tabs = styled.div`
+export const Tabs = styled.nav`
 ${style.f};
 width: 250px;
 height: 40px;
@@ -38,7 +38,7 @@ background: white;
 margin: 0 20px;
 `
 
-export const Tab = styled.div`
+export const Tab = styled.li`
 ${style.f};
 ${style.allCenter};
 width: 50%;
