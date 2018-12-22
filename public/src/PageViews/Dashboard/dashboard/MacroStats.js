@@ -5,7 +5,7 @@ import {Card, PurpleBox, H1} from '../_Components'
 
 export default function MacroStats() {
   return (
-    <Card height="50vh">
+    <Card height="50vh" mTop>
           <PurpleBox top> <H1>All Time Stats</H1> </PurpleBox>
 
           <StatsContainer>

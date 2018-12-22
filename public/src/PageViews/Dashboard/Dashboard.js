@@ -10,16 +10,21 @@ export default class Dashboard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentTab: 0
+      currentTab: 1,
+      currentSubTab: 0
     }
   }
 
-  render() {
-    const {currentTab} = this.state
-    const height = currentTab === 1 ? '60vh' : '40vh'
+  changeSubMenu = (tab) => {
+    this.setState({currentSubTab: tab})
+  }
 
+  render() {
+    const {currentTab, currentSubTab} = this.state
+    
     return (
       <Container>
+        <ScrollContainer>
 
         <CardContainer>
           <Tabs>
@@ -33,14 +38,23 @@ export default class Dashboard extends Component {
             onClick={() => this.setState({currentTab: 1})}>Acuity</Tab>
           </Tabs>
 
-          <Card column>
-          {currentTab === 0 ? <ArtistDashboard/> : <ArtistAcuity/> }
+          <Card column height={currentTab === 0 ? '35vh' : '80vh'}>
+
+          {currentTab === 0 ? 
+          <ArtistDashboard/> 
+          : 
+          <ArtistAcuity 
+          subMenu={currentSubTab}
+          changeSubMenu={this.changeSubMenu}/> 
+          }
+
           </Card>
 
         </CardContainer>
 
         <MacroStats/>
 
+        </ScrollContainer>
       </Container>
     )
   }
@@ -55,7 +69,14 @@ const Container = styled.section`
   ${style.w100};
   height: 100vh;
   background-color: #e8e8e8;
-  justify-content: space-evenly;
+  overflow-y: auto;
+`
+
+const ScrollContainer = styled.div`
+  ${style.w100}
+  height: fit-content;
+  margin: 2% 0%;
+
 `
 
 const CardContainer = styled.div`
