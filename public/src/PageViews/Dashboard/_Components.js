@@ -25,8 +25,8 @@ export const PurpleBox = styled.div`
  
 export const H1 = styled.h1`
   font-size: 2em;
-  color: white;
-  `
+  color: ${props => props.black ? 'black' : 'white'}
+`
 
 export const Tabs = styled.div`
 ${style.f};

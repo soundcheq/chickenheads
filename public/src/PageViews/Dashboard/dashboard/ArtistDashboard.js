@@ -42,6 +42,16 @@ export default function ArtistDashboard() {
 
             <DashSection>
               Demographics
+              <GenderBar><FemaleBar/></GenderBar>
+              <AgeContainer>
+                <AgeGroup percent={0.5}>18-20</AgeGroup>
+                <AgeGroup percent={0.8}>21-24</AgeGroup>
+                <AgeGroup percent={0.4}>25-29</AgeGroup>
+                <AgeGroup percent={0.3}>30-35</AgeGroup>
+                <AgeGroup percent={0.3}>36-44</AgeGroup>
+                <AgeGroup percent={0.1}>45+</AgeGroup>
+              </AgeContainer>
+
             </DashSection>
 
         <PurpleBox/>
@@ -84,7 +94,6 @@ ${style.w100};
 height: 100px;
 padding: 0px 20px;
 margin: 20px 0px;
-border: 1px solid pink;
 `
 
 const ArtistImage = styled.div`
@@ -104,7 +113,6 @@ justify-content: space-evenly;
 width: fit-content;
 max-width: 200px;
 height: 80%;
-border: 1px solid gray;
 
 h1 {
   font-size: 1.5em;
@@ -133,8 +141,46 @@ const DashMetric = styled.div`
   ${style.allCenter};
   ${style.w100};
   height: 50%;
-  border: 1px solid purple;
-  
 `
 
 //---Dash Metric-----//
+
+
+//-----Demographics-----//
+
+const GenderBar = styled.div`
+width: 70%;
+height: 30px;
+background: #e8e8e8;
+border-radius: 5px;
+overflow: hidden;
+`
+
+const FemaleBar = styled.div`
+width: 55%;
+height: 100%;
+background: linear-gradient(#A632FF, #851BD7);
+`
+
+const AgeContainer = styled.div`
+${style.f}
+${style.allCenter}
+flex-wrap: wrap;
+width: 80%;
+height: 80px;
+`
+
+const AgeGroup = styled.div`
+${style.f}
+${style.allCenter}
+flex: 1 0 33%; 
+margin: 5px;
+max-width: 60px;
+height: 30px;
+background: ${props => props.percent ? `rgb(133, 27, 215, ${props.percent})` : '#851BD7'};
+border-radius: 5px;
+color: white;
+`
+
+
+//-----Demographics-----//
