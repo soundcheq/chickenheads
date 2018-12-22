@@ -1,18 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import * as style from '../_Variables'
-import {Card, PurpleBox} from '../_Components'
+import {PurpleBox} from '../_Components'
 
 export default function ArtistDashboard() {
   return (
-    <Container>
-
-            <Tabs>
-              <Tab currentTab>Dashboard</Tab>
-              <Tab>Acuity</Tab>
-            </Tabs>
-
-          <Card column>
+    <React.Fragment>
             <DashSection>
 
               <ArtistProfile>
@@ -51,10 +44,8 @@ export default function ArtistDashboard() {
               Demographics
             </DashSection>
 
-            <PurpleBox/>
-          </Card>
-
-    </Container>
+        <PurpleBox/>
+    </React.Fragment>
   )
 }
 
@@ -67,29 +58,6 @@ height: 100%;
 position: relative;
 background: ${props => props.grey ? '#f7f7f7;' : 'white;'};
 z-index: ${props => props.topLayer ? '2' : ''}
-`
-
-const Container = styled.div`
-  ${style.f};
-  ${style.column};
-`
-
-const Tabs = styled.div`
-${style.f};
-width: 250px;
-height: 40px;
-background: white;
-margin: 0 20px;
-`
-
-const Tab = styled.div`
-${style.f};
-${style.allCenter};
-width: 50%;
-height: 100%;
-background: ${props => props.currentTab ? 'white' : '#d7d7d7'}
-cursor: pointer;
-font-weight: 600;
 `
 
 //---Artist Info-----//

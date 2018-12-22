@@ -28,4 +28,21 @@ export const H1 = styled.h1`
   color: white;
   `
 
+export const Tabs = styled.div`
+${style.f};
+width: 250px;
+height: 40px;
+background: white;
+margin: 0 20px;
+`
+
+export const Tab = styled.div`
+${style.f};
+${style.allCenter};
+width: 50%;
+height: 100%;
+background: ${props => props.tab ? 'white' : '#d7d7d7'}
+cursor: pointer;
+font-weight: 600;
+`
 
