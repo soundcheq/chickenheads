@@ -18,10 +18,10 @@ export default function MacroStats() {
               <H2>500</H2>
 
               <H3>RSVPs</H3>
-              <H2>149</H2>
+              <H2 color="#ffbe0b">149</H2>
 
               <H3>CHEQs</H3>
-              <H2>45</H2>
+              <H2 color="#12db00">45</H2>
 
               <H3>QP Earned</H3>
               <H2>2424</H2>
@@ -29,7 +29,7 @@ export default function MacroStats() {
             </Numbers>
 
             <Graph>
-              <H2>Graph</H2>
+              
               <MacroChart/>
             </Graph>
 
@@ -64,6 +64,7 @@ ${style.allCenter}
 const H2 = styled.div`
 font-size: 2em;
 font-weight: 600;
+color: ${props => props.color ? props.color : 'black'};
 `
 
 const H3 = styled.div`
