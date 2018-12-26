@@ -1,4 +1,5 @@
 import React from 'react'
+import DashMetrics from '../dashboard/DashMetrics'
 import styled from 'styled-components'
 import * as style from '../_Variables'
 import {PurpleBox} from '../_Components'
@@ -32,13 +33,7 @@ export default function ArtistDashboard(props) {
 
             <DashSection grey topLayer>
 
-              <DashMetric>
-                <h2>RSVPs</h2>
-              </DashMetric>
-
-              <DashMetric>
-                <h2>CHEQs</h2>
-              </DashMetric>
+              <DashMetrics/>
 
             </DashSection>
 
@@ -139,19 +134,6 @@ p {
 `
 
 //---Artist Info-----//
-
-
-
-//---Dash Metric-----//
-
-const DashMetric = styled.div`
-  ${style.f};
-  ${style.allCenter};
-  ${style.w100};
-  height: 50%;
-`
-
-//---Dash Metric-----//
 
 
 //-----Demographics-----//
