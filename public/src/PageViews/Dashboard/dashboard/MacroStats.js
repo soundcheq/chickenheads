@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import * as style from '../_Variables'
 import {Card, PurpleBox, H1} from '../_Components'
+import MacroChart from './MacroChart'
+
 
 export default function MacroStats() {
   return (
@@ -28,6 +30,7 @@ export default function MacroStats() {
 
             <Graph>
               <H2>Graph</H2>
+              <MacroChart/>
             </Graph>
 
           </StatsContainer>

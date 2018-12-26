@@ -10,8 +10,8 @@ export default class Dashboard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentTab: 1,
-      currentSubTab: 1,
+      currentTab: 0,
+      currentSubTab: 0,
       artistImage: 'https://i.ibb.co/YLgWD3V/jj.jpg'
     }
   }
