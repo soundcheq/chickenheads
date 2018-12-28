@@ -86,14 +86,43 @@ const SoundTagContainer = styled.div`
   width: calc(50% - 5px);
 `
 const VenueExistsContainer = styled.div`
-  background-color: ${props => (props.error === true ? `red` : `white`)};
+  display: ${props => (props.error === true ? `flex` : `none`)}
+  flex-direction: row;
+  align-items: center;
   width: 100%;
+  height: 40px;
+  margin-bottom: 15px;
 `
 const TagText = styled.span`
   font-size: 12px;
   text-align: center;
   margin-left: 5px;
   display: none;
+`
+
+const VenueProfilePicture = styled.div`
+  background-color: orange;
+  border-radius 50%;
+  width: 50px;
+  height: 50px;
+`
+const VenueMatchDetails = styled.div`
+  margin-left: 10px;
+  overflow: visible;
+  white-space: nowrap;
+`
+
+const VenueMatchHeader = styled.p`
+  font-size: 20px
+  font-weight: bold;
+`
+const VenueMatchAction = styled.div `
+  text-align: center;
+  width: 175px;
+`
+const VenueMatchSubHeader = styled.p`
+  font-size: 14px
+  color: darkgrey;
 `
 
 export default class VenueRegistration extends Component {
@@ -119,16 +148,20 @@ export default class VenueRegistration extends Component {
     soundTag3: '',
 
     //errors
-
+    venueError: false,
     addressError: false, 
     websiteError: false,
     zipcodeError: false,
     capacityError: false,
-    venueMatch: false,
+
+    venueMatchInfo : {}
   }
 
   handleSubmit = () => {
     // CHECK FOR ERRORS
+    //let {venueName, address, city, state, zip, capacity, website, venueTag1, venueTag2, venueTag3, soundTag1, soundTag2, soundTag3} = this.state;
+    //let obj = {}
+    //axios.post(whatever the endpoint is, obj)
     alert('Submitted')
   }
 
@@ -149,6 +182,10 @@ export default class VenueRegistration extends Component {
     this.setState({
       [name]: value
     })
+  }
+
+  checkVenueName = () => {
+      //check table for venue name
   }
 
   checkWebsite = () => {
@@ -179,6 +216,9 @@ export default class VenueRegistration extends Component {
 
     let {venueTag1, venueTag2, venueTag3, soundTag1, soundTag2, soundTag3} = this.state;
 
+    //change to server response
+    let venueMatchInfo = {name: "Metro Music Hall", addressLine1: "49 N 400W", addressLine2: "Salt Lake City, UT 84116"}
+
     return (
       <RegisterContainer>
         <Header>Add A Venue</Header>
@@ -188,7 +228,19 @@ export default class VenueRegistration extends Component {
         </SubHeader>
         <Form onSubmit={() => this.handleSubmit()}>
 
-          <VenueExistsContainer>
+          <VenueExistsContainer error={this.state.venueError}>
+              <VenueMatchAction>
+                <p style={{fontWeight: "bold", marginBottom: "5px"}}>Is this your venue?</p>
+                <a href="" style={{fontSize: "14px"}}>Click here to sign in.</a>
+              </VenueMatchAction>
+              <VenueProfilePicture/>
+              <VenueMatchDetails>
+                <VenueMatchHeader>{venueMatchInfo.name}</VenueMatchHeader>
+                <VenueMatchSubHeader>{venueMatchInfo.addressLine1}</VenueMatchSubHeader>
+                <VenueMatchSubHeader>{venueMatchInfo.addressLine2}</VenueMatchSubHeader>
+              </VenueMatchDetails>
+          </VenueExistsContainer>
+
           <TextInput
             name={'venueName'}
             placeholder={'Venue Name'}
@@ -197,8 +249,8 @@ export default class VenueRegistration extends Component {
             required={'required'}
             minLength={'3'}
             maxLength={'40'}
+            onBlur={this.checkVenueName}
           />
-          </VenueExistsContainer>
 
           <InputContainer>
           <TextInput
@@ -242,6 +294,7 @@ export default class VenueRegistration extends Component {
             placeholder={'Website'}
             type={'text'}
             updateFn={this.handleInput}
+            marginBottom={"15px"}
             required={'required'}
             onBlur={this.checkWebsite}
             width={'70%'}
@@ -256,6 +309,7 @@ export default class VenueRegistration extends Component {
               width={'calc(30% - 10px)'}
               min="10"
               max="500000"
+              marginBottom={"15px"}
               required={'required'}
           />
 

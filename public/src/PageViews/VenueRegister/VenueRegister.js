@@ -31,6 +31,7 @@ class VenueRegister extends Component {
         <Wrapper>
           {contactInfoComplete ? <CreateAccount /> : 
            !registrationComplete ? <VenueRegistration/> : <VenueRegistration2/>}
+          
         </Wrapper>
       </div>
     )
