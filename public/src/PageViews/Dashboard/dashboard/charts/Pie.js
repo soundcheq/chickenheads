@@ -12,21 +12,20 @@ constructor(props) {
     }
   componentDidMount() {
     const node = this.node;
-
+    const color = this.props.cheq ? '#12db00' : '#ffbe0b'
     var myPie = new Chart(node, {
         type: 'pie',
         data: {
           labels: ["RSVPs"],
           datasets: [{
             label: "Population (millions)",
-            backgroundColor: ["#3e95cd", "#f7f7f7"],
-            data: [400, 200]
+            backgroundColor: [color, "#f7f7f7"],
+            data: [400, this.props.count]
           }]
         },
         options: {
-          title: {
-            display: false
-          }
+          title: { display: false },
+          elements: { arc: { borderWidth: 0 } }
         }
     });
   }
@@ -34,10 +33,10 @@ constructor(props) {
   render() {
     return (
         <Container>
-       
-        <Circle>
-        <canvas ref={node => (this.node = node)} />
-        </Circle>
+         <canvas
+         style={{ width: 100, height: 100 }}
+         ref={node => (this.node = node)} />
+         <Circle>{this.props.display}</Circle>
         </Container>
     );
   }
@@ -45,14 +44,23 @@ constructor(props) {
 
 
 const Container = styled.div`
-width: 200px;
-
-background: 'green';
+width: 25%;
+${style.f}
+${style.allCenter}
+position: relative;
+padding: 0;
+margin: 0;
 
 `
 
 const Circle = styled.div`
-width: 150px;
-background: 'red';
-
+width: 60px;
+height: 60px;
+border-radius: 30px;
+background: black;
+position: absolute;
+${style.f}
+${style.allCenter}
+font-size: 1.3em;
+color: white;
 `
