@@ -32,7 +32,7 @@ export default function ArtistDashboard(props) {
             </DashSection>
 
             <DashSection grey topLayer>
-
+              
               <DashMetrics/>
 
             </DashSection>

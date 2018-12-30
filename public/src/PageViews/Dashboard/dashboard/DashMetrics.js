@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import * as style from '../_Variables'
+import RsvpGraph from './charts/RsvpGraph'
 
 export default function DashMetrics() {
   return (
     <React.Fragment>
               <DashMetric>
                 <h2>RSVPs</h2>
+                <RsvpGraph/>
               </DashMetric>
 
               <DashMetric>

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from 'styled-components'
-import * as style from '../_Variables'
-
+import * as style from '../../_Variables'
 
 var Chart = require("chart.js")
 Chart.defaults.global.defaultFontFamily = "'Proxima', sans-serif"

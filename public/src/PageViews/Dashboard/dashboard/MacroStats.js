@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import * as style from '../_Variables'
 import {Card, PurpleBox, H1} from '../_Components'
-import MacroChart from './MacroChart'
+import MacroChart from './charts/MacroChart'
 
 
 export default function MacroStats() {
