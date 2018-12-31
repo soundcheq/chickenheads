@@ -32,35 +32,52 @@ constructor(props) {
 
   render() {
     return (
+     
         <Container>
-         <canvas
-         style={{ width: 100, height: 100 }}
-         ref={node => (this.node = node)} />
-         <Circle>{this.props.display}</Circle>
+          <InnerContainer>
+            <canvas style={{ width: 60, height: 60 }}
+            ref={node => (this.node = node)} />
+            <Circle>{this.props.display}</Circle>
+          </InnerContainer>
+
+          <Description>{this.props.chartTitle}</Description>
         </Container>
+
+     
     );
   }
 }
 
-
 const Container = styled.div`
 width: 25%;
 ${style.f}
+${style.column}
 ${style.allCenter}
 position: relative;
 padding: 0;
 margin: 0;
+`
 
+const InnerContainer = styled.div`
+width: 80%;
+${style.f}
+${style.allCenter}
 `
 
 const Circle = styled.div`
-width: 60px;
-height: 60px;
-border-radius: 30px;
+width: 50px;
+height: 50px;
+border-radius: 25px;
 background: black;
 position: absolute;
 ${style.f}
 ${style.allCenter}
 font-size: 1.3em;
 color: white;
+`
+const Description = styled.p`
+position: relative;
+bottom: 0;
+font-size: 0.8em;
+margin-top: 8%;
 `
