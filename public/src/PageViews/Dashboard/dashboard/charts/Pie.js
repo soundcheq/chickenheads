@@ -6,13 +6,14 @@ var Chart = require("chart.js")
 Chart.defaults.global.defaultFontFamily = "'Proxima', sans-serif"
 Chart.defaults.global.legend.display = false;
 
-export default class RsvpGraph extends React.Component {
+export default class Pie extends React.Component {
 constructor(props) {
     super(props);
     }
   componentDidMount() {
     const node = this.node;
     const color = this.props.cheq ? '#12db00' : '#ffbe0b'
+
     var myPie = new Chart(node, {
         type: 'pie',
         data: {
@@ -49,7 +50,7 @@ constructor(props) {
 }
 
 const Container = styled.div`
-width: 25%;
+width: ${props => props.size ? props.size : '25%'}
 ${style.f}
 ${style.column}
 ${style.allCenter}
