@@ -6,10 +6,12 @@ import Calendar from './PageViews/Calendar/Calendar'
 import SplashPage from './PageViews/SplashPage/SplashPageView'
 import VenueRegister from './PageViews/VenueRegister/VenueRegister'
 import VenueUser from './PageViews/UserRegister/UserRegister'
+import UserDashboard from './PageViews/UserDashboard/UserDashboard'
 
 export default (
   <Switch>
     <Route exact path="/" component={SplashPage} />
+    <Route exact path="/user/dashboard" component={UserDashboard} />
     <Route path="/venuelogin" component={VenueLogin} />
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/calendar" component={Calendar} />

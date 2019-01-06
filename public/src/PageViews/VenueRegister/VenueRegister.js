@@ -29,9 +29,9 @@ class VenueRegister extends Component {
     return (
       <div>
         <Wrapper>
-          {contactInfoComplete ? <CreateAccount /> : 
-           !registrationComplete ? <VenueRegistration/> : <VenueRegistration2/>}
-          
+          {/* {!contactInfoComplete ? <CreateAccount /> : 
+           !registrationComplete ? <VenueRegistration/> : <VenueRegistration2/>} */}
+          <VenueRegistration2/>
         </Wrapper>
       </div>
     )

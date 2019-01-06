@@ -7,7 +7,8 @@ import RightPanel from './RightPanelVenue/RightPanel'
 import './App.css'
 
 const pathsWithoutPanels = {
-  '/': true
+  '/': true,
+  '/user/dashboard' : true
 }
 
 class App extends Component {

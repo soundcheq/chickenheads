@@ -33,7 +33,7 @@ class VenueRegistration2 extends Component {
       <RegisterContainer>
         <Header>Thank you for registering!</Header>
         <SubHeader>
-            Enjoy this introductory video, then add more information about your venue. <br/>
+            Enjoy this introduction to Soundcheq, then add more information about your venue. <br/>
             Be on the lookout for new features coming your way!
         </SubHeader>
       </RegisterContainer>

@@ -103,6 +103,7 @@ async function startServer(opts = {}) {
       )
     }
 
+
     // Initialize the sequelize instance using all models in the models folder
     const { sequelizeInstance, models } = require('./models')
     // Async await sequelizes authenticate process
