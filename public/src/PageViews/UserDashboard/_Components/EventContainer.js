@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import points from '../../assets/qp-white.png'
-import musicIcon from '../../assets/music-icon.png'
-import pin from '../../assets/pin.png'
+
+//Images
+
+import points from '../../../assets/qp-white.png'
+import musicIcon from '../../../assets/music-icon.png'
+import pin from '../../../assets/pin.png'
 
 
 export default class EventContainer extends Component {

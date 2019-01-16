@@ -8,7 +8,9 @@ import './App.css'
 
 const pathsWithoutPanels = {
   '/': true,
-  '/user/dashboard' : true
+  '/user/trending': true,
+  '/user/checkin' : true,
+  '/user/myevents' : true
 }
 
 class App extends Component {

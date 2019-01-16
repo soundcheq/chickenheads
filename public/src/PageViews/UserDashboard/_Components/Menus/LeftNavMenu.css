@@ -4,13 +4,17 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 70%;
-    max-width: 300px;
-    z-index: 210;
+    width: 85%;
+    max-width: 330px;
+    z-index: 3;
     transform: translateX(-100%);
     transition: transform 0.3s ease-out;
   }
   
   .side-drawer.open {
     transform: translateX(0);
+  }
+
+  a {
+    text-decoration: none;
   }

@@ -1,0 +1,16 @@
+.bottom-drawer {
+    height: 692px;
+    background: #e8e9e8;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 80%;
+    z-index: 2;
+    font-size: 22px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .bottom-drawer.open {
+    transform: translateX(0);
+  }

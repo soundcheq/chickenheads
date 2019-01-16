@@ -1,104 +1,147 @@
+//-----Packages-----//
+
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 
-//  Images
+//-----Images-----//
 
-import NavMenuButtonPNG from '../../assets/NavMenuButton.png'
-import FilterMenuButtonPNG from '../../assets/FilterButton.png'
-import SearchIconPNG from '../../assets/search.png'
-import QPointsPNG from '../../assets/QPoints.png'
-import Jigglypuff from '../../assets/jigglypuff.jpg'
+import NavMenuButtonPNG from '../../../assets/NavMenuButton.png'
+import FilterMenuButtonPNG from '../../../assets/FilterButton.png'
+import SearchIconPNG from '../../../assets/search.png'
+import QPointsPNG from '../../../assets/QPoints.png'
+import Jigglypuff from '../../../assets/jigglypuff.jpg'
 
-import EventContainer from './EventContainer'
-import Backdrop from './Backdrop.js'
-import LeftNavMenu from './LeftNavMenu'
+//-----Components-----//
 
+import EventContainer from '../_Components/EventContainer'
+import Backdrop from '../_Components/Backdrop'
+import LeftNavMenu from '../_Components/Menus/LeftNavMenu'
+import FilterMenu from '../_Components/Menus/FilterMenu'
 
-// DEMO NOTES
+//-----React Component-----//
 
-// We should define two locations with 10 events each so we can show the funcitonality of toggling between locations
-// We should have filters toggle the sorting of those events
+//Note --- this component renders both the trending page and the filters menu
 
-export default class UserDashboard extends Component {
-  constructor(props){
+export default class Trending extends Component {
+  constructor(props) {
     super(props)
     this.state = {
-        user: null,
-        location: 84101,
-
-        //dummy array
-        trendingEvents: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        eventsData: null,
-
-        navMenuVisible: false,
-        filtersMenuVisible: false,
+      user: null,
+      location: 84101,
+      trendingEvents: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      eventsData: null,
+      navMenuVisible: false,
+      filtersMenuVisible: false,
     }
   }
-    //navMenu scrolls left to right to open
-    //filters scrolls up from the bottom to open
 
-    //BROKEN
-
-    componentDidMount(){
-      axios.get("/api/events").then(response => {
-        this.setState({
-          eventsData: response.body
-        });
-      })
-    }
-
-    leftNavClickHandler = () => {
-      this.setState((prevState) => {
-        return {navMenuVisible: !prevState.navMenuVisible};
-      });
-    };
-
-    backdropClickHandler = () => {
+  componentDidMount() {
+    axios.get("/api/events").then(response => {
       this.setState({
-        navMenuVisible: false
+        eventsData: response.body
       });
-    };
+    })
+  }
+
+  leftNavClickHandler = () => {
+    if(!this.state.filtersMenuVisible){
+    this.setState((prevState) => {
+      return { navMenuVisible: !prevState.navMenuVisible };
+    })};
+  };
+
+  filterClickHandler = () => {
+    this.setState((prevState) => {
+      return { filtersMenuVisible: !prevState.filtersMenuVisible }
+    })
+  }
+
+  backdropClickHandler = () => {
+    this.setState({
+      navMenuVisible: false
+    });
+  };
 
 
   render() {
 
-    let backdrop;
-    if (this.state.navMenuVisible) {
-        backdrop = <Backdrop click={this.backdropClickHandler} />
+    let yValue;
+    if (this.state.filtersMenuVisible){
+      yValue = "hidden"
+    } else {
+      yValue = "auto"
     }
 
+    let backdrop;
+    if (this.state.navMenuVisible) {
+      backdrop = <Backdrop click={this.backdropClickHandler} />
+    }
+
+    let title;
+    if (this.state.filtersMenuVisible) {
+      title = `Filters`
+    } else { title = 'Trending' }
+
+
+// Uncomment and comment out above to hide profile info filter menu open
+
+    // let profileArea;
+    // if (this.state.filtersMenuVisible) {
+    //   profileArea =
+    //     <UserDashboardProfileButton>
+    //       <CloseButton/>
+    //     </UserDashboardProfileButton>
+    // } else {
+    //   profileArea =
+    //     <UserDashboardProfileButton>
+    //       <QPoints>
+    //         <Number>4200</Number>
+    //         <QPointsImage />
+    //       </QPoints>
+    //       <ProfilePicture />
+    //     </UserDashboardProfileButton>
+    // }
+
+
     let trendingEventsRender = this.state.trendingEvents.map(event => {
-      return <EventContainer eventInfo={dummyEvent}/>
+      return <EventContainer eventInfo={dummyEvent} />
     })
-    
+
     return (
-      <UserDashboardBackground>
+      <UserDashboardBackground style={{ overflowY : `${yValue}`}}>
         <LeftNavMenu show={this.state.navMenuVisible} />
+        <FilterMenu show={this.state.filtersMenuVisible} />
         {backdrop}
+
+        <StickyTopArea>
         <UserDashboardTopBar>
           <NavMenuButton onClick={this.leftNavClickHandler}/>
-          <FilterMenuButton/>
-          <TopBarLocation>Trending</TopBarLocation>
-          <UserDashboardProfileButton>
-            <QPoints>
-                <Number>4200</Number>
-                <QPointsImage/>
-            </QPoints>
-            <ProfilePicture/>
-          </UserDashboardProfileButton>
+          <FilterMenuButton onClick={this.filterClickHandler} />
+          <TopBarLocation>{title}</TopBarLocation>
+          {/* {profileArea} */}
+             <UserDashboardProfileButton>
+           <QPoints>
+             <Number>4200</Number>
+             <QPointsImage />
+           </QPoints>
+           <ProfilePicture />
+         </UserDashboardProfileButton>
         </UserDashboardTopBar>
 
         <SearchContainer>
-          <SearchIcon/>
+          <SearchIcon />
           <LocationField
-            placeholder = "Salt Lake City, UT"
+            placeholder="Salt Lake City, UT"
           />
           <ViewMapButton>View Map</ViewMapButton>
         </SearchContainer>
+        </StickyTopArea>
 
+        <EventWrapper>
         {trendingEventsRender}
-      
+        </EventWrapper>
+
       </UserDashboardBackground>
     )
   }
@@ -106,6 +149,13 @@ export default class UserDashboard extends Component {
 
 
 //-----Styles-----//
+
+const StickyTopArea = styled.div`
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+`
 
 const row = `
 display: flex;
@@ -120,6 +170,8 @@ width: 375px;
 height: 100%;
 `
 const UserDashboardTopBar = styled.div`
+top: 0;
+z-index: 1;
 width: 100%;
 height: 60px;
 background-color: #8F72C2;
@@ -185,6 +237,8 @@ background-position: 50% 50%;
 margin-left: -26px;
 `
 const TopBarLocation = styled.div`
+width: 120px;
+text-align: center;
 font-size: 26px;
 font-family: 'ProximaNova';
 font-weight: 100;
@@ -192,7 +246,7 @@ color: white;
 letter-spacing: 2px;
 `
 
-const LocationField= styled.input`
+const LocationField = styled.input`
 height: 100%;
 font-size: 20px;
 margin-left: 10px;
@@ -215,11 +269,11 @@ background-position: 50% 50%;
 const UserDashboardProfileButton = styled.div`
   height: 100%;
   width: 100px;
-  margin-right: 10px;
   ${row}
 `
 
 const SearchContainer = styled.div`
+z-index: 1;
 background-color: #FFFFFF;
 width: 100%;
 height: 60px;
@@ -234,6 +288,11 @@ border-radius: 5px;
 color: white;
 font-size: 12px;
 border: none;
+`
+
+const EventWrapper = styled.div`
+width : 100%;
+margin-top: 120px;
 `
 //-----Styles-----//
 
